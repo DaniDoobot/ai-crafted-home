@@ -5,11 +5,13 @@ import { IntelligenceSection } from "@/components/home/IntelligenceSection";
 import { Integrations } from "@/components/home/Integrations";
 import { TeamSection } from "@/components/home/TeamSection";
 import { WhatsAppSection, VoiceBotsSection } from "@/components/home/ChannelSections";
+import { KitDigital } from "@/components/home/KitDigital";
 import { Testimonial } from "@/components/home/Testimonial";
 import { AwardSection } from "@/components/home/AwardSection";
 import { StatsSection } from "@/components/home/StatsSection";
 import { Clients } from "@/components/home/Clients";
 import { Footer } from "@/components/home/Footer";
+import { WhatsAppFab } from "@/components/home/WhatsAppFab";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -26,12 +28,14 @@ function HomePage() {
         <TeamSection />
         <WhatsAppSection />
         <VoiceBotsSection />
+        <KitDigital />
         <Testimonial />
         <AwardSection />
         <StatsSection />
         <Clients />
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
   );
 }

@@ -1,42 +1,41 @@
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 md:grid-cols-4 lg:px-8">
-        <div className="md:col-span-2">
-          <span className="font-display text-2xl font-bold tracking-tight">
-            doobot<span className="text-gradient-brand">.ai_</span>
-          </span>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-primary-foreground/70">
-            IA Generativa aplicada a bots y procesos empresariales. Parte de Grupo
-            eCUSTOMER, agente digitalizador del Kit Digital y Kit Consulting.
-          </p>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-semibold text-primary-foreground">Soluciones</h3>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-primary-foreground/70">
-            <li><a href="#soluciones" className="hover:text-primary-foreground">Chat & Voice Bots</a></li>
-            <li><a href="#soluciones" className="hover:text-primary-foreground">AI Agents</a></li>
-            <li><a href="#soluciones" className="hover:text-primary-foreground">Analytics Bots</a></li>
-            <li><a href="#soluciones" className="hover:text-primary-foreground">RAG · Embedded</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-semibold text-primary-foreground">Empresa</h3>
-          <ul className="mt-4 flex flex-col gap-2 text-sm text-primary-foreground/70">
-            <li><a href="#ejemplos" className="hover:text-primary-foreground">Ejemplos y demos</a></li>
-            <li><a href="#voice-demo" className="hover:text-primary-foreground">Demo Voice Bot</a></li>
-            <li><a href="#premio" className="hover:text-primary-foreground">Premio Mejor Tecnología</a></li>
-            <li><a href="#demo" className="hover:text-primary-foreground">Agendar una demo</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-primary-foreground/60 sm:flex-row sm:px-6 lg:px-8">
-          <span>© {new Date().getFullYear()} doobot.ai — Grupo eCUSTOMER</span>
-          <span>Todos los derechos reservados.</span>
-        </div>
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 py-12 sm:px-6 lg:px-8">
+        <img
+          src="/doobot/logo-blanco-300x40-2.png"
+          alt="doobot.ai"
+          className="h-9 w-auto"
+        />
+        <p className="max-w-2xl text-center text-sm text-primary-foreground/70">
+          Copyright ©2026 doobot.ai – Todos los derechos reservados – doobot.ai es una
+          empresa del grupo eCUSTOMER.
+        </p>
+        <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-primary-foreground/70">
+          <li>
+            <a href="/politica-de-privacidad/" className="hover:text-primary-foreground">
+              Política de privacidad
+            </a>
+          </li>
+          <li>
+            <a href="/aviso-legal/" className="hover:text-primary-foreground">
+              Aviso legal
+            </a>
+          </li>
+          <li>
+            <a
+              href="/politica-de-seguridad-de-la-informacion/"
+              className="hover:text-primary-foreground"
+            >
+              Política de seguridad de la información
+            </a>
+          </li>
+          <li>
+            <a href="/politica-de-cookies/" className="hover:text-primary-foreground">
+              Política de cookies
+            </a>
+          </li>
+        </ul>
       </div>
     </footer>
   );
