@@ -86,15 +86,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "doobot.ai" },
       {
         property: "og:title",
-        content: "doobot.ai — IA aplicada para optimizar",
+        content: "doobot.ai — IA aplicada para optimizar ventas, servicio y procesos",
       },
       {
         property: "og:description",
         content:
-          "Modelos y Agentes IA aplicados en bots y procesos, por un equipo experto en optimización de venta y servicio al cliente.",
+          "doobot.ai desarrolla Chat y Voice Bots con IA Generativa para automatizar ventas, servicio al cliente, citas, training y análisis en empresas.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "doobot.ai — IA aplicada para optimizar ventas, servicio y procesos" },
+      { name: "twitter:description", content: "doobot.ai desarrolla Chat y Voice Bots con IA Generativa para automatizar ventas, servicio al cliente, citas, training y análisis en empresas." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3f2000fa-c630-4ffb-89c7-6bb1bb58dfe2/id-preview-e4d34ee1--18bd7751-2cd3-45b0-a0f4-156654e90596.lovable.app-1784546983072.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3f2000fa-c630-4ffb-89c7-6bb1bb58dfe2/id-preview-e4d34ee1--18bd7751-2cd3-45b0-a0f4-156654e90596.lovable.app-1784546983072.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
