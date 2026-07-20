@@ -2,24 +2,9 @@ import { Quote } from "lucide-react";
 
 export function Testimonial() {
   return (
-    <section className="bg-muted/40 py-24 sm:py-32">
+    <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-sm text-muted-foreground">
-            doobot.ai forma parte de Grupo eCUSTOMER, agente digitalizador del Kit
-            Digital y Kit Consulting.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8">
-            <img
-              src="https://doobot.ai/wp-content/uploads/2025/08/Kit-digital-1024x209.webp"
-              alt="Kit Digital y Kit Consulting"
-              loading="lazy"
-              className="h-16 w-auto max-w-full opacity-90"
-            />
-          </div>
-        </div>
-
-        <figure className="mx-auto mt-20 grid max-w-5xl grid-cols-1 items-center gap-10 rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-12 md:grid-cols-[220px_1fr]">
+        <figure className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-12 md:grid-cols-[220px_1fr]">
           <div className="mx-auto h-40 w-40 shrink-0 overflow-hidden rounded-full ring-4 ring-white/60 shadow-elevated md:h-52 md:w-52">
             <img
               src="https://doobot.ai/wp-content/uploads/2025/08/Foto-Ramon-Almendro.webp"

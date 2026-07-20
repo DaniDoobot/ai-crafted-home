@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from "motion/react";
 const ROTATING = [
   "ventas_",
   "servicio al cliente_",
-  "training y dudas_",
-  "análisis de información_",
   "citas_",
+  "training y dudas_",
+  "análisis información_",
 ];
 
 export function Hero() {
@@ -26,10 +26,6 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden bg-gradient-hero">
       <div className="pointer-events-none absolute inset-0 opacity-60 [background:radial-gradient(600px_300px_at_50%_120%,var(--brand-violet)/20,transparent)]" />
       <div className="relative mx-auto flex max-w-5xl flex-col items-center px-4 pt-20 pb-24 text-center sm:px-6 sm:pt-28 sm:pb-32 lg:pt-36 lg:pb-40">
-        <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-1.5 text-xs font-medium tracking-wide text-foreground/70 shadow-soft backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-gradient-brand" />
-          Modelos y Agentes IA aplicados a procesos
-        </span>
 
         <h1 className="font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
           <span className="block">IA aplicada para optimizar</span>
@@ -66,7 +62,7 @@ export function Hero() {
             Agendar una demo
           </a>
           <a
-            href="#ejemplos"
+            href="/ejemplos-y-demos/"
             className="inline-flex w-full items-center justify-center rounded-full border border-border bg-background/70 px-8 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition-colors hover:bg-muted sm:w-auto"
           >
             Ejemplos y casos de uso
