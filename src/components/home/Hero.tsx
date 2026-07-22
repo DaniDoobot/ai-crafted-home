@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 const ROTATING = [
   "ventas_",
@@ -202,13 +203,17 @@ export function Hero() {
 
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
           <a
-            href="#demo"
+            href={WHATSAPP_DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center rounded-full bg-gradient-brand px-8 py-3.5 text-sm font-semibold text-white shadow-elevated transition-transform hover:scale-[1.02] sm:w-auto"
           >
             Agendar una demo
           </a>
           <a
-            href="/ejemplos-y-demos/"
+            href={WHATSAPP_DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex w-full items-center justify-center rounded-full border px-8 py-3.5 text-sm font-semibold backdrop-blur transition-colors hover:bg-white/10 sm:w-auto"
             style={{
               borderColor: "oklch(1 0 0 / 0.25)",

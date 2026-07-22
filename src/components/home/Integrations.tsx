@@ -20,7 +20,7 @@ export function Integrations() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
-            Integrados con <span className="text-gradient-brand">Conecta</span>
+            Integrados con
           </h2>
           <p className="mt-4 text-base text-muted-foreground sm:text-lg">
             La automatización con todos tus entornos y aplicativos para una gestión

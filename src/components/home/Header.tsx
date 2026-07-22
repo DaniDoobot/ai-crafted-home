@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { solutionNavigation, mainNavigation } from "@/config/navigation";
+import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -68,7 +69,9 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <a
-            href="#demo"
+            href={WHATSAPP_DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-transform hover:scale-[1.02] sm:inline-flex"
           >
             Agendar una demo
@@ -119,7 +122,9 @@ export function Header() {
             ))}
 
             <a
-              href="#demo"
+              href={WHATSAPP_DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-gradient-brand px-5 py-3 text-center text-sm font-semibold text-white sm:hidden"
             >
