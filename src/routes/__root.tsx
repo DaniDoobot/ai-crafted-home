@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { CookieConsent } from "@/components/global/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -97,12 +98,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "doobot.ai — IA aplicada para optimizar ventas, servicio y procesos" },
       { name: "twitter:description", content: "doobot.ai desarrolla Chat y Voice Bots con IA Generativa para automatizar ventas, servicio al cliente, citas, training y análisis en empresas." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3f2000fa-c630-4ffb-89c7-6bb1bb58dfe2/id-preview-e4d34ee1--18bd7751-2cd3-45b0-a0f4-156654e90596.lovable.app-1784546983072.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/3f2000fa-c630-4ffb-89c7-6bb1bb58dfe2/id-preview-e4d34ee1--18bd7751-2cd3-45b0-a0f4-156654e90596.lovable.app-1784546983072.png" },
+      { property: "og:image", content: "/doobot/Premio-Excelencia-doobot.ai_.jpg" },
+      { name: "twitter:image", content: "/doobot/Premio-Excelencia-doobot.ai_.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/doobot-favicon-v2.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/doobot-favicon-32-v2.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/doobot-favicon-192-v2.png", type: "image/png", sizes: "192x192" },
+      { rel: "apple-touch-icon", href: "/doobot-apple-touch-icon-v2.png", sizes: "180x180" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
@@ -140,6 +144,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <CookieConsent />
     </QueryClientProvider>
   );
 }

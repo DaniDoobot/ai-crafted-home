@@ -1,4 +1,9 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import {
+  OFFICIAL_AWARDS_URL,
+  OFFICIAL_AWARDS_ARTICLE_URL,
+  OFFICIAL_PRESS_ARTICLE_URL,
+} from "@/config/awards";
 
 export function AwardSection() {
   return (
@@ -37,7 +42,7 @@ export function AwardSection() {
             className="w-full max-w-[50%] sm:max-w-[50%]"
           >
             <a
-              href="https://premiosrelacionclientes.com/"
+              href={OFFICIAL_AWARDS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center p-2.5 bg-transparent border border-[#050547] rounded-none text-[#050547] font-display font-medium leading-[1.3] tracking-[-1px] transition-colors hover:bg-[#050547] hover:text-white"
@@ -55,7 +60,7 @@ export function AwardSection() {
             className="w-full max-w-[50%] sm:max-w-[30%]"
           >
             <a
-              href="https://newsletteraeerc.ecustomer.es/t/r-e-tktdqit-pcilijuly-y/"
+              href={OFFICIAL_AWARDS_ARTICLE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center p-2.5 bg-transparent border border-[#050547] rounded-none text-[#050547] font-display font-medium leading-[1.3] tracking-[-1px] transition-colors hover:bg-[#050547] hover:text-white"
@@ -73,7 +78,7 @@ export function AwardSection() {
             className="w-full max-w-[50%] sm:max-w-[20%]"
           >
             <a
-              href="https://isanidad.com/350623/boston-medical-galardonada-por-su-innovacion-en-la-relacion-con-el-paciente-con-la-ia-de-doobot-ai/"
+              href={OFFICIAL_PRESS_ARTICLE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex w-full items-center justify-center p-2.5 bg-transparent border border-[#050547] rounded-none text-[#050547] font-display font-medium leading-[1.3] tracking-[-1px] transition-colors hover:bg-[#050547] hover:text-white"

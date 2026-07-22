@@ -1,4 +1,9 @@
 import { Trophy, ExternalLink } from "lucide-react";
+import {
+  OFFICIAL_AWARDS_URL,
+  OFFICIAL_AWARDS_ARTICLE_URL,
+  OFFICIAL_PRESS_ARTICLE_URL,
+} from "@/config/awards";
 
 export function AwardHero() {
   return (
@@ -48,7 +53,7 @@ export function AwardHero() {
             {/* External Links Pills */}
             <div className="mt-8 flex flex-wrap gap-3.5">
               <a
-                href="https://premiosrelacionclientes.com/la-gala-de-los-premios-excelencia-relacion-con-clientescelebra-un-ano-mas-la-innovacion-el-talento-y-la-excelenciadel-sector/"
+                href={OFFICIAL_AWARDS_ARTICLE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-amber-400/40 bg-amber-400/10 px-4 py-3 sm:px-[18px] sm:py-[13px] text-[15px] sm:text-[16px] font-medium text-amber-200 backdrop-blur-md transition-all hover:bg-amber-400/20 hover:text-white"
@@ -58,7 +63,7 @@ export function AwardHero() {
               </a>
 
               <a
-                href="https://isanidad.com/350623/boston-medical-galardonada-por-su-innovacion-en-la-relacion-con-el-paciente-con-la-ia-de-doobot-ai/"
+                href={OFFICIAL_PRESS_ARTICLE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 sm:px-[18px] sm:py-[13px] text-[15px] sm:text-[16px] font-medium text-slate-200 backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/10 hover:text-white"
@@ -68,7 +73,7 @@ export function AwardHero() {
               </a>
 
               <a
-                href="https://premiosrelacionclientes.com/"
+                href={OFFICIAL_AWARDS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-3 sm:px-[18px] sm:py-[13px] text-[15px] sm:text-[16px] font-medium text-slate-200 backdrop-blur-md transition-all hover:border-white/40 hover:bg-white/10 hover:text-white"
