@@ -1,33 +1,59 @@
-import { Quote } from "lucide-react";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 export function Testimonial() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <figure className="mx-auto grid max-w-5xl grid-cols-1 items-center gap-10 rounded-3xl border border-border bg-card p-8 shadow-soft sm:p-12 md:grid-cols-[220px_1fr]">
-          <div className="mx-auto h-40 w-40 shrink-0 overflow-hidden rounded-full ring-4 ring-white/60 shadow-elevated md:h-52 md:w-52">
-            <img
-              src="https://doobot.ai/wp-content/uploads/2025/08/Foto-Ramon-Almendro.webp"
-              alt="Ramón Almendro, CEO Boston Medical Group"
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
+    <section
+      className="py-[30px]"
+      style={{
+        background: "linear-gradient(180deg, #E1F3FF 0%, #FFFFFF 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[1180px] px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-2 lg:gap-8">
+          {/* ── Left Column: Ramón Almendro Image (fade-left 2000ms) ── */}
+          <div className="flex justify-center">
+            <RevealOnScroll variant="fade-left" duration="slow" delay={0}>
+              <img
+                src="/doobot/Foto-Ramon-Almendro.webp"
+                alt="Ramón Almendro, CEO Boston Medical Group"
+                loading="lazy"
+                className="h-auto w-[320px] sm:w-[380px] object-contain"
+              />
+            </RevealOnScroll>
           </div>
-          <div>
-            <Quote className="h-8 w-8 text-brand-violet" />
-            <blockquote className="mt-4 font-display text-xl leading-snug text-foreground sm:text-2xl">
-              «El trabajo de doobot.ai ha sido vital, nos han aportado tanto el
-              conocimiento operativo como la tecnología y las integraciones para hacer
-              posible lo que parecía una idea futurista».
-            </blockquote>
-            <figcaption className="mt-6 text-sm text-muted-foreground">
-              <strong className="block font-semibold text-foreground">
-                Ramón Almendro
-              </strong>
-              CEO Boston Medical Group
-            </figcaption>
+
+          {/* ── Right Column: Quote & Author (fade-right 2000ms) ── */}
+          <div className="flex flex-col justify-center">
+            <RevealOnScroll variant="fade-right" duration="slow" delay={0}>
+              <blockquote
+                className="font-display font-medium text-[#050547] max-w-[620px]"
+                style={{
+                  fontSize: "clamp(21px, 1.6vw, 26px)",
+                  lineHeight: 1.45,
+                  letterSpacing: "-1px",
+                }}
+              >
+                «El trabajo de doobot.ai ha sido vital, nos han aportado tanto el
+                conocimiento operativo como la tecnología y las integraciones para hacer
+                posible lo que parecía una idea futurista».
+              </blockquote>
+            </RevealOnScroll>
+
+            <RevealOnScroll variant="fade-right" duration="slow" delay={0}>
+              <div
+                className="mt-6 font-display font-medium text-[#050547]"
+                style={{
+                  fontSize: "clamp(17px, 1.25vw, 20px)",
+                  lineHeight: 1.35,
+                  letterSpacing: "-1px",
+                }}
+              >
+                <span className="block font-bold">Ramón Almendro</span>
+                <span className="block text-[#050547]/80">CEO Boston Medical Group</span>
+              </div>
+            </RevealOnScroll>
           </div>
-        </figure>
+        </div>
       </div>
     </section>
   );

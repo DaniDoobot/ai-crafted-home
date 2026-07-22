@@ -8,13 +8,13 @@ const BULLETS = [
 
 export function TeamSection() {
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section className="py-16 sm:py-24">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-3xl bg-gradient-dark shadow-elevated">
           <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
             <div className="relative min-h-[280px]">
               <img
-                src="https://doobot.ai/wp-content/uploads/2025/08/equipo-1024x678.webp"
+                src="/doobot/equipo-1024x678.webp"
                 alt="Equipo doobot.ai"
                 loading="lazy"
                 className="h-full w-full object-cover"

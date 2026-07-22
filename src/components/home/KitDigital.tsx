@@ -1,17 +1,30 @@
 export function KitDigital() {
   return (
-    <section className="bg-muted/40 py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-        <p className="text-sm text-muted-foreground sm:text-base">
+    <section
+      className="py-[55px]"
+      style={{
+        background: "#E1F3FF",
+      }}
+    >
+      <div className="mx-auto max-w-[1300px] px-4 text-center sm:px-6 lg:px-8">
+        <p
+          className="font-display font-medium text-[#555B66]"
+          style={{
+            fontSize: "clamp(21px, 1.8vw, 34px)",
+            lineHeight: 1.35,
+            letterSpacing: "-0.8px",
+          }}
+        >
           doobot.ai forma parte de Grupo eCUSTOMER agente digitalizador del Kit Digital
           y Kit Consulting
         </p>
-        <div className="mt-6 flex justify-center">
+
+        <div className="mt-[32px] flex justify-center">
           <img
-            src="https://doobot.ai/wp-content/uploads/2025/08/Kit-digital-1024x209.webp"
+            src="/doobot/Kit-digital-1024x209.webp"
             alt="Kit Digital y Kit Consulting"
             loading="lazy"
-            className="h-16 w-auto max-w-full opacity-90"
+            className="h-auto w-full max-w-[1050px] object-contain"
           />
         </div>
       </div>

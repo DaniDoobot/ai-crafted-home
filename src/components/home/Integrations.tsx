@@ -16,7 +16,7 @@ const LOGOS = [
 export function Integrations() {
   const doubled = [...LOGOS, ...LOGOS];
   return (
-    <section className="border-y border-border bg-muted/40 py-20 sm:py-24">
+    <section className="border-y border-border bg-muted/40 py-14 sm:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
@@ -29,7 +29,7 @@ export function Integrations() {
         </div>
 
         <div
-          className="group relative mt-14 overflow-hidden"
+          className="group relative mt-10 overflow-hidden"
           style={{
             maskImage:
               "linear-gradient(90deg, transparent, black 8%, black 92%, transparent)",
@@ -39,13 +39,13 @@ export function Integrations() {
             {doubled.map((logo, i) => (
               <div
                 key={i}
-                className="flex h-16 w-40 shrink-0 items-center justify-center"
+                className="flex h-20 w-44 shrink-0 items-center justify-center"
               >
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   loading="lazy"
-                  className="max-h-10 w-auto max-w-full opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+                  className="max-h-12 w-auto max-w-full opacity-85 grayscale transition hover:opacity-100 hover:grayscale-0"
                 />
               </div>
             ))}
