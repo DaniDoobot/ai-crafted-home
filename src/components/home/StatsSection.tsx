@@ -3,7 +3,7 @@ import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 const STATS = [
   { prefix: "+", target: 15, suffix: " años", label: "Años de experiencia" },
-  { prefix: "", target: 600, suffix: "K+", label: "Interacciones IA anuales" },
+  { prefix: "", target: 3000, suffix: "K+", label: "Interacciones IA anuales" },
   { prefix: "", target: 100, suffix: "+", label: "Clientes satisfechos" },
   { prefix: "", target: 500, suffix: "+", label: "Procesos automatizados" },
 ];
@@ -125,7 +125,7 @@ export function StatsSection() {
                 >
                   <span>{s.prefix}</span>
                   <span aria-hidden="true">{values[i]}</span>
-                  <span className="text-brand-pink">{s.suffix}</span>
+                  <span className="text-white">{s.suffix}</span>
                 </div>
                 <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-white/70 sm:text-xs">
                   {s.label}
