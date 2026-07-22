@@ -1,23 +1,32 @@
-const WA_URL =
-  "https://web.whatsapp.com/send?phone=34699951301&text=Hola%2C%20me%20gustar%C3%ADa%20tener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20doobot.ai";
+import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function WhatsAppFab() {
   return (
     <a
-      href={WA_URL}
+      href={WHATSAPP_DEMO_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-[25px] right-[25px] z-50 inline-flex h-14 w-14 sm:h-[76px] sm:w-[76px] items-center justify-center rounded-full bg-[#A4A4D5] text-[#1c2333] shadow-[0_6px_18px_rgba(0,0,0,0.2)] transition-all duration-200 hover:scale-[1.08] hover:bg-[#685EC9] hover:text-white"
+      className="fixed z-50 flex h-[56px] w-[56px] sm:h-[60px] sm:w-[60px] items-center justify-center p-0 m-0 leading-none indent-0 overflow-hidden box-border rounded-full text-white shadow-[0_6px_20px_rgba(0,0,0,0.25)] transition-all duration-200 hover:scale-[1.08]"
+      style={{
+        bottom: "calc(18px + env(safe-area-inset-bottom))",
+        right: "18px",
+        backgroundColor: "#25D366",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1FAF55")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#25D366")}
     >
-      <svg
-        viewBox="0 0 32 32"
-        aria-hidden="true"
-        className="h-7 w-7 sm:h-10 sm:w-10"
-        fill="currentColor"
-      >
-        <path d="M19.11 17.28c-.28-.14-1.65-.81-1.9-.9-.26-.09-.44-.14-.63.14-.19.28-.72.9-.88 1.09-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.38-.82-.73-1.38-1.63-1.54-1.91-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.51-.86-2.07-.23-.55-.46-.47-.63-.48h-.54c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36 0 1.39 1.01 2.74 1.15 2.93.14.19 1.99 3.04 4.83 4.26.68.29 1.2.47 1.61.6.68.22 1.29.19 1.78.11.54-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33zM16.02 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.47 1.73 6.42L3.2 28.8l6.55-1.72a12.77 12.77 0 006.27 1.6h.01c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05A12.72 12.72 0 0016.02 3.2zm0 23.34h-.01a10.53 10.53 0 01-5.36-1.47l-.38-.23-3.89 1.02 1.04-3.79-.25-.39a10.55 10.55 0 01-1.63-5.68c0-5.83 4.75-10.57 10.58-10.57 2.83 0 5.48 1.1 7.48 3.1a10.5 10.5 0 013.1 7.48c0 5.83-4.75 10.57-10.58 10.57z" />
-      </svg>
+      {/* Inner Centering Wrapper */}
+      <span className="flex items-center justify-center w-[30px] h-[30px] sm:w-[32px] sm:h-[32px] shrink-0 p-0 m-0 leading-none">
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+          className="block shrink-0 w-[28px] h-[28px] sm:w-[30px] sm:h-[30px] m-0 p-0"
+          fill="currentColor"
+        >
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347m-5.421 7.419h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
+        </svg>
+      </span>
     </a>
   );
 }

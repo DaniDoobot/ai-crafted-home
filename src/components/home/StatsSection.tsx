@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 const STATS = [
   { prefix: "+", target: 15, suffix: " años", label: "Años de experiencia" },
@@ -103,7 +104,9 @@ export function StatsSection() {
               permitirá optimizar tiempos de respuesta, resolución y costes
             </p>
             <a
-              href="#demo"
+              href={WHATSAPP_DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="mt-8 inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-foreground shadow-elevated transition-transform hover:scale-[1.02]"
             >
               Agendar una demo

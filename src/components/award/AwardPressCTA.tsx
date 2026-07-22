@@ -1,8 +1,6 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ExternalLink, Newspaper, Calendar, ArrowRight } from "lucide-react";
-
-const WA_DEMO_URL =
-  "https://web.whatsapp.com/send?phone=34699951301&text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20demo%20de%20doobot.ai";
+import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function AwardPressCTA() {
   return (
@@ -101,9 +99,9 @@ export function AwardPressCTA() {
 
               <RevealOnScroll variant="fade-right" duration="slow" delay={250}>
                 <div className="mt-9 flex flex-wrap items-center gap-4">
-                  {/* Primary Button: WhatsApp Demo Booking (Matches WhatsAppFab / Header demo trigger) */}
+                  {/* Primary Button: WhatsApp Demo Booking */}
                   <a
-                    href={WA_DEMO_URL}
+                    href={WHATSAPP_DEMO_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2.5 rounded-full bg-gradient-brand px-[20px] py-[14px] text-[16px] sm:text-[17px] font-bold text-white shadow-lg transition-transform hover:scale-[1.03]"
