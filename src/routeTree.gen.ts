@@ -9,8 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
+  id: '/premio-mejor-tecnologia',
+  path: '/premio-mejor-tecnologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +25,39 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/premio-mejor-tecnologia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/premio-mejor-tecnologia'
+  id: '__root__' | '/' | '/premio-mejor-tecnologia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/premio-mejor-tecnologia': {
+      id: '/premio-mejor-tecnologia'
+      path: '/premio-mejor-tecnologia'
+      fullPath: '/premio-mejor-tecnologia'
+      preLoaderRoute: typeof PremioMejorTecnologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +70,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
