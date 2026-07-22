@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 
 const ROTATING = [
   "ventas_",
@@ -12,8 +11,56 @@ const ROTATING = [
 // Longest item sets the reserved width so the layout never jumps
 const LONGEST = "análisis información_";
 
+function useTypewriter(words: string[], reducedMotion: boolean) {
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      const fullWord = words[wordIndex].slice(0, -1);
+      setCharIndex(fullWord.length);
+      setIsDeleting(false);
+      const timer = setTimeout(() => {
+        setWordIndex((i) => (i + 1) % words.length);
+      }, 2600);
+      return () => clearTimeout(timer);
+    }
+
+    const currentWord = words[wordIndex].slice(0, -1);
+
+    let speed = 55; // Typing speed 45-65ms
+
+    if (isDeleting) {
+      speed = 30; // Deleting speed 25-35ms
+    }
+
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (!isDeleting && charIndex === currentWord.length) {
+      // Pause at end of word for 1000ms
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, 1000);
+    } else if (isDeleting && charIndex === 0) {
+      // Finished deleting, move to next word
+      setIsDeleting(false);
+      setWordIndex((prev) => (prev + 1) % words.length);
+    } else {
+      // Step character
+      timer = setTimeout(() => {
+        setCharIndex((prev) => (isDeleting ? prev - 1 : prev + 1));
+      }, speed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [wordIndex, charIndex, isDeleting, reducedMotion, words]);
+
+  const currentWord = words[wordIndex].slice(0, -1);
+  return currentWord.slice(0, charIndex);
+}
+
 export function Hero() {
-  const [index, setIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Detect prefers-reduced-motion at component level so it's reactive
@@ -39,16 +86,7 @@ export function Hero() {
     }
   }, [reducedMotion]);
 
-  // Rotate the dynamic word
-  useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % ROTATING.length);
-    }, 2600);
-    return () => clearInterval(id);
-  }, []);
-
-  const word = ROTATING[index];
-  const base = word.slice(0, -1);
+  const displayedText = useTypewriter(ROTATING, reducedMotion);
 
   return (
     <section
@@ -121,14 +159,11 @@ export function Hero() {
         >
           <span className="block text-white">IA aplicada para optimizar</span>
 
-          {/* Rotating word row — height reserved for longest item */}
+          {/* Rotating typewriter word row — height reserved for longest item */}
           <span
             className="relative mt-3 block"
             aria-live="polite"
-            style={{
-              /* Reserve space for the longest word so layout never jumps */
-              minHeight: "1.15em",
-            }}
+            style={{ minHeight: "1.15em" }}
           >
             {/* Invisible ghost keeps the row width stable */}
             <span
@@ -139,20 +174,11 @@ export function Hero() {
               {LONGEST.slice(0, -1)}
             </span>
 
-            {/* Animated word — absolutely centred over the ghost */}
+            {/* Typewriter word — absolutely centred over the ghost */}
             <span className="absolute inset-0 flex items-center justify-center">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={index}
-                  initial={reducedMotion ? false : { opacity: 0, y: 18, filter: "blur(6px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  exit={reducedMotion ? undefined : { opacity: 0, y: -18, filter: "blur(6px)" }}
-                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                  className="inline-block text-gradient-brand"
-                >
-                  {base}
-                </motion.span>
-              </AnimatePresence>
+              <span className="inline-block text-gradient-brand">
+                {displayedText}
+              </span>
               <span
                 className="ml-1 inline-block translate-y-[-0.05em] font-display text-gradient-brand caret-blink"
               >

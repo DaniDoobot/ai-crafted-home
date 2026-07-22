@@ -8,12 +8,12 @@ export function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-elevated transition-transform hover:scale-105"
+      className="fixed bottom-[25px] right-[25px] z-50 inline-flex h-14 w-14 sm:h-[76px] sm:w-[76px] items-center justify-center rounded-full bg-[#A4A4D5] text-[#1c2333] shadow-[0_6px_18px_rgba(0,0,0,0.2)] transition-all duration-200 hover:scale-[1.08] hover:bg-[#685EC9] hover:text-white"
     >
       <svg
         viewBox="0 0 32 32"
         aria-hidden="true"
-        className="h-7 w-7"
+        className="h-7 w-7 sm:h-10 sm:w-10"
         fill="currentColor"
       >
         <path d="M19.11 17.28c-.28-.14-1.65-.81-1.9-.9-.26-.09-.44-.14-.63.14-.19.28-.72.9-.88 1.09-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.38-.82-.73-1.38-1.63-1.54-1.91-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.19-.28.28-.47.09-.19.05-.35-.02-.49-.07-.14-.63-1.51-.86-2.07-.23-.55-.46-.47-.63-.48h-.54c-.19 0-.49.07-.75.35-.26.28-.99.97-.99 2.36 0 1.39 1.01 2.74 1.15 2.93.14.19 1.99 3.04 4.83 4.26.68.29 1.2.47 1.61.6.68.22 1.29.19 1.78.11.54-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.26-.19-.54-.33zM16.02 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.47 1.73 6.42L3.2 28.8l6.55-1.72a12.77 12.77 0 006.27 1.6h.01c7.06 0 12.8-5.74 12.8-12.8 0-3.42-1.33-6.63-3.75-9.05A12.72 12.72 0 0016.02 3.2zm0 23.34h-.01a10.53 10.53 0 01-5.36-1.47l-.38-.23-3.89 1.02 1.04-3.79-.25-.39a10.55 10.55 0 01-1.63-5.68c0-5.83 4.75-10.57 10.58-10.57 2.83 0 5.48 1.1 7.48 3.1a10.5 10.5 0 013.1 7.48c0 5.83-4.75 10.57-10.58 10.57z" />

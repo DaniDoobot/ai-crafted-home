@@ -38,12 +38,20 @@ function useCounters(active: boolean) {
 }
 
 export function StatsSection() {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const statsGridRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsMobile(/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+    }
+  }, []);
+
+  // ── Counter activation via IntersectionObserver ──
+  useEffect(() => {
     if (active) return;
-    const el = ref.current;
+    const el = statsGridRef.current;
     if (!el) return;
     if (typeof IntersectionObserver === "undefined") {
       setActive(true);
@@ -59,7 +67,7 @@ export function StatsSection() {
           }
         }
       },
-      { threshold: 0.25 },
+      { threshold: 0.25 }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -68,9 +76,20 @@ export function StatsSection() {
   const values = useCounters(active);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-dark py-24 sm:py-28">
-      <div className="pointer-events-none absolute inset-0 opacity-30 [background:radial-gradient(600px_300px_at_20%_20%,white,transparent_60%)]" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      className="relative flex items-center py-24 sm:py-28"
+      style={{
+        minHeight: "clamp(480px, 60vh, 560px)",
+        backgroundColor: "#0d111d",
+        backgroundImage: `linear-gradient(rgba(13, 17, 29, 0.65), rgba(13, 17, 29, 0.65)), url('/doobot/AI-fondo_-scaled.png')`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center",
+        backgroundAttachment: isMobile ? "scroll" : "fixed",
+      }}
+    >
+      {/* Content */}
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full" style={{ zIndex: 2 }}>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
           <div className="text-white">
             <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium tracking-wider text-white/80">
@@ -91,7 +110,7 @@ export function StatsSection() {
             </a>
           </div>
 
-          <div ref={ref} className="grid grid-cols-2 gap-4 sm:gap-6">
+          <div ref={statsGridRef} className="grid grid-cols-2 gap-4 sm:gap-6">
             {STATS.map((s, i) => (
               <div
                 key={s.label}
