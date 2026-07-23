@@ -74,7 +74,7 @@ export function SolutionTrustSection() {
             </div>
           </RevealOnScroll>
 
-          {/* Block 3: Grupo eCUSTOMER */}
+          {/* Block 3: Grupo eCUSTOMER (Balanced card without tiny inner logo strip) */}
           <RevealOnScroll variant="fade-left" duration="medium" delay={240}>
             <div className="flex h-full flex-col justify-between rounded-3xl border border-indigo-100 bg-[#F8F7FF] p-8 shadow-sm">
               <div>
@@ -91,13 +91,26 @@ export function SolutionTrustSection() {
                 </p>
               </div>
               <div className="mt-6 pt-4 border-t border-indigo-100/80 text-center">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-2">
-                  Empresas que han confiado en el grupo
+                <span className="inline-block rounded-full bg-indigo-100/80 px-3 py-1 text-xs font-semibold text-[#050547]">
+                  Solvencia en el mercado
                 </span>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+
+        {/* Independent Full-Width Client Logos Section */}
+        <div className="mt-12 lg:mt-14 pt-8 lg:pt-10 border-t border-indigo-100/70">
+          <RevealOnScroll variant="fade-left" duration="medium" delay={300}>
+            <div className="text-center">
+              <h3 className="font-display font-bold text-[#050547] text-lg sm:text-xl">
+                Empresas que han confiado en las soluciones y experiencia del grupo
+              </h3>
+              <div className="mt-6 mx-auto max-w-[1050px] w-full px-2 overflow-x-auto">
                 <img
                   src="/doobot/Logos-clientes-1024x289.webp"
-                  alt="Clientes de Grupo eCustomer"
-                  className="h-12 w-auto object-contain mx-auto"
+                  alt="Empresas que han confiado en las soluciones del grupo eCustomer"
+                  className="w-full max-w-[950px] lg:max-w-[1000px] h-auto object-contain mx-auto min-w-[640px] sm:min-w-0"
                 />
               </div>
             </div>
