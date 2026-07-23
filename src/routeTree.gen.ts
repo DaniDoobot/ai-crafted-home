@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VoiceBotTelefonoRouteImport } from './routes/voice-bot-telefono'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
+  id: '/voice-bot-telefono',
+  path: '/voice-bot-telefono',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
   id: '/premio-mejor-tecnologia',
   path: '/premio-mejor-tecnologia',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,6 +61,7 @@ export interface FileRoutesById {
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -61,18 +70,21 @@ export interface FileRouteTypes {
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/premio-mejor-tecnologia'
+    | '/voice-bot-telefono'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/premio-mejor-tecnologia'
+    | '/voice-bot-telefono'
   id:
     | '__root__'
     | '/'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/premio-mejor-tecnologia'
+    | '/voice-bot-telefono'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,10 +92,18 @@ export interface RootRouteChildren {
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
+  VoiceBotTelefonoRoute: typeof VoiceBotTelefonoRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/voice-bot-telefono': {
+      id: '/voice-bot-telefono'
+      path: '/voice-bot-telefono'
+      fullPath: '/voice-bot-telefono'
+      preLoaderRoute: typeof VoiceBotTelefonoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/premio-mejor-tecnologia': {
       id: '/premio-mejor-tecnologia'
       path: '/premio-mejor-tecnologia'
@@ -120,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
+  VoiceBotTelefonoRoute: VoiceBotTelefonoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
