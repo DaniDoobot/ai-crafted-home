@@ -1,17 +1,51 @@
 import { useEffect, useRef, useState } from "react";
 import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
-const STATS = [
-  { prefix: "+", target: 15, suffix: " años", label: "Años de experiencia" },
-  { prefix: "", target: 3000, suffix: "K+", label: "Interacciones IA anuales" },
-  { prefix: "", target: 100, suffix: "+", label: "Clientes satisfechos" },
-  { prefix: "", target: 500, suffix: "+", label: "Procesos automatizados" },
+interface StatItem {
+  prefix: string;
+  target: number;
+  suffix: string;
+  label: string;
+  isDecimal?: boolean;
+  ariaLabel: string;
+}
+
+const STATS: StatItem[] = [
+  {
+    prefix: "+",
+    target: 15,
+    suffix: " años",
+    label: "Años de experiencia",
+    ariaLabel: "Más de 15 años de experiencia",
+  },
+  {
+    prefix: "",
+    target: 3,
+    suffix: "+ millones",
+    label: "Interacciones IA anuales",
+    isDecimal: true,
+    ariaLabel: "Más de 3 millones de interacciones de inteligencia artificial anuales",
+  },
+  {
+    prefix: "",
+    target: 100,
+    suffix: "+",
+    label: "Clientes satisfechos",
+    ariaLabel: "Más de 100 clientes satisfechos",
+  },
+  {
+    prefix: "",
+    target: 500,
+    suffix: "+",
+    label: "Procesos automatizados",
+    ariaLabel: "Más de 500 procesos automatizados",
+  },
 ];
 
 const DURATION = 2000;
 
-function useCounters(active: boolean) {
-  const [values, setValues] = useState<number[]>(() => STATS.map(() => 0));
+function useCounterProgress(active: boolean): number {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (!active) return;
@@ -19,23 +53,42 @@ function useCounters(active: boolean) {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      setValues(STATS.map((s) => s.target));
+      setProgress(1);
       return;
     }
     let raf = 0;
     const start = performance.now();
     const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / DURATION);
+      const elapsed = (now - start) / DURATION;
+      const t = Math.min(1, elapsed);
       // easeOutCubic
       const eased = 1 - Math.pow(1 - t, 3);
-      setValues(STATS.map((s) => Math.round(s.target * eased)));
-      if (t < 1) raf = requestAnimationFrame(tick);
+      setProgress(eased >= 0.999 ? 1 : eased);
+      if (t < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        setProgress(1);
+      }
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [active]);
 
-  return values;
+  return progress;
+}
+
+function getDisplayValue(stat: StatItem, progress: number): string {
+  if (progress >= 1) {
+    return stat.target.toString();
+  }
+  if (stat.isDecimal) {
+    const val = stat.target * progress;
+    return val.toLocaleString("es-ES", {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
+  }
+  return Math.round(stat.target * progress).toString();
 }
 
 export function StatsSection() {
@@ -74,7 +127,7 @@ export function StatsSection() {
     return () => io.disconnect();
   }, [active]);
 
-  const values = useCounters(active);
+  const progress = useCounterProgress(active);
 
   return (
     <section
@@ -114,20 +167,20 @@ export function StatsSection() {
           </div>
 
           <div ref={statsGridRef} className="grid grid-cols-2 gap-4 sm:gap-6">
-            {STATS.map((s, i) => (
+            {STATS.map((s) => (
               <div
                 key={s.label}
-                className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm"
+                className="rounded-2xl border border-white/15 bg-white/5 p-5 sm:p-6 backdrop-blur-sm"
               >
                 <div
-                  className="font-display text-3xl font-bold text-white sm:text-4xl md:text-5xl"
-                  aria-label={`${s.prefix}${s.target}${s.suffix}`}
+                  className="font-display text-2xl font-bold text-white sm:text-3xl md:text-4xl xl:text-5xl tracking-tight leading-none"
+                  aria-label={s.ariaLabel}
                 >
                   <span>{s.prefix}</span>
-                  <span aria-hidden="true">{values[i]}</span>
+                  <span aria-hidden="true">{getDisplayValue(s, progress)}</span>
                   <span className="text-white">{s.suffix}</span>
                 </div>
-                <div className="mt-2 text-[11px] font-medium uppercase tracking-wider text-white/70 sm:text-xs">
+                <div className="mt-2.5 text-[11px] font-medium uppercase tracking-wider text-white/70 sm:text-xs">
                   {s.label}
                 </div>
               </div>
