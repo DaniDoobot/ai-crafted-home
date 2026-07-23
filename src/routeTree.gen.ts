@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoiceBotTelefonoRouteImport } from './routes/voice-bot-telefono'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
+import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
   id: '/premio-mejor-tecnologia',
   path: '/premio-mejor-tecnologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IaAnalyticsRoute = IaAnalyticsRouteImport.update({
+  id: '/ia-analytics',
+  path: '/ia-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatBotWhatsapp2Route = ChatBotWhatsapp2RouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -60,6 +68,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -69,6 +78,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ia-analytics'
     | '/premio-mejor-tecnologia'
     | '/voice-bot-telefono'
   fileRoutesByTo: FileRoutesByTo
@@ -76,6 +86,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ia-analytics'
     | '/premio-mejor-tecnologia'
     | '/voice-bot-telefono'
   id:
@@ -83,6 +94,7 @@ export interface FileRouteTypes {
     | '/'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ia-analytics'
     | '/premio-mejor-tecnologia'
     | '/voice-bot-telefono'
   fileRoutesById: FileRoutesById
@@ -91,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
+  IaAnalyticsRoute: typeof IaAnalyticsRoute
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
   VoiceBotTelefonoRoute: typeof VoiceBotTelefonoRoute
 }
@@ -109,6 +122,13 @@ declare module '@tanstack/react-router' {
       path: '/premio-mejor-tecnologia'
       fullPath: '/premio-mejor-tecnologia'
       preLoaderRoute: typeof PremioMejorTecnologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ia-analytics': {
+      id: '/ia-analytics'
+      path: '/ia-analytics'
+      fullPath: '/ia-analytics'
+      preLoaderRoute: typeof IaAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat-bot-whatsapp-2': {
@@ -139,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
+  IaAnalyticsRoute: IaAnalyticsRoute,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
   VoiceBotTelefonoRoute: VoiceBotTelefonoRoute,
 }
