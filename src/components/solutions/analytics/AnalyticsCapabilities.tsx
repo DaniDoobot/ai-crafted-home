@@ -1,5 +1,6 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { CheckCircle2, Layers, Search, PieChart, FileSearch, Circle } from "lucide-react";
+import { SolutionImageVisual } from "@/components/solutions/SolutionImageVisual";
 
 /* ── HTML/CSS mock: Natural Language Query panel ────────────────────────── */
 function NLQueryPanel() {
@@ -174,13 +175,12 @@ export function AnalyticsCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/analytics/analytics-cap-volume.webp"
-                    alt="Procesamiento de información a escala — representación conceptual"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/analytics/analytics-cap-volume.webp"
+                  alt="Procesamiento de información a escala — representación conceptual"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>

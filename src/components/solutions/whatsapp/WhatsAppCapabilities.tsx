@@ -1,10 +1,11 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { CheckCircle2, Calendar, Sliders, Server, ArrowRight } from "lucide-react";
 import { WHATSAPP_DEMO_URL } from "@/config/contact";
+import { SolutionImageVisual } from "@/components/solutions/SolutionImageVisual";
 
 export function WhatsAppCapabilities() {
   return (
-    <section id="capacidades-whatsapp" className="scroll-mt-24 lg:scroll-mt-28 py-[100px] lg:py-[115px] bg-white">
+    <section id="capacidades-whatsapp" className="scroll-mt-24 lg:scroll-mt-28 py-[65px] lg:py-[80px] bg-white">
       <div className="mx-auto max-w-[1340px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-[850px] text-center">
@@ -22,9 +23,9 @@ export function WhatsAppCapabilities() {
         </div>
 
         {/* Capabilities Feature Rows */}
-        <div className="mt-16 flex flex-col gap-16 lg:gap-24">
+        <div className="mt-12 flex flex-col gap-10 lg:gap-14">
           {/* ── Capability A: Citas, información y gestión inmediata ── */}
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
@@ -54,19 +55,18 @@ export function WhatsAppCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-slate-50 p-4 sm:p-6 shadow-lg">
-                  <img
-                    src="/doobot/solutions/whatsapp-cap-1.webp"
-                    alt="Gestión de citas e información en WhatsApp con doobot.ai"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/whatsapp-cap-1.webp"
+                  alt="Gestión de citas e información en WhatsApp con doobot.ai"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
 
           {/* ── Capability B: Configuración sin flujos rígidos (Reversed Layout) ── */}
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:order-2 lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-[#050547]">
@@ -96,19 +96,18 @@ export function WhatsAppCapabilities() {
 
             <div className="lg:order-1 lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-slate-50 p-4 sm:p-6 shadow-lg">
-                  <img
-                    src="/doobot/solutions/whatsapp-cap-2.webp"
-                    alt="Configuración flexible sin flujos rígidos en WhatsApp con doobot.ai"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/whatsapp-cap-2.webp"
+                  alt="Configuración flexible sin flujos rígidos en WhatsApp con doobot.ai"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
 
           {/* ── Capability C: Acceso a información del negocio y del cliente ── */}
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700">
@@ -138,20 +137,19 @@ export function WhatsAppCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-indigo-100 bg-slate-50 p-4 sm:p-6 shadow-lg">
-                  <img
-                    src="/doobot/solutions/whatsapp-cap-4.webp"
-                    alt="Integración con datos del negocio y del cliente en WhatsApp"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/whatsapp-cap-4.webp"
+                  alt="Integración con datos del negocio y del cliente en WhatsApp"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
         </div>
 
         {/* ── Transition Card towards Second Half ── */}
-        <div className="mt-20 rounded-3xl bg-gradient-to-r from-[#02021A] via-[#050547] to-[#0B0B5C] p-8 sm:p-12 text-white shadow-xl text-center">
+        <div className="mt-14 rounded-3xl bg-gradient-to-r from-[#02021A] via-[#050547] to-[#0B0B5C] p-8 sm:p-10 text-white shadow-xl text-center">
           <RevealOnScroll variant="fade-left" duration="fast" delay={0}>
             <h3 className="font-display font-bold text-2xl sm:text-3xl">
               ¿Quieres comprobar cómo funcionaría el Chat Bot en tu empresa?
@@ -159,7 +157,7 @@ export function WhatsAppCapabilities() {
             <p className="mt-3 text-slate-300 text-base sm:text-lg max-w-[700px] mx-auto">
               Te mostramos un caso real adaptado a tus canales de atención y procesos clave.
             </p>
-            <div className="mt-8">
+            <div className="mt-7">
               <a
                 href={WHATSAPP_DEMO_URL}
                 target="_blank"

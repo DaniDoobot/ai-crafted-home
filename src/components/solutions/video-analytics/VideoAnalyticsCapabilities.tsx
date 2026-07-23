@@ -1,5 +1,6 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { CheckCircle2, Film, LayoutDashboard, Database } from "lucide-react";
+import { SolutionImageVisual } from "@/components/solutions/SolutionImageVisual";
 
 export function VideoAnalyticsCapabilities() {
   return (
@@ -60,13 +61,12 @@ export function VideoAnalyticsCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-fuchsia-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/video-analytics/video-analytics-cap-processing.webp"
-                    alt="Análisis multimodal de vídeo e imágenes"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/video-analytics/video-analytics-cap-processing.webp"
+                  alt="Análisis multimodal de vídeo e imágenes"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
@@ -102,13 +102,12 @@ export function VideoAnalyticsCapabilities() {
 
             <div className="lg:order-1 lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-purple-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/video-analytics/video-analytics-cap-events.webp"
-                    alt="Consola de control de análisis visual"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/video-analytics/video-analytics-cap-events.webp"
+                  alt="Consola de control de análisis visual"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
@@ -144,13 +143,12 @@ export function VideoAnalyticsCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-blue-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/video-analytics/video-analytics-cap-data.webp"
-                    alt="Empleo de información estructurada en vídeo analytics"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/video-analytics/video-analytics-cap-data.webp"
+                  alt="Empleo de información estructurada en vídeo analytics"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
