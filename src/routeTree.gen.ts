@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoiceBotTelefonoRouteImport } from './routes/voice-bot-telefono'
+import { Route as VideoAiAnalyticsRouteImport } from './routes/video-ai-analytics'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
   id: '/voice-bot-telefono',
   path: '/voice-bot-telefono',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VideoAiAnalyticsRoute = VideoAiAnalyticsRouteImport.update({
+  id: '/video-ai-analytics',
+  path: '/video-ai-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
     | '/premio-mejor-tecnologia'
+    | '/video-ai-analytics'
     | '/voice-bot-telefono'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
     | '/premio-mejor-tecnologia'
+    | '/video-ai-analytics'
     | '/voice-bot-telefono'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
     | '/premio-mejor-tecnologia'
+    | '/video-ai-analytics'
     | '/voice-bot-telefono'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   IaAnalyticsRoute: typeof IaAnalyticsRoute
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
+  VideoAiAnalyticsRoute: typeof VideoAiAnalyticsRoute
   VoiceBotTelefonoRoute: typeof VoiceBotTelefonoRoute
 }
 
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/voice-bot-telefono'
       fullPath: '/voice-bot-telefono'
       preLoaderRoute: typeof VoiceBotTelefonoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/video-ai-analytics': {
+      id: '/video-ai-analytics'
+      path: '/video-ai-analytics'
+      fullPath: '/video-ai-analytics'
+      preLoaderRoute: typeof VideoAiAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/premio-mejor-tecnologia': {
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   IaAnalyticsRoute: IaAnalyticsRoute,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
+  VideoAiAnalyticsRoute: VideoAiAnalyticsRoute,
   VoiceBotTelefonoRoute: VoiceBotTelefonoRoute,
 }
 export const routeTree = rootRouteImport
