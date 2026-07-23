@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
+import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as IndexRouteImport } from './routes/index'
 
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
   id: '/premio-mejor-tecnologia',
   path: '/premio-mejor-tecnologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatBotWhatsapp2Route = ChatBotWhatsapp2RouteImport.update({
+  id: '/chat-bot-whatsapp-2',
+  path: '/chat-bot-whatsapp-2',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/premio-mejor-tecnologia'
+  fullPaths: '/' | '/chat-bot-whatsapp-2' | '/premio-mejor-tecnologia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/premio-mejor-tecnologia'
-  id: '__root__' | '/' | '/premio-mejor-tecnologia'
+  to: '/' | '/chat-bot-whatsapp-2' | '/premio-mejor-tecnologia'
+  id: '__root__' | '/' | '/chat-bot-whatsapp-2' | '/premio-mejor-tecnologia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/premio-mejor-tecnologia'
       fullPath: '/premio-mejor-tecnologia'
       preLoaderRoute: typeof PremioMejorTecnologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat-bot-whatsapp-2': {
+      id: '/chat-bot-whatsapp-2'
+      path: '/chat-bot-whatsapp-2'
+      fullPath: '/chat-bot-whatsapp-2'
+      preLoaderRoute: typeof ChatBotWhatsapp2RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
 }
 export const routeTree = rootRouteImport
