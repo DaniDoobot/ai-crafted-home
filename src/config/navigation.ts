@@ -14,33 +14,33 @@ export const solutionNavigation: SolutionNavItem[] = [
   {
     label: "Chat Bot WhatsApp",
     href: "/chat-bot-whatsapp-2/",
-    published: false,
+    published: true,
   },
   {
     label: "Chat Bot Web",
     href: "/chat-bot-web-2/",
-    published: false,
-  },
-  {
-    label: "AI Analytics",
-    href: "/ia-analytics/",
-    published: false,
+    published: true,
   },
   {
     label: "Voice Bots Teléfono",
     href: "/voice-bot-telefono/",
-    published: false,
+    published: true,
+  },
+  {
+    label: "AI Analytics",
+    href: "/ia-analytics/",
+    published: true,
+  },
+  {
+    label: "Vídeo AI Analytics",
+    href: "/video-ai-analytics/",
+    published: true,
   },
   {
     label: "AI ecommerce",
     href: "https://nwee.ai/",
     published: false,
     external: true,
-  },
-  {
-    label: "Vídeo AI Analytics",
-    href: "/video-ai-analytics/",
-    published: false,
   },
 ];
 

@@ -15,13 +15,13 @@ import { VideoAnalyticsIntegrations } from "@/components/solutions/video-analyti
 export const Route = createFileRoute("/video-ai-analytics")({
   head: () => ({
     meta: [
-      { title: "Vídeo AI Analytics con IA | Doobot.ai" },
+      { title: "Vídeo AI Analytics | Doobot.ai" },
       {
         name: "description",
         content:
           "Analiza imágenes y vídeo mediante inteligencia artificial para identificar situaciones relevantes, estructurar información y apoyar la toma de decisiones.",
       },
-      { property: "og:title", content: "Vídeo AI Analytics con IA | Doobot.ai" },
+      { property: "og:title", content: "Vídeo AI Analytics | Doobot.ai" },
       {
         property: "og:description",
         content:
