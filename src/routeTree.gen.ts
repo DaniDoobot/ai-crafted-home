@@ -15,6 +15,7 @@ import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
+import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
@@ -47,6 +48,11 @@ const ChatBotWeb2Route = ChatBotWeb2RouteImport.update({
   path: '/chat-bot-web-2',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AvisoLegalRoute = AvisoLegalRouteImport.update({
+  id: '/aviso-legal',
+  path: '/aviso-legal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -55,6 +61,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
@@ -64,6 +71,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
@@ -74,6 +82,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
@@ -85,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
@@ -94,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
@@ -103,6 +114,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
@@ -113,6 +125,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AvisoLegalRoute: typeof AvisoLegalRoute
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   IaAnalyticsRoute: typeof IaAnalyticsRoute
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatBotWeb2RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aviso-legal': {
+      id: '/aviso-legal'
+      path: '/aviso-legal'
+      fullPath: '/aviso-legal'
+      preLoaderRoute: typeof AvisoLegalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -177,6 +197,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AvisoLegalRoute: AvisoLegalRoute,
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   IaAnalyticsRoute: IaAnalyticsRoute,

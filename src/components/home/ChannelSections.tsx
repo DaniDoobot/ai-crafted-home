@@ -10,20 +10,20 @@ export function WhatsAppSection() {
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
-          {/* ── Image column – left on desktop, top on mobile (Static) ── */}
-          <div
-            style={{
-              borderRadius: "30px",
-              overflow: "hidden",
-              minHeight: "clamp(280px, 40vw, 480px)",
-              backgroundImage: "url('/doobot/Img-Portada-Video-1.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-            role="img"
-            aria-label="WhatsApp automatizado con IA doobot.ai"
-          />
+          {/* ── Video column – left on desktop, top on mobile (Conventional & Accessible Video Player) ── */}
+          <div className="relative overflow-hidden rounded-[30px] shadow-xl aspect-[16/10] sm:aspect-[4/3] w-full bg-slate-950 min-h-[280px] sm:min-h-[360px] lg:min-h-[420px] flex items-center justify-center">
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              poster="/doobot/Img-Portada-Video-1.png"
+              aria-label="Vídeo demostrativo de automatización de conversaciones por WhatsApp con doobot.ai"
+              className="block h-full w-full object-contain"
+            >
+              <source src="/media/doobot-v1.mp4" type="video/mp4" />
+              Tu navegador no puede reproducir este vídeo demostrativo.
+            </video>
+          </div>
 
           {/* ── Text column – right on desktop, bottom on mobile (Animated) ── */}
           <div className="max-w-[620px]">
@@ -108,20 +108,20 @@ export function VoiceBotsSection() {
             </RevealOnScroll>
           </div>
 
-          {/* ── Image column – right on desktop, bottom on mobile (Static) ── */}
-          <div
-            style={{
-              borderRadius: "30px",
-              overflow: "hidden",
-              minHeight: "clamp(280px, 40vw, 480px)",
-              backgroundImage: "url('/doobot/Img-Portada-Video-2.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-            role="img"
-            aria-label="Voice Bots con IA de doobot.ai"
-          />
+          {/* ── Video column – right on desktop, bottom on mobile (Voice Bots Video Player) ── */}
+          <div className="relative overflow-hidden rounded-[30px] shadow-xl aspect-[16/10] sm:aspect-[4/3] w-full bg-slate-950 min-h-[280px] sm:min-h-[360px] lg:min-h-[420px] flex items-center justify-center">
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              poster="/doobot/Img-Portada-Video-2.png"
+              aria-label="Vídeo demostrativo de Voice Bots e interacción telefónica conversacional con doobot.ai"
+              className="block h-full w-full object-contain"
+            >
+              <source src="/media/doobot-v2.mp4" type="video/mp4" />
+              Tu navegador no puede reproducir este vídeo demostrativo.
+            </video>
+          </div>
         </div>
       </div>
     </section>
