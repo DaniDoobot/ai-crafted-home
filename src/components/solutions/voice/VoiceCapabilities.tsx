@@ -1,9 +1,10 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { CheckCircle2, Mic, Sliders, FileText } from "lucide-react";
+import { SolutionImageVisual } from "@/components/solutions/SolutionImageVisual";
 
 export function VoiceCapabilities() {
   return (
-    <section id="capacidades-voice" className="scroll-mt-24 lg:scroll-mt-28 py-[75px] lg:py-[90px] bg-white">
+    <section id="capacidades-voice" className="scroll-mt-24 lg:scroll-mt-28 py-[55px] lg:py-[70px] bg-white">
       <div className="mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-[860px] text-center">
@@ -24,9 +25,9 @@ export function VoiceCapabilities() {
         </div>
 
         {/* 3 Capabilities Rows */}
-        <div className="mt-12 flex flex-col gap-10 lg:gap-14">
+        <div className="mt-10 flex flex-col gap-7 lg:gap-10">
           {/* ── Capability A: Conversaciones sin IVR rígido ── */}
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="grid grid-cols-1 items-center gap-7 lg:grid-cols-12 lg:gap-9">
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700">
@@ -56,19 +57,18 @@ export function VoiceCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-cyan-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/voice/voice-cap-conversation.png"
-                    alt="Conversación por voz natural sin menús rígidos"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/voice/voice-cap-conversation.png"
+                  alt="Conversación por voz natural sin menús rígidos"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
 
           {/* ── Capability B: Configuración en lenguaje natural (Reversed Layout) ── */}
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="grid grid-cols-1 items-center gap-7 lg:grid-cols-12 lg:gap-9">
             <div className="lg:order-2 lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
@@ -98,19 +98,18 @@ export function VoiceCapabilities() {
 
             <div className="lg:order-1 lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-cyan-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/voice/voice-cap-configuration.png"
-                    alt="Configuración del comportamiento del Voice Bot"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/voice/voice-cap-configuration.png"
+                  alt="Configuración del comportamiento del Voice Bot"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
 
           {/* ── Capability C: Grabación, transcripción y consulta ── */}
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+          <div className="grid grid-cols-1 items-center gap-7 lg:grid-cols-12 lg:gap-9">
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-700">
@@ -144,13 +143,12 @@ export function VoiceCapabilities() {
 
             <div className="lg:col-span-6">
               <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-                <div className="overflow-hidden rounded-3xl border border-cyan-100 bg-slate-50 p-4 sm:p-5 shadow-lg">
-                  <img
-                    src="/doobot/solutions/voice/voice-cap-transcription.png"
-                    alt="Transcripción y registro de llamadas telefónicas"
-                    className="h-auto w-full rounded-2xl object-cover shadow-sm"
-                  />
-                </div>
+                <SolutionImageVisual
+                  src="/doobot/solutions/voice/voice-cap-transcription.png"
+                  alt="Transcripción y registro de llamadas telefónicas"
+                  embeddedFrame={true}
+                  variant="capability"
+                />
               </RevealOnScroll>
             </div>
           </div>
