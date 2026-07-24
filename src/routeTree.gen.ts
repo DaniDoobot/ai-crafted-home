@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoiceBotTelefonoRouteImport } from './routes/voice-bot-telefono'
 import { Route as VideoAiAnalyticsRouteImport } from './routes/video-ai-analytics'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
+import { Route as PoliticaDeSeguridadDeLaInformacionRouteImport } from './routes/politica-de-seguridad-de-la-informacion'
+import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
+import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
@@ -31,6 +34,22 @@ const VideoAiAnalyticsRoute = VideoAiAnalyticsRouteImport.update({
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
   id: '/premio-mejor-tecnologia',
   path: '/premio-mejor-tecnologia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeSeguridadDeLaInformacionRoute =
+  PoliticaDeSeguridadDeLaInformacionRouteImport.update({
+    id: '/politica-de-seguridad-de-la-informacion',
+    path: '/politica-de-seguridad-de-la-informacion',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
+  id: '/politica-de-privacidad',
+  path: '/politica-de-privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
+  id: '/politica-de-cookies',
+  path: '/politica-de-cookies',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IaAnalyticsRoute = IaAnalyticsRouteImport.update({
@@ -65,6 +84,9 @@ export interface FileRoutesByFullPath {
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
@@ -75,6 +97,9 @@ export interface FileRoutesByTo {
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
@@ -86,6 +111,9 @@ export interface FileRoutesById {
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/ia-analytics': typeof IaAnalyticsRoute
+  '/politica-de-cookies': typeof PoliticaDeCookiesRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
+  '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
@@ -98,6 +126,9 @@ export interface FileRouteTypes {
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
+    | '/politica-de-cookies'
+    | '/politica-de-privacidad'
+    | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
@@ -108,6 +139,9 @@ export interface FileRouteTypes {
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
+    | '/politica-de-cookies'
+    | '/politica-de-privacidad'
+    | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
@@ -118,6 +152,9 @@ export interface FileRouteTypes {
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
     | '/ia-analytics'
+    | '/politica-de-cookies'
+    | '/politica-de-privacidad'
+    | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
@@ -129,6 +166,9 @@ export interface RootRouteChildren {
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   IaAnalyticsRoute: typeof IaAnalyticsRoute
+  PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
+  PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
+  PoliticaDeSeguridadDeLaInformacionRoute: typeof PoliticaDeSeguridadDeLaInformacionRoute
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
   VideoAiAnalyticsRoute: typeof VideoAiAnalyticsRoute
   VoiceBotTelefonoRoute: typeof VoiceBotTelefonoRoute
@@ -155,6 +195,27 @@ declare module '@tanstack/react-router' {
       path: '/premio-mejor-tecnologia'
       fullPath: '/premio-mejor-tecnologia'
       preLoaderRoute: typeof PremioMejorTecnologiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-seguridad-de-la-informacion': {
+      id: '/politica-de-seguridad-de-la-informacion'
+      path: '/politica-de-seguridad-de-la-informacion'
+      fullPath: '/politica-de-seguridad-de-la-informacion'
+      preLoaderRoute: typeof PoliticaDeSeguridadDeLaInformacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidad': {
+      id: '/politica-de-privacidad'
+      path: '/politica-de-privacidad'
+      fullPath: '/politica-de-privacidad'
+      preLoaderRoute: typeof PoliticaDePrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-cookies': {
+      id: '/politica-de-cookies'
+      path: '/politica-de-cookies'
+      fullPath: '/politica-de-cookies'
+      preLoaderRoute: typeof PoliticaDeCookiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ia-analytics': {
@@ -201,6 +262,10 @@ const rootRouteChildren: RootRouteChildren = {
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   IaAnalyticsRoute: IaAnalyticsRoute,
+  PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
+  PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
+  PoliticaDeSeguridadDeLaInformacionRoute:
+    PoliticaDeSeguridadDeLaInformacionRoute,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
   VideoAiAnalyticsRoute: VideoAiAnalyticsRoute,
   VoiceBotTelefonoRoute: VoiceBotTelefonoRoute,
