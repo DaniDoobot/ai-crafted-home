@@ -1,9 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Header } from "@/components/home/Header";
+import { LegalPageLayout } from "@/components/legal/LegalPageLayout";
 import { LegalHero } from "@/components/legal/LegalHero";
 import { LegalContent } from "@/components/legal/LegalContent";
-import { Footer } from "@/components/home/Footer";
-import { WhatsAppFab } from "@/components/home/WhatsAppFab";
 
 export const Route = createFileRoute("/aviso-legal")({
   head: () => ({
@@ -30,14 +28,13 @@ export const Route = createFileRoute("/aviso-legal")({
 
 function AvisoLegalPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      <Header />
-      <main className="flex-1">
-        <LegalHero />
-        <LegalContent />
-      </main>
-      <Footer />
-      <WhatsAppFab />
-    </div>
+    <LegalPageLayout>
+      <LegalHero
+        eyebrow="Información Legal y Regulatoria"
+        title="Aviso Legal"
+        description="Condiciones generales de acceso, navegación y utilización del sitio web de doobot.ai."
+      />
+      <LegalContent />
+    </LegalPageLayout>
   );
 }
