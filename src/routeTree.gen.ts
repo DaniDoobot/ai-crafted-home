@@ -16,6 +16,7 @@ import { Route as PoliticaDeSeguridadDeLaInformacionRouteImport } from './routes
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
+import { Route as EjemplosYDemosRouteImport } from './routes/ejemplos-y-demos'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
@@ -57,6 +58,11 @@ const IaAnalyticsRoute = IaAnalyticsRouteImport.update({
   path: '/ia-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EjemplosYDemosRoute = EjemplosYDemosRouteImport.update({
+  id: '/ejemplos-y-demos',
+  path: '/ejemplos-y-demos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatBotWhatsapp2Route = ChatBotWhatsapp2RouteImport.update({
   id: '/chat-bot-whatsapp-2',
   path: '/chat-bot-whatsapp-2',
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   AvisoLegalRoute: typeof AvisoLegalRoute
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
+  EjemplosYDemosRoute: typeof EjemplosYDemosRoute
   IaAnalyticsRoute: typeof IaAnalyticsRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
@@ -225,6 +238,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IaAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ejemplos-y-demos': {
+      id: '/ejemplos-y-demos'
+      path: '/ejemplos-y-demos'
+      fullPath: '/ejemplos-y-demos'
+      preLoaderRoute: typeof EjemplosYDemosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat-bot-whatsapp-2': {
       id: '/chat-bot-whatsapp-2'
       path: '/chat-bot-whatsapp-2'
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   AvisoLegalRoute: AvisoLegalRoute,
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
+  EjemplosYDemosRoute: EjemplosYDemosRoute,
   IaAnalyticsRoute: IaAnalyticsRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
