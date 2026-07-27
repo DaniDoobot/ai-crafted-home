@@ -1,10 +1,10 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
-import { ArrowRight, Bot, Globe, MessageSquareText, Search, Sparkles } from "lucide-react";
+import { ArrowRight, Globe } from "lucide-react";
 import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function WebHero() {
   return (
-    <section className="relative overflow-hidden bg-[#030A1D] pt-32 pb-20 lg:pt-36 lg:pb-28 text-white min-h-[720px] flex items-center">
+    <section className="relative overflow-hidden bg-[#030A1D] pt-32 pb-20 lg:pt-36 lg:pb-28 text-white min-h-[700px] flex items-center">
       {/* Subtle Radial Glows (Cyan & Deep Blue accents) */}
       <div
         className="pointer-events-none absolute -left-20 top-1/4 h-[550px] w-[550px] rounded-full opacity-25 blur-[140px]"
@@ -71,78 +71,25 @@ export function WebHero() {
             </RevealOnScroll>
           </div>
 
-          {/* Right Column: Browser Window & Interactive Web Assistant Graphic */}
+          {/* Right Column: Enlarge New Web Assistant Image Visual (+18%) */}
           <div className="lg:col-span-6">
             <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-              <div className="rounded-3xl border border-white/15 bg-slate-900/90 p-4 sm:p-5 shadow-2xl backdrop-blur-xl">
-                {/* Browser Top Window Bar */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-3 px-2">
-                  <div className="flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500/80" />
-                    <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                    <div className="h-3 w-3 rounded-full bg-emerald-500/80" />
-                  </div>
-                  <div className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-1 text-xs text-slate-300 max-w-[280px] w-full truncate">
-                    <Globe className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
-                    <span className="truncate">https://empresa.com/servicios</span>
-                  </div>
-                  <div className="w-12" />
-                </div>
+              <div className="relative mx-auto max-w-[590px]">
+                {/* Cyan Glow Behind Frame */}
+                <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-tr from-cyan-500/20 via-blue-500/20 to-indigo-500/15 blur-2xl opacity-75" />
 
-                {/* Simulated Web Page Content with Integrated Assistant Widget */}
-                <div className="relative mt-4 min-h-[360px] rounded-2xl bg-slate-950 p-5 border border-white/5 overflow-hidden">
-                  {/* Web Page Skeleton Header */}
-                  <div className="flex items-center justify-between border-b border-white/5 pb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-7 w-24 rounded-md bg-white/10" />
-                      <div className="hidden sm:flex gap-3 text-[11px] text-slate-400">
-                        <span>Servicios</span>
-                        <span>Soluciones</span>
-                        <span>Contacto</span>
-                      </div>
-                    </div>
-                    <div className="h-7 w-20 rounded-full bg-cyan-500/20 text-cyan-300 text-xs flex items-center justify-center font-medium">
-                      Portal Web
-                    </div>
-                  </div>
-
-                  {/* Web Page Article Preview */}
-                  <div className="mt-4 max-w-sm space-y-2">
-                    <div className="h-4 w-3/4 rounded bg-white/15" />
-                    <div className="h-3 w-full rounded bg-white/5" />
-                    <div className="h-3 w-5/6 rounded bg-white/5" />
-                  </div>
-
-                  {/* Overlay Conversational Widget */}
-                  <div className="mt-6 rounded-2xl border border-cyan-500/40 bg-gradient-to-b from-slate-900 to-indigo-950/80 p-4 shadow-xl">
-                    <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                      <div className="flex items-center gap-2.5">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500 text-slate-950 font-bold">
-                          <Bot className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-white flex items-center gap-1.5">
-                            Asistente Web Doobot
-                            <Sparkles className="h-3 w-3 text-cyan-400" />
-                          </div>
-                          <div className="text-[10px] text-cyan-300">En línea · 24/7</div>
-                        </div>
-                      </div>
-                      <div className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                    </div>
-
-                    {/* Chat Messages */}
-                    <div className="mt-3 space-y-2.5 text-xs">
-                      {/* User Bubble */}
-                      <div className="ml-auto max-w-[80%] rounded-2xl rounded-tr-xs bg-cyan-600/30 border border-cyan-400/30 p-2.5 text-slate-100">
-                        ¿Cuáles son las opciones de integración con nuestro CRM actual?
-                      </div>
-
-                      {/* Assistant Bubble */}
-                      <div className="mr-auto max-w-[90%] rounded-2xl rounded-tl-xs bg-white/10 border border-white/10 p-2.5 text-slate-200">
-                        Disponemos de conectores directos por API REST y RPA. Puedo mostrarte el proceso de sincronización o concertar una breve sesión técnica con un especialista.
-                      </div>
-                    </div>
+                <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/90 p-4 sm:p-5 shadow-2xl backdrop-blur-xl">
+                  <img
+                    src="/doobot/solutions/web/web-hero-v2.webp"
+                    alt="Asistente Chat Bot Web con Inteligencia Artificial de doobot.ai"
+                    className="h-auto w-full max-h-[495px] object-contain block mx-auto rounded-xl"
+                  />
+                  <div className="mt-3 flex items-center justify-between rounded-xl bg-white/5 px-4 py-2.5 border border-white/10 text-xs text-slate-300">
+                    <span className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                      Widget Conversacional Web
+                    </span>
+                    <span className="text-cyan-300 font-semibold">Integración Directa</span>
                   </div>
                 </div>
               </div>

@@ -1,10 +1,10 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
-import { ArrowRight, Phone, PhoneCall, Mic, Sparkles, Volume2, User } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function VoiceHero() {
   return (
-    <section className="relative overflow-hidden bg-[#060B28] pt-32 pb-20 lg:pt-36 lg:pb-28 text-white min-h-[720px] flex items-center">
+    <section className="relative overflow-hidden bg-[#060B28] pt-32 pb-20 lg:pt-36 lg:pb-28 text-white min-h-[700px] flex items-center">
       {/* Subtle Radial Glows (Cyan & Violet accents) */}
       <div
         className="pointer-events-none absolute -left-20 top-1/4 h-[550px] w-[550px] rounded-full opacity-25 blur-[140px]"
@@ -71,74 +71,25 @@ export function VoiceHero() {
             </RevealOnScroll>
           </div>
 
-          {/* Right Column: Phone Call Interface & Audio Waveform Mockup */}
+          {/* Right Column: Voice Bot Hero Image Visual (+18%) */}
           <div className="lg:col-span-6">
             <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
-              <div className="rounded-3xl border border-white/15 bg-slate-900/90 p-5 sm:p-7 shadow-2xl backdrop-blur-xl">
-                {/* Active Call Bar */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300">
-                      <Mic className="h-5 w-5 animate-pulse" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-white text-base">
-                        Llamada Telefónica Activa
-                      </h4>
-                      <p className="text-xs text-slate-400">Atención telefónica con IA · 01:24</p>
-                    </div>
-                  </div>
-                  <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-semibold text-cyan-300 flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
-                    Llamada activa
-                  </span>
-                </div>
+              <div className="relative mx-auto max-w-[590px]">
+                {/* Cyan & Violet Glow Behind Frame */}
+                <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-tr from-cyan-500/20 via-violet-500/20 to-blue-500/15 blur-2xl opacity-75" />
 
-                {/* Animated Audio Waveform & Speech-to-Text Container */}
-                <div className="relative mt-5 rounded-2xl bg-slate-950 p-5 border border-white/5 overflow-hidden">
-                  {/* Waveform Visualization Bars */}
-                  <div className="flex items-center justify-center gap-1.5 py-4">
-                    {[35, 60, 25, 80, 45, 90, 65, 30, 85, 50, 75, 40, 95, 55, 30, 70, 45, 85, 25].map(
-                      (h, i) => (
-                        <div
-                          key={i}
-                          className="w-1.5 rounded-full bg-gradient-to-t from-cyan-500 to-violet-500 transition-all duration-300"
-                          style={{
-                            height: `${h * 0.45}px`,
-                            opacity: 0.6 + (i % 3) * 0.15,
-                          }}
-                        />
-                      )
-                    )}
-                  </div>
-
-                  {/* Real-time Dialog Transcription Snippet */}
-                  <div className="mt-4 space-y-3 text-xs">
-                    {/* Caller Line */}
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-3">
-                      <div className="flex items-center gap-2 text-slate-400 font-medium mb-1 text-[11px]">
-                        <User className="h-3.5 w-3.5 text-cyan-400" />
-                        <span>Cliente (Voz entrante)</span>
-                      </div>
-                      <p className="text-slate-200 leading-relaxed">
-                        "Hola, necesito consultar el estado de mi solicitud de servicio y confirmar la fecha prevista."
-                      </p>
-                    </div>
-
-                    {/* Voice Assistant Line */}
-                    <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/40 p-3">
-                      <div className="flex items-center justify-between text-cyan-300 font-medium mb-1 text-[11px]">
-                        <span className="flex items-center gap-1.5 font-bold">
-                          <Sparkles className="h-3.5 w-3.5" /> Asistente de Voz Doobot
-                        </span>
-                        <span className="text-[10px] bg-cyan-500/20 px-2 py-0.5 rounded text-cyan-200">
-                          Respuesta generada en voz natural
-                        </span>
-                      </div>
-                      <p className="text-slate-100 leading-relaxed">
-                        "Perfecto. He localizado tu expediente #EXP-804. Tu solicitud está aprobada y la fecha prevista de atención es el próximo martes por la mañana."
-                      </p>
-                    </div>
+                <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/90 p-4 sm:p-5 shadow-2xl backdrop-blur-xl">
+                  <img
+                    src="/doobot/solutions/voice/voice-hero-v2.webp"
+                    alt="Voice Bots con Inteligencia Artificial Telefónica de doobot.ai"
+                    className="h-auto w-full max-h-[495px] object-contain block mx-auto rounded-xl"
+                  />
+                  <div className="mt-3 flex items-center justify-between rounded-xl bg-white/5 px-4 py-2.5 border border-white/10 text-xs text-slate-300">
+                    <span className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                      Atención telefónica sin IVR
+                    </span>
+                    <span className="text-cyan-300 font-semibold">Voz Generativa 24/7</span>
                   </div>
                 </div>
               </div>

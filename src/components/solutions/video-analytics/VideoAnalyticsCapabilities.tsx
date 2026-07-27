@@ -27,13 +27,13 @@ export function VideoAnalyticsCapabilities() {
           </RevealOnScroll>
         </div>
 
-        {/* ── 3 Capability Rows ── */}
+        {/* ── 3 Capability Rows with Differentiated Visual Flow ── */}
         <div className="mt-8 flex flex-col gap-7 lg:gap-9">
 
-          {/* ── Showcase A: Análisis multimodal mediante Prompts y RAG ── */}
+          {/* ── Showcase A: Análisis multimodal mediante Prompts y RAG (Visual Left) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-7">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
+            <div className="lg:order-2 lg:col-span-7">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-fuchsia-50 text-fuchsia-700">
                   <Film className="h-5 w-5" />
                 </div>
@@ -59,8 +59,8 @@ export function VideoAnalyticsCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:col-span-5">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
+            <div className="lg:order-1 lg:col-span-5">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/video-analytics/video-analytics-cap-processing.webp"
                   alt="Análisis multimodal de vídeo e imágenes"
@@ -71,10 +71,10 @@ export function VideoAnalyticsCapabilities() {
             </div>
           </div>
 
-          {/* ── Showcase B: Consola de control e interacción multiusuario (Reversed) ── */}
+          {/* ── Showcase B: Consola de control e interacción multiusuario (Visual Right) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:order-2 lg:col-span-7">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
+            <div className="lg:col-span-7">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-700">
                   <LayoutDashboard className="h-5 w-5" />
                 </div>
@@ -100,8 +100,8 @@ export function VideoAnalyticsCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:order-1 lg:col-span-5">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
+            <div className="lg:col-span-5">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/video-analytics/video-analytics-cap-events.webp"
                   alt="Consola de control de análisis visual"
@@ -112,10 +112,10 @@ export function VideoAnalyticsCapabilities() {
             </div>
           </div>
 
-          {/* ── Showcase C: Uso de la información en tiempo real ── */}
+          {/* ── Showcase C: Uso de la información en tiempo real (Visual Left) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-7">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
+            <div className="lg:order-2 lg:col-span-7">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                   <Database className="h-5 w-5" />
                 </div>
@@ -141,8 +141,8 @@ export function VideoAnalyticsCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:col-span-5">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
+            <div className="lg:order-1 lg:col-span-5">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/video-analytics/video-analytics-cap-data.webp"
                   alt="Empleo de información estructurada en vídeo analytics"
