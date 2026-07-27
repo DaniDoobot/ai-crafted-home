@@ -5,6 +5,7 @@ import { WhatsAppFab } from "@/components/home/WhatsAppFab";
 import { DemosHero } from "@/components/demos/DemosHero";
 import { DemosVideoSection } from "@/components/demos/DemosVideoSection";
 import { DemosVoiceBotFeatures } from "@/components/demos/DemosVoiceBotFeatures";
+import { DemosPhoneContact } from "@/components/demos/DemosPhoneContact";
 import { DemosExperiencias } from "@/components/demos/DemosExperiencias";
 import { DemosCTA } from "@/components/demos/DemosCTA";
 
@@ -15,7 +16,7 @@ export const Route = createFileRoute("/ejemplos-y-demos")({
       {
         name: "description",
         content:
-          "Conoce demostraciones y capacidades de los asistentes conversacionales desarrollados por Doobot.ai.",
+          "Conoce demostraciones de Voice Bots y contacta con el asistente telefónico de Doobot.ai para dejar un mensaje o solicitar información comercial.",
       },
       {
         property: "og:title",
@@ -24,7 +25,7 @@ export const Route = createFileRoute("/ejemplos-y-demos")({
       {
         property: "og:description",
         content:
-          "Demostraciones y capacidades de asistentes conversacionales con IA.",
+          "Conoce demostraciones de Voice Bots y contacta con el asistente telefónico de Doobot.ai para dejar un mensaje o solicitar información comercial.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -37,19 +38,22 @@ function EjemplosYDemosRoute() {
     <div className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950">
       <Header />
       <main id="main-content">
-        {/* Sección 1: Hero */}
+        {/* 1. Hero */}
         <DemosHero />
 
-        {/* Sección 2: Vídeo demostrativo local */}
+        {/* 2. Vídeo demostrativo local */}
         <DemosVideoSection />
 
-        {/* Sección 3: Funcionalidades clave del Voice Bot */}
+        {/* 3. Funcionalidades clave del Voice Bot */}
         <DemosVoiceBotFeatures />
 
-        {/* Sección 4: Experiencias disponibles (2 elementos reales) */}
+        {/* 4. Contacto telefónico Voice Bot */}
+        <DemosPhoneContact />
+
+        {/* 5. Experiencias disponibles */}
         <DemosExperiencias />
 
-        {/* Sección 5: CTA final */}
+        {/* 6. CTA final */}
         <DemosCTA />
       </main>
       <Footer />

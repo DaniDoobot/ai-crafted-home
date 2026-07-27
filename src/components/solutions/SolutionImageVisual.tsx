@@ -5,6 +5,8 @@ interface SolutionImageVisualProps {
   embeddedFrame?: boolean;
   className?: string;
   priority?: boolean;
+  maxWidth?: string;
+  maxHeight?: string;
 }
 
 export function SolutionImageVisual({
@@ -14,11 +16,20 @@ export function SolutionImageVisual({
   embeddedFrame = true,
   className = "",
   priority = false,
+  maxWidth,
+  maxHeight,
 }: SolutionImageVisualProps) {
   const sizeClasses =
-    variant === "hero"
+    maxWidth ??
+    (variant === "hero"
       ? "max-w-[480px] sm:max-w-[520px] lg:max-w-[560px]"
-      : "max-w-[340px] sm:max-w-[400px] lg:max-w-[450px]";
+      : "max-w-[220px] sm:max-w-[280px] lg:max-w-[330px] xl:max-w-[350px]");
+
+  const imgMaxHeightClass =
+    maxHeight ??
+    (variant === "hero"
+      ? "max-h-[480px] lg:max-h-[520px]"
+      : "max-h-[240px] sm:max-h-[270px] lg:max-h-[300px]");
 
   if (embeddedFrame) {
     return (
@@ -28,7 +39,7 @@ export function SolutionImageVisual({
           alt={alt}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
-          className="mx-auto h-auto w-full object-contain block drop-shadow-sm transition-transform duration-300 hover:scale-[1.01]"
+          className={`mx-auto h-auto w-full ${imgMaxHeightClass} object-contain block drop-shadow-sm transition-transform duration-300 hover:scale-[1.01]`}
         />
       </div>
     );
@@ -43,7 +54,7 @@ export function SolutionImageVisual({
         alt={alt}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        className="mx-auto h-auto w-full rounded-xl object-contain block"
+        className={`mx-auto h-auto w-full ${imgMaxHeightClass} rounded-xl object-contain block`}
       />
     </div>
   );

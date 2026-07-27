@@ -7,12 +7,12 @@ export type DemoStatus = "available" | "coming-soon";
 
 export interface Demo {
   id: string;
-  type: "video" | "interactive";
+  type: "video" | "phone";
   title: string;
   description: string;
   badge: string;
   status: DemoStatus;
-  /** Ruta interna (solo si status === "available" y existe la página) */
+  /** Enlace directo (tel: o ruta interna) */
   href?: string;
   /** CTA del botón */
   ctaLabel: string;
@@ -20,10 +20,6 @@ export interface Demo {
   scrollTo?: string;
 }
 
-/**
- * Únicos dos elementos verificados en la fuente original.
- * La Demo Voice Bot Asistencia se activará en la Subfase 4B.
- */
 export const demos: Demo[] = [
   {
     id: "voice-bot-video",
@@ -37,13 +33,14 @@ export const demos: Demo[] = [
     scrollTo: "demo-video-voicebot",
   },
   {
-    id: "voice-bot-asistencia",
-    type: "interactive",
-    title: "Demo Voice Bot Asistencia",
+    id: "voice-bot-telefono",
+    type: "phone",
+    title: "Habla con nuestro Voice Bot",
     description:
-      "Experiencia de demostración de atención telefónica asistida mediante Voice Bot.",
-    badge: "Demo interactiva",
-    status: "coming-soon",
-    ctaLabel: "Próximamente",
+      "Llama a nuestro Voice Bot para dejar un mensaje o solicitar que nuestro equipo comercial se ponga en contacto contigo.",
+    badge: "Experiencia telefónica",
+    status: "available",
+    ctaLabel: "Llamar al Voice Bot",
+    href: "tel:+34911674317",
   },
 ];

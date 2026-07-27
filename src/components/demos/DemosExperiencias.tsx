@@ -2,7 +2,7 @@ import { demos } from "@/config/demos";
 
 /**
  * DemosExperiencias
- * Bloque pequeño y honesto con únicamente los dos elementos verificados.
+ * Muestra las dos experiencias demostrativas disponibles de doobot.ai.
  */
 export function DemosExperiencias() {
   const handleScrollToVideo = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -13,20 +13,12 @@ export function DemosExperiencias() {
     }
   };
 
-  const badgeStyle = (status: "available" | "coming-soon") => ({
-    available: {
-      bg: "rgba(34,211,238,0.10)",
-      text: "#67e8f9",
-      border: "rgba(34,211,238,0.28)",
-      dot: "#22d3ee",
-    },
-    "coming-soon": {
-      bg: "rgba(100,116,139,0.12)",
-      text: "#94a3b8",
-      border: "rgba(100,116,139,0.25)",
-      dot: "#475569",
-    },
-  }[status]);
+  const badgeStyle = {
+    bg: "rgba(34,211,238,0.10)",
+    text: "#67e8f9",
+    border: "rgba(34,211,238,0.28)",
+    dot: "#22d3ee",
+  };
 
   return (
     <section
@@ -64,8 +56,7 @@ export function DemosExperiencias() {
           }}
         >
           {demos.map((demo) => {
-            const bs = badgeStyle(demo.status);
-            const isAvailable = demo.status === "available";
+            const isPhone = demo.type === "phone";
 
             return (
               <div
@@ -75,7 +66,6 @@ export function DemosExperiencias() {
                   background:
                     "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
                   border: "1px solid rgba(255,255,255,0.08)",
-                  opacity: isAvailable ? 1 : 0.8,
                 }}
               >
                 {/* Badge de tipo */}
@@ -84,27 +74,22 @@ export function DemosExperiencias() {
                     className="inline-flex items-center gap-1.5 rounded-full text-xs font-semibold"
                     style={{
                       padding: "0.3rem 0.75rem",
-                      background: bs.bg,
-                      color: bs.text,
-                      border: `1px solid ${bs.border}`,
+                      background: badgeStyle.bg,
+                      color: badgeStyle.text,
+                      border: `1px solid ${badgeStyle.border}`,
                     }}
                   >
                     <span
                       aria-hidden="true"
                       className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: bs.dot }}
+                      style={{ background: badgeStyle.dot }}
                     />
                     {demo.badge}
                   </span>
 
                   {/* Estado */}
-                  <span
-                    className="text-xs font-medium"
-                    style={{
-                      color: isAvailable ? "#4ade80" : "#94a3b8",
-                    }}
-                  >
-                    {isAvailable ? "Disponible" : "Próximamente"}
+                  <span className="text-xs font-medium text-emerald-400">
+                    Disponible
                   </span>
                 </div>
 
@@ -124,12 +109,56 @@ export function DemosExperiencias() {
                   {demo.description}
                 </p>
 
+                {/* Número visible si es telefónico */}
+                {isPhone && (
+                  <div className="rounded-lg p-3 bg-white/5 border border-white/10 text-center">
+                    <p className="text-xs text-slate-400 mb-1">Número de contacto:</p>
+                    <a
+                      href="tel:+34911674317"
+                      className="font-bold text-white text-lg hover:text-indigo-300 transition-colors"
+                    >
+                      +34 911 67 43 17
+                    </a>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Puedes utilizarlo para dejar un mensaje o solicitar contacto con nuestro equipo comercial.
+                    </p>
+                  </div>
+                )}
+
                 {/* CTA */}
-                {isAvailable ? (
+                {isPhone && demo.href ? (
+                  <a
+                    href={demo.href}
+                    id={`demos-experiencias-cta-${demo.id}`}
+                    className="inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 text-left w-fit"
+                    style={{
+                      padding: "0.65rem 1.25rem",
+                      fontSize: "0.875rem",
+                      background: "rgba(99,102,241,0.12)",
+                      border: "1px solid rgba(99,102,241,0.25)",
+                      color: "#a5b4fc",
+                    }}
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z" />
+                    </svg>
+                    {demo.ctaLabel}
+                  </a>
+                ) : (
                   <button
                     onClick={handleScrollToVideo}
                     id={`demos-experiencias-cta-${demo.id}`}
-                    className="inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 text-left"
+                    className="inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 text-left w-fit"
                     style={{
                       padding: "0.65rem 1.25rem",
                       fontSize: "0.875rem",
@@ -137,14 +166,6 @@ export function DemosExperiencias() {
                       border: "1px solid rgba(99,102,241,0.25)",
                       color: "#a5b4fc",
                       cursor: "pointer",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLButtonElement).style.background =
-                        "rgba(99,102,241,0.22)";
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLButtonElement).style.background =
-                        "rgba(99,102,241,0.12)";
                     }}
                   >
                     {demo.ctaLabel}
@@ -163,26 +184,13 @@ export function DemosExperiencias() {
                       <path d="m12 5 7 7-7 7" />
                     </svg>
                   </button>
-                ) : (
-                  <div
-                    className="inline-flex items-center gap-2 rounded-lg font-medium"
-                    role="status"
-                    aria-label="Próximamente disponible"
-                    style={{
-                      padding: "0.65rem 1.25rem",
-                      fontSize: "0.875rem",
-                      background: "rgba(100,116,139,0.08)",
-                      border: "1px solid rgba(100,116,139,0.18)",
-                      color: "#64748b",
-                    }}
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: "#475569", flexShrink: 0 }}
-                    />
-                    {demo.ctaLabel}
-                  </div>
+                )}
+
+                {/* Nota de coste */}
+                {isPhone && (
+                  <p className="text-xs text-slate-400">
+                    Llamada a número fijo nacional. El coste dependerá de la tarifa contratada con tu operador.
+                  </p>
                 )}
               </div>
             );
