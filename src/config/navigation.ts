@@ -6,8 +6,7 @@ export interface SolutionNavItem {
 }
 
 export const navigationVisibility = {
-  examples: false,
-  voiceDemo: false,
+  examples: true,
 };
 
 export const solutionNavigation: SolutionNavItem[] = [
@@ -49,11 +48,6 @@ export const mainNavigation = [
     label: "Ejemplos y demos",
     href: "/ejemplos-y-demos/",
     visible: navigationVisibility.examples,
-  },
-  {
-    label: "Demo Voice Bot Asistencia",
-    href: "/demo-voice-bot-asistencia/",
-    visible: navigationVisibility.voiceDemo,
   },
   {
     label: "Premio Mejor Tecnología",
