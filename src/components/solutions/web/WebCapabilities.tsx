@@ -24,12 +24,12 @@ export function WebCapabilities() {
           </RevealOnScroll>
         </div>
 
-        {/* 3 Capabilities Rows */}
+        {/* 3 Capabilities Rows with Differentiated Layout Rhythm (Image first on Row 1) */}
         <div className="mt-8 flex flex-col gap-7 lg:gap-9">
-          {/* ── Capability A: Orientación durante la navegación ── */}
+          {/* ── Capability A: Orientación durante la navegación (Visual Left) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-7">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
+            <div className="lg:order-2 lg:col-span-7">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-cyan-700">
                   <Compass className="h-5 w-5" />
                 </div>
@@ -55,8 +55,8 @@ export function WebCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:col-span-5">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
+            <div className="lg:order-1 lg:col-span-5">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/web/web-cap-navigation.webp"
                   alt="Orientación y conexión con contenidos de la web"
@@ -67,10 +67,10 @@ export function WebCapabilities() {
             </div>
           </div>
 
-          {/* ── Capability B: Captación y cualificación de leads (Reversed Layout) ── */}
+          {/* ── Capability B: Captación y cualificación de leads (Visual Right) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:order-2 lg:col-span-7">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
+            <div className="lg:col-span-7">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                   <FileCheck className="h-5 w-5" />
                 </div>
@@ -96,8 +96,8 @@ export function WebCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:order-1 lg:col-span-5">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
+            <div className="lg:col-span-5">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/web/web-cap-leads.png"
                   alt="Captación y cualificación de oportunidades en la web"
@@ -108,10 +108,10 @@ export function WebCapabilities() {
             </div>
           </div>
 
-          {/* ── Capability C: Respuestas conectadas con el conocimiento de la empresa ── */}
+          {/* ── Capability C: Respuestas conectadas con el conocimiento de la empresa (Visual Left) ── */}
           <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-12 lg:gap-8">
-            <div className="lg:col-span-7">
-              <RevealOnScroll variant="fade-right" duration="medium" delay={0}>
+            <div className="lg:order-2 lg:col-span-7">
+              <RevealOnScroll variant="fade-left" duration="medium" delay={0}>
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700">
                   <Layers className="h-5 w-5" />
                 </div>
@@ -125,7 +125,7 @@ export function WebCapabilities() {
                 <ul className="mt-4 flex flex-col gap-2.5">
                   {[
                     "Acceso directo a catálogos, fichas técnicas y preguntas frecuentes.",
-                    "Respuestas fundadas strictly en la base de datos corporativa.",
+                    "Respuestas fundadas estrictamente en la base de datos corporativa.",
                     "Actualización continua del conocimiento sin reprogramar el asistente.",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-[15px] text-slate-700 font-medium">
@@ -137,8 +137,8 @@ export function WebCapabilities() {
               </RevealOnScroll>
             </div>
 
-            <div className="lg:col-span-5">
-              <RevealOnScroll variant="fade-left" duration="medium" delay={150}>
+            <div className="lg:order-1 lg:col-span-5">
+              <RevealOnScroll variant="fade-right" duration="medium" delay={150}>
                 <SolutionImageVisual
                   src="/doobot/solutions/web/web-cap-knowledge.webp"
                   alt="Conexión con fuentes de conocimiento corporativo"
