@@ -36,6 +36,11 @@ export const solutionNavigation: SolutionNavItem[] = [
     published: true,
   },
   {
+    label: "Speech Analytics",
+    href: "/speech-analytics/",
+    published: true,
+  },
+  {
     label: "AI ecommerce",
     href: "https://nwee.ai/",
     published: false,

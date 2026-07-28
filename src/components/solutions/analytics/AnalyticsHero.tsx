@@ -56,19 +56,21 @@ export function AnalyticsHero() {
             </div>
           </div>
 
-          {/* ── Right: Enlarge New AI Analytics Hero Image Visual (+18%) ── */}
+          {/* ── Right: AI Analytics Hero Image Visual ── */}
           <div className="lg:col-span-6">
-            <div className="relative mx-auto max-w-[590px]">
-              {/* Violet Glow Behind Frame */}
-              <div className="absolute -inset-4 rounded-[32px] bg-gradient-to-tr from-indigo-500/25 via-violet-500/20 to-blue-500/15 blur-2xl opacity-75" />
+            <div className="relative mx-auto max-w-[620px] flex flex-col items-center">
+              {/* Violet & Indigo Ambient Glow Behind Visual */}
+              <div className="pointer-events-none absolute -inset-6 rounded-full bg-gradient-to-tr from-indigo-500/30 via-violet-500/25 to-blue-500/20 blur-3xl opacity-80" />
 
-              <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-slate-900/90 p-4 sm:p-5 shadow-2xl backdrop-blur-xl">
+              <div className="relative w-full">
                 <img
                   src="/doobot/solutions/analytics/analytics-hero-v2.webp"
                   alt="Panel de Análisis Inteligente AI Analytics de doobot.ai"
-                  className="h-auto w-full max-h-[495px] object-contain block mx-auto rounded-xl"
+                  className="h-auto w-full max-h-[520px] object-contain block mx-auto drop-shadow-[0_20px_40px_rgba(99,102,241,0.25)] transition-transform duration-500 hover:scale-[1.02]"
                 />
-                <div className="mt-3 flex items-center justify-between rounded-xl bg-white/5 px-4 py-2.5 border border-white/10 text-xs text-slate-300">
+
+                {/* Floating Status Pill */}
+                <div className="mt-2 mx-auto max-w-sm flex items-center justify-between rounded-full bg-white/10 px-5 py-2 border border-white/15 backdrop-blur-md text-xs text-slate-200 shadow-lg">
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-indigo-400 animate-pulse" />
                     Consultas en lenguaje natural
