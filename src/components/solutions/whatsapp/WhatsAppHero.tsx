@@ -71,22 +71,21 @@ export function WhatsAppHero() {
             </div>
           </div>
 
-          {/* Right Column: Enlarge New WhatsApp Hero Image (+18%) */}
+          {/* Right Column: WhatsApp Hero Image Visual */}
           <div className="relative flex flex-col items-center justify-center lg:col-span-5 lg:items-end">
-            <div className="relative w-full max-w-[570px]">
-              {/* Emerald Glow Behind Device Frame */}
-              <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-tr from-emerald-500/25 via-indigo-500/20 to-emerald-400/20 blur-2xl opacity-80" />
+            <div className="relative w-full max-w-[590px] flex flex-col items-center">
+              {/* Emerald & Indigo Glow Behind Visual */}
+              <div className="pointer-events-none absolute -inset-6 rounded-full bg-gradient-to-tr from-emerald-500/30 via-indigo-500/25 to-emerald-400/20 blur-3xl opacity-80" />
 
-              {/* Polished Frame */}
-              <div className="relative overflow-hidden rounded-[28px] border border-white/20 bg-slate-900/90 p-3.5 sm:p-4.5 shadow-2xl backdrop-blur-xl">
+              <div className="relative w-full">
                 <img
                   src="/doobot/solutions/whatsapp-hero-v2.webp"
                   alt="Chat Bot WhatsApp con Inteligencia Artificial de doobot.ai"
-                  className="h-auto w-full max-h-[540px] object-contain block mx-auto rounded-2xl"
+                  className="h-auto w-full max-h-[540px] object-contain block mx-auto drop-shadow-[0_20px_40px_rgba(37,211,102,0.25)] transition-transform duration-500 hover:scale-[1.02]"
                 />
 
                 {/* Floating Micro Status Pill */}
-                <div className="mt-3 flex items-center justify-between rounded-xl bg-white/5 px-4 py-2.5 border border-white/10 text-xs text-slate-300">
+                <div className="mt-2 mx-auto max-w-sm flex items-center justify-between rounded-full bg-white/10 px-5 py-2 border border-white/15 backdrop-blur-md text-xs text-slate-200 shadow-lg">
                   <span className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
                     Canal directo WhatsApp

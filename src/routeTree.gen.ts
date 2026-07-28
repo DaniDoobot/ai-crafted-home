@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoiceBotTelefonoRouteImport } from './routes/voice-bot-telefono'
 import { Route as VideoAiAnalyticsRouteImport } from './routes/video-ai-analytics'
+import { Route as SpeechAnalyticsRouteImport } from './routes/speech-analytics'
 import { Route as PremioMejorTecnologiaRouteImport } from './routes/premio-mejor-tecnologia'
 import { Route as PoliticaDeSeguridadDeLaInformacionRouteImport } from './routes/politica-de-seguridad-de-la-informacion'
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
@@ -30,6 +31,11 @@ const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
 const VideoAiAnalyticsRoute = VideoAiAnalyticsRouteImport.update({
   id: '/video-ai-analytics',
   path: '/video-ai-analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeechAnalyticsRoute = SpeechAnalyticsRouteImport.update({
+  id: '/speech-analytics',
+  path: '/speech-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PremioMejorTecnologiaRoute = PremioMejorTecnologiaRouteImport.update({
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/speech-analytics': typeof SpeechAnalyticsRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/speech-analytics': typeof SpeechAnalyticsRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/politica-de-seguridad-de-la-informacion': typeof PoliticaDeSeguridadDeLaInformacionRoute
   '/premio-mejor-tecnologia': typeof PremioMejorTecnologiaRoute
+  '/speech-analytics': typeof SpeechAnalyticsRoute
   '/video-ai-analytics': typeof VideoAiAnalyticsRoute
   '/voice-bot-telefono': typeof VoiceBotTelefonoRoute
 }
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidad'
     | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
+    | '/speech-analytics'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
   fileRoutesByTo: FileRoutesByTo
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidad'
     | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
+    | '/speech-analytics'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
   id:
@@ -168,6 +179,7 @@ export interface FileRouteTypes {
     | '/politica-de-privacidad'
     | '/politica-de-seguridad-de-la-informacion'
     | '/premio-mejor-tecnologia'
+    | '/speech-analytics'
     | '/video-ai-analytics'
     | '/voice-bot-telefono'
   fileRoutesById: FileRoutesById
@@ -183,6 +195,7 @@ export interface RootRouteChildren {
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
   PoliticaDeSeguridadDeLaInformacionRoute: typeof PoliticaDeSeguridadDeLaInformacionRoute
   PremioMejorTecnologiaRoute: typeof PremioMejorTecnologiaRoute
+  SpeechAnalyticsRoute: typeof SpeechAnalyticsRoute
   VideoAiAnalyticsRoute: typeof VideoAiAnalyticsRoute
   VoiceBotTelefonoRoute: typeof VoiceBotTelefonoRoute
 }
@@ -201,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/video-ai-analytics'
       fullPath: '/video-ai-analytics'
       preLoaderRoute: typeof VideoAiAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/speech-analytics': {
+      id: '/speech-analytics'
+      path: '/speech-analytics'
+      fullPath: '/speech-analytics'
+      preLoaderRoute: typeof SpeechAnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/premio-mejor-tecnologia': {
@@ -288,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   PoliticaDeSeguridadDeLaInformacionRoute:
     PoliticaDeSeguridadDeLaInformacionRoute,
   PremioMejorTecnologiaRoute: PremioMejorTecnologiaRoute,
+  SpeechAnalyticsRoute: SpeechAnalyticsRoute,
   VideoAiAnalyticsRoute: VideoAiAnalyticsRoute,
   VoiceBotTelefonoRoute: VoiceBotTelefonoRoute,
 }

@@ -84,8 +84,10 @@ export function VideoAnalyticsHero() {
             </div>
 
             {/* ── Right Column: Video Analytics Player UI Mockup ── */}
-            <div className="lg:col-span-6">
-              <div className="va-panel-anim va-d4 rounded-3xl border border-white/15 bg-slate-900/90 p-5 sm:p-7 shadow-2xl backdrop-blur-xl">
+            <div className="lg:col-span-6 relative">
+              {/* Fuchsia Ambient Glow Behind Panel */}
+              <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-tr from-fuchsia-500/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-70" />
+              <div className="va-panel-anim va-d4 relative rounded-3xl border border-white/15 bg-slate-900/60 p-5 sm:p-7 shadow-2xl backdrop-blur-xl">
                 {/* Header Bar */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-3">
