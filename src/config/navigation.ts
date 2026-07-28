@@ -26,6 +26,11 @@ export const solutionNavigation: SolutionNavItem[] = [
     published: true,
   },
   {
+    label: "Speech Analytics",
+    href: "/speech-analytics/",
+    published: true,
+  },
+  {
     label: "AI Analytics",
     href: "/ia-analytics/",
     published: true,
@@ -33,11 +38,6 @@ export const solutionNavigation: SolutionNavItem[] = [
   {
     label: "Vídeo AI Analytics",
     href: "/video-ai-analytics/",
-    published: true,
-  },
-  {
-    label: "Speech Analytics",
-    href: "/speech-analytics/",
     published: true,
   },
   {
