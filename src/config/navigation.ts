@@ -59,4 +59,9 @@ export const mainNavigation = [
     href: "/premio-mejor-tecnologia/",
     visible: true,
   },
+  {
+    label: "Contacto",
+    href: "/contacto/",
+    visible: true,
+  },
 ];

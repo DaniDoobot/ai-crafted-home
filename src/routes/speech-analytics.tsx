@@ -18,7 +18,7 @@ export const Route = createFileRoute("/speech-analytics")({
       {
         name: "description",
         content:
-          "Transcripción y análisis inteligente de conversaciones telefónicas para supervisar la calidad de atención, detectar tendencias y optimizar operaciones.",
+          "Análisis inteligente de interacciones telefónicas para supervisar la calidad de atención, detectar tendencias y optimizar operaciones.",
       },
       {
         property: "og:title",
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/speech-analytics")({
       {
         property: "og:description",
         content:
-          "Transcripción y análisis inteligente de conversaciones telefónicas para supervisar la calidad de atención, detectar tendencias y optimizar operaciones.",
+          "Análisis inteligente de interacciones telefónicas para supervisar la calidad de atención, detectar tendencias y optimizar operaciones.",
       },
       { property: "og:type", content: "website" },
     ],

@@ -36,7 +36,7 @@ export function SpeechHero() {
 
             <RevealOnScroll variant="fade-right" duration="fast" delay={100}>
               <h1 className="mt-6 font-display font-bold text-white text-[clamp(38px,4vw,64px)] leading-[1.08] tracking-tight">
-                Transcripción y análisis inteligente de conversaciones telefónicas
+                Análisis inteligente de interacciones
               </h1>
             </RevealOnScroll>
 
