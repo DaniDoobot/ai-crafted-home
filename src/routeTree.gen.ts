@@ -18,6 +18,7 @@ import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-p
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
 import { Route as EjemplosYDemosRouteImport } from './routes/ejemplos-y-demos'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
@@ -69,6 +70,11 @@ const EjemplosYDemosRoute = EjemplosYDemosRouteImport.update({
   path: '/ejemplos-y-demos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatBotWhatsapp2Route = ChatBotWhatsapp2RouteImport.update({
   id: '/chat-bot-whatsapp-2',
   path: '/chat-bot-whatsapp-2',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
+  '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/contacto'
     | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/contacto'
     | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
+    | '/contacto'
     | '/ejemplos-y-demos'
     | '/ia-analytics'
     | '/politica-de-cookies'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   AvisoLegalRoute: typeof AvisoLegalRoute
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
+  ContactoRoute: typeof ContactoRoute
   EjemplosYDemosRoute: typeof EjemplosYDemosRoute
   IaAnalyticsRoute: typeof IaAnalyticsRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EjemplosYDemosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat-bot-whatsapp-2': {
       id: '/chat-bot-whatsapp-2'
       path: '/chat-bot-whatsapp-2'
@@ -301,6 +321,7 @@ const rootRouteChildren: RootRouteChildren = {
   AvisoLegalRoute: AvisoLegalRoute,
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
+  ContactoRoute: ContactoRoute,
   EjemplosYDemosRoute: EjemplosYDemosRoute,
   IaAnalyticsRoute: IaAnalyticsRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,

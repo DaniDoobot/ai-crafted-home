@@ -1,4 +1,4 @@
-import { ArrowRight, Video, Play, Sparkles, Eye, ShieldCheck, Film } from "lucide-react";
+import { ArrowRight, Video, Sparkles } from "lucide-react";
 import { WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export function VideoAnalyticsHero() {
@@ -83,86 +83,29 @@ export function VideoAnalyticsHero() {
               </div>
             </div>
 
-            {/* ── Right Column: Video Analytics Player UI Mockup ── */}
-            <div className="lg:col-span-6 relative">
-              {/* Fuchsia Ambient Glow Behind Panel */}
-              <div className="pointer-events-none absolute -inset-4 rounded-3xl bg-gradient-to-tr from-fuchsia-500/20 via-purple-500/20 to-blue-500/20 blur-2xl opacity-70" />
-              <div className="va-panel-anim va-d4 relative rounded-3xl border border-white/15 bg-slate-900/60 p-5 sm:p-7 shadow-2xl backdrop-blur-xl">
-                {/* Header Bar */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-fuchsia-500/20 text-fuchsia-300">
-                      <Film className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h2 className="font-display font-bold text-white text-base">
-                        Consola de Análisis Visual
-                      </h2>
-                      <p className="text-xs text-slate-400">Procesamiento multimodal</p>
-                    </div>
-                  </div>
-                  <span className="rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-300">
-                    Análisis por Prompt + RAG
-                  </span>
-                </div>
+            {/* ── Right Column: Clean Floating Lego Visual (No Card Frame / Border) ── */}
+            <div className="lg:col-span-6">
+              <div className="va-panel-anim va-d4 relative mx-auto max-w-[620px] flex flex-col items-center">
+                {/* Fuchsia & Purple Glow Behind Image */}
+                <div className="pointer-events-none absolute -inset-6 rounded-full bg-gradient-to-tr from-fuchsia-500/30 via-purple-500/25 to-blue-500/20 blur-3xl opacity-80" />
 
-                {/* Simulated Video Player Box */}
-                <div className="mt-5 flex flex-col gap-4">
-                  <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-950 p-4 aspect-[16/9] flex flex-col justify-between">
-                    {/* Simulated Camera View Overlay */}
-                    <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span className="flex items-center gap-1.5 text-fuchsia-400 font-semibold">
-                        <span className="h-2 w-2 rounded-full bg-fuchsia-500 animate-pulse" />
-                        Secuencia analizada
-                      </span>
-                      <span className="font-mono text-[11px]">CAM_01 · 1080p</span>
-                    </div>
+                <div className="relative w-full">
+                  <img
+                    src="/doobot/solutions/video-analytics/video-analytics-hero-v1.webp"
+                    alt="Análisis Visual e Inspección por Vídeo AI Analytics de doobot.ai"
+                    className="h-auto w-full max-h-[520px] object-contain block mx-auto drop-shadow-[0_20px_40px_rgba(217,70,239,0.25)] transition-transform duration-500 hover:scale-[1.02]"
+                  />
 
-                    {/* Central Region of Interest Box (Conceptual, no faces) */}
-                    <div className="my-auto mx-auto max-w-[280px] rounded-xl border border-dashed border-fuchsia-400/60 bg-fuchsia-500/10 p-3 text-center backdrop-blur-sm">
-                      <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-fuchsia-200">
-                        <Eye className="h-3.5 w-3.5 text-fuchsia-400" /> Evento identificado
-                      </div>
-                      <p className="mt-1 text-[11px] text-slate-300">
-                        Evaluación de estado / Parámetro verificado
-                      </p>
-                    </div>
-
-                    {/* Timeline Scrubber Bar */}
-                    <div className="space-y-1.5">
-                      <div className="flex justify-between text-[10px] text-slate-400 font-mono">
-                        <span>01:42</span>
-                        <span className="text-fuchsia-300 font-bold">Evento en t=01:42</span>
-                        <span>04:15</span>
-                      </div>
-                      <div className="h-1.5 w-full rounded-full bg-slate-800 overflow-hidden relative">
-                        <div className="h-full bg-gradient-to-r from-blue-500 to-fuchsia-500 w-[42%]" />
-                        <div className="absolute top-0 left-[42%] h-full w-2 bg-white rounded-full shadow" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Summary Card below Player */}
-                  <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-4 space-y-2.5">
-                    <div className="flex items-center justify-between text-xs text-fuchsia-300 font-semibold">
-                      <span className="flex items-center gap-1.5">
-                        <Sparkles className="h-4 w-4 text-fuchsia-400" /> Resultado del Análisis
-                      </span>
-                      <span className="text-[11px] text-slate-400">Contexto estructurado</span>
-                    </div>
-                    <p className="text-xs text-slate-200 leading-relaxed">
-                      La secuencia analiza la escena identificando condiciones según los criterios definidos para el caso de uso operativo.
-                    </p>
-                    <div className="grid grid-cols-2 gap-2 pt-1">
-                      <div className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-center">
-                        <div className="text-[11px] text-slate-400">Aplicación</div>
-                        <div className="text-xs font-bold text-white mt-0.5">Inspección / Formación</div>
-                      </div>
-                      <div className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-center">
-                        <div className="text-[11px] text-slate-400">Estado</div>
-                        <div className="text-xs font-bold text-blue-300 mt-0.5">Registro procesado</div>
-                      </div>
-                    </div>
+                  {/* HTML/CSS Status Pill rendered separately below image */}
+                  <div className="mt-3 mx-auto max-w-md flex items-center justify-between rounded-full bg-white/10 px-5 py-2.5 border border-white/15 backdrop-blur-md text-xs text-slate-200 shadow-lg">
+                    <span className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-fuchsia-400 animate-pulse" />
+                      Procesamiento Multimodal e Inspección Visual
+                    </span>
+                    <span className="text-fuchsia-300 font-semibold flex items-center gap-1">
+                      <Sparkles className="h-3.5 w-3.5 text-fuchsia-300" />
+                      Prompt + RAG
+                    </span>
                   </div>
                 </div>
               </div>
