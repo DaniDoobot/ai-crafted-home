@@ -21,22 +21,32 @@ export const solutionNavigation: SolutionNavItem[] = [
     published: true,
   },
   {
-    label: "Voice Bots Teléfono",
+    label: "Voice Bots",
     href: "/voice-bot-telefono/",
     published: true,
   },
   {
-    label: "Speech Analytics",
+    label: "AI CRM",
+    href: "/ai-crm-omnicanal/",
+    published: true,
+  },
+  {
+    label: "AI Speech Analytics",
     href: "/speech-analytics/",
     published: true,
   },
   {
-    label: "AI Analytics",
+    label: "AI Talent",
+    href: "/ai-talent/",
+    published: true,
+  },
+  {
+    label: "AI Data Analytics",
     href: "/ia-analytics/",
     published: true,
   },
   {
-    label: "Vídeo AI Analytics",
+    label: "AI Video Analytics",
     href: "/video-ai-analytics/",
     published: true,
   },
