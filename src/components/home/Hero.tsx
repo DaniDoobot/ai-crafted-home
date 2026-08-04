@@ -4,13 +4,16 @@ import { WHATSAPP_DEMO_URL } from "@/config/contact";
 const ROTATING = [
   "ventas_",
   "servicio al cliente_",
-  "citas_",
+  "gestión de citas_",
   "training y dudas_",
-  "análisis información_",
+  "speech analytics_",
+  "AI CRM_",
+  "entrevistas y selección_",
+  "AI data análisis_",
 ];
 
 // Longest item sets the reserved width so the layout never jumps
-const LONGEST = "análisis información_";
+const LONGEST = "entrevistas y selección_";
 
 function useTypewriter(words: string[], reducedMotion: boolean) {
   const [wordIndex, setWordIndex] = useState(0);

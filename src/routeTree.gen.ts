@@ -22,6 +22,8 @@ import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
 import { Route as ChatBotWeb2RouteImport } from './routes/chat-bot-web-2'
 import { Route as AvisoLegalRouteImport } from './routes/aviso-legal'
+import { Route as AiTalentRouteImport } from './routes/ai-talent'
+import { Route as AiCrmOmnicanalRouteImport } from './routes/ai-crm-omnicanal'
 import { Route as IndexRouteImport } from './routes/index'
 
 const VoiceBotTelefonoRoute = VoiceBotTelefonoRouteImport.update({
@@ -90,6 +92,16 @@ const AvisoLegalRoute = AvisoLegalRouteImport.update({
   path: '/aviso-legal',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AiTalentRoute = AiTalentRouteImport.update({
+  id: '/ai-talent',
+  path: '/ai-talent',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiCrmOmnicanalRoute = AiCrmOmnicanalRouteImport.update({
+  id: '/ai-crm-omnicanal',
+  path: '/ai-crm-omnicanal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -98,6 +110,8 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-crm-omnicanal': typeof AiCrmOmnicanalRoute
+  '/ai-talent': typeof AiTalentRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
@@ -114,6 +128,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-crm-omnicanal': typeof AiCrmOmnicanalRoute
+  '/ai-talent': typeof AiTalentRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
@@ -131,6 +147,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-crm-omnicanal': typeof AiCrmOmnicanalRoute
+  '/ai-talent': typeof AiTalentRoute
   '/aviso-legal': typeof AvisoLegalRoute
   '/chat-bot-web-2': typeof ChatBotWeb2Route
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
@@ -149,6 +167,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-crm-omnicanal'
+    | '/ai-talent'
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
@@ -165,6 +185,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-crm-omnicanal'
+    | '/ai-talent'
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
@@ -181,6 +203,8 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-crm-omnicanal'
+    | '/ai-talent'
     | '/aviso-legal'
     | '/chat-bot-web-2'
     | '/chat-bot-whatsapp-2'
@@ -198,6 +222,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiCrmOmnicanalRoute: typeof AiCrmOmnicanalRoute
+  AiTalentRoute: typeof AiTalentRoute
   AvisoLegalRoute: typeof AvisoLegalRoute
   ChatBotWeb2Route: typeof ChatBotWeb2Route
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
@@ -306,6 +332,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AvisoLegalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ai-talent': {
+      id: '/ai-talent'
+      path: '/ai-talent'
+      fullPath: '/ai-talent'
+      preLoaderRoute: typeof AiTalentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-crm-omnicanal': {
+      id: '/ai-crm-omnicanal'
+      path: '/ai-crm-omnicanal'
+      fullPath: '/ai-crm-omnicanal'
+      preLoaderRoute: typeof AiCrmOmnicanalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -318,6 +358,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiCrmOmnicanalRoute: AiCrmOmnicanalRoute,
+  AiTalentRoute: AiTalentRoute,
   AvisoLegalRoute: AvisoLegalRoute,
   ChatBotWeb2Route: ChatBotWeb2Route,
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
