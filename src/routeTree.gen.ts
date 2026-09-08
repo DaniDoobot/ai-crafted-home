@@ -17,6 +17,7 @@ import { Route as PoliticaDeSeguridadDeLaInformacionRouteImport } from './routes
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
+import { Route as EventoBotDeVozContactCenter2026RouteImport } from './routes/evento-bot-de-voz-contact-center-2026'
 import { Route as EjemplosYDemosRouteImport } from './routes/ejemplos-y-demos'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ChatBotWhatsapp2RouteImport } from './routes/chat-bot-whatsapp-2'
@@ -67,6 +68,12 @@ const IaAnalyticsRoute = IaAnalyticsRouteImport.update({
   path: '/ia-analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventoBotDeVozContactCenter2026Route =
+  EventoBotDeVozContactCenter2026RouteImport.update({
+    id: '/evento-bot-de-voz-contact-center-2026',
+    path: '/evento-bot-de-voz-contact-center-2026',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const EjemplosYDemosRoute = EjemplosYDemosRouteImport.update({
   id: '/ejemplos-y-demos',
   path: '/ejemplos-y-demos',
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
+  '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -135,6 +143,7 @@ export interface FileRoutesByTo {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
+  '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -154,6 +163,7 @@ export interface FileRoutesById {
   '/chat-bot-whatsapp-2': typeof ChatBotWhatsapp2Route
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
+  '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/contacto'
     | '/ejemplos-y-demos'
+    | '/evento-bot-de-voz-contact-center-2026'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/contacto'
     | '/ejemplos-y-demos'
+    | '/evento-bot-de-voz-contact-center-2026'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -210,6 +222,7 @@ export interface FileRouteTypes {
     | '/chat-bot-whatsapp-2'
     | '/contacto'
     | '/ejemplos-y-demos'
+    | '/evento-bot-de-voz-contact-center-2026'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -229,6 +242,7 @@ export interface RootRouteChildren {
   ChatBotWhatsapp2Route: typeof ChatBotWhatsapp2Route
   ContactoRoute: typeof ContactoRoute
   EjemplosYDemosRoute: typeof EjemplosYDemosRoute
+  EventoBotDeVozContactCenter2026Route: typeof EventoBotDeVozContactCenter2026Route
   IaAnalyticsRoute: typeof IaAnalyticsRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
@@ -295,6 +309,13 @@ declare module '@tanstack/react-router' {
       path: '/ia-analytics'
       fullPath: '/ia-analytics'
       preLoaderRoute: typeof IaAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/evento-bot-de-voz-contact-center-2026': {
+      id: '/evento-bot-de-voz-contact-center-2026'
+      path: '/evento-bot-de-voz-contact-center-2026'
+      fullPath: '/evento-bot-de-voz-contact-center-2026'
+      preLoaderRoute: typeof EventoBotDeVozContactCenter2026RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ejemplos-y-demos': {
@@ -365,6 +386,7 @@ const rootRouteChildren: RootRouteChildren = {
   ChatBotWhatsapp2Route: ChatBotWhatsapp2Route,
   ContactoRoute: ContactoRoute,
   EjemplosYDemosRoute: EjemplosYDemosRoute,
+  EventoBotDeVozContactCenter2026Route: EventoBotDeVozContactCenter2026Route,
   IaAnalyticsRoute: IaAnalyticsRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,

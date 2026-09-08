@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/home/Header";
 import { Hero } from "@/components/home/Hero";
+import { EventPromoBanner } from "@/components/home/EventPromoBanner";
 import { IntelligenceSection } from "@/components/home/IntelligenceSection";
 import { Integrations } from "@/components/home/Integrations";
 import { TeamSection } from "@/components/home/TeamSection";
@@ -23,6 +24,7 @@ function HomePage() {
       <Header />
       <main className="flex-1">
         <Hero />
+        <EventPromoBanner />
         <IntelligenceSection />
         <Integrations />
         <TeamSection />
