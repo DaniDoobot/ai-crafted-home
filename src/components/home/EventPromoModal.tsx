@@ -122,7 +122,7 @@ export function EventPromoModal() {
         {/* CTAs */}
         <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
           <a
-            href="/evento-bot-de-voz-contact-center-2026/#inscripcion"
+            href="/evento-bot-de-voz-contact-center-2026/"
             onClick={handleClose}
             className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/25 transition-all hover:scale-[1.02] hover:shadow-cyan-500/35 text-center"
           >
