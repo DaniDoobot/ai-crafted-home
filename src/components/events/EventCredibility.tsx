@@ -15,7 +15,7 @@ interface CredibilityCard {
   organization: string;
   title: string;
   description: string;
-  footerNote: {
+  footerNote?: {
     text: string;
     dotColor: string;
     linkHref?: string;
@@ -58,11 +58,7 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
     organization: "Asociación DEC · Asociación Directivos Experiencia de Cliente",
     title: "Finalista · Mejor Proyecto de Innovación en CX 2026",
     description:
-      "doobot.ai y Boston Medical fueron finalistas del Premio DEC 2026 al Mejor Proyecto de Innovación en CX.",
-    footerNote: {
-      text: "Candidatura conjunta con Boston Medical",
-      dotColor: "bg-rose-400",
-    },
+      "doobot.ai fue finalista del Premio DEC 2026 al Mejor Proyecto de Innovación en CX.",
   },
   {
     id: "premio-platinum",
@@ -108,15 +104,12 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
 
 export function EventCredibility() {
   return (
-    <section className="relative py-14 sm:py-18 lg:py-22 bg-[#03071C] border-t border-white/10 text-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-[#03071C] border-t border-white/10 text-white overflow-hidden">
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <RevealOnScroll variant="fade-up" duration="fast" delay={0}>
-            <span className="inline-block rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300">
-              Aval Institucional y Garantía
-            </span>
-            <h2 className="mt-3.5 font-display font-bold text-white text-[clamp(28px,3.5vw,44px)] leading-[1.14] tracking-tight">
+            <h2 className="font-display font-bold text-white text-[clamp(28px,3.5vw,44px)] leading-[1.14] tracking-tight">
               Reconocimiento sectorial, solvencia y seguridad
             </h2>
             <p className="mt-3.5 font-normal text-slate-300 text-[16px] sm:text-[18px] leading-[1.55]">
@@ -171,23 +164,25 @@ export function EventCredibility() {
                   </div>
 
                   {/* Bottom Meta Bar */}
-                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-                    {card.footerNote.linkHref ? (
-                      <a
-                        href={card.footerNote.linkHref}
-                        className="inline-flex items-center gap-1.5 font-medium text-amber-300 hover:text-amber-200 transition-colors"
-                      >
-                        <span className={`h-1.5 w-1.5 rounded-full ${card.footerNote.dotColor}`} />
-                        <span>{card.footerNote.text}</span>
-                        <ExternalLink className="h-3.5 w-3.5 ml-0.5" />
-                      </a>
-                    ) : (
-                      <div className="inline-flex items-center gap-1.5 font-normal text-slate-400">
-                        <span className={`h-1.5 w-1.5 rounded-full ${card.footerNote.dotColor}`} />
-                        <span>{card.footerNote.text}</span>
-                      </div>
-                    )}
-                  </div>
+                  {card.footerNote ? (
+                    <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+                      {card.footerNote.linkHref ? (
+                        <a
+                          href={card.footerNote.linkHref}
+                          className="inline-flex items-center gap-1.5 font-medium text-amber-300 hover:text-amber-200 transition-colors"
+                        >
+                          <span className={`h-1.5 w-1.5 rounded-full ${card.footerNote.dotColor}`} />
+                          <span>{card.footerNote.text}</span>
+                          <ExternalLink className="h-3.5 w-3.5 ml-0.5" />
+                        </a>
+                      ) : (
+                        <div className="inline-flex items-center gap-1.5 font-normal text-slate-400">
+                          <span className={`h-1.5 w-1.5 rounded-full ${card.footerNote.dotColor}`} />
+                          <span>{card.footerNote.text}</span>
+                        </div>
+                      )}
+                    </div>
+                  ) : null}
                 </div>
               </RevealOnScroll>
             );
