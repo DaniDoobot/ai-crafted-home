@@ -114,22 +114,22 @@ export function EventHero() {
 
             {/* CTA Button & Institutional Activity Badge */}
             <RevealOnScroll variant="fade-right" duration="medium" delay={300}>
-              <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+              <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5.5">
                 <a
                   href="#inscripcion"
                   onClick={scrollToForm}
-                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-8 py-3.5 text-[16px] font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.03] hover:shadow-cyan-500/30 shrink-0"
+                  className="inline-flex items-center justify-center gap-3 sm:gap-3.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-9 sm:px-10 py-4 sm:py-4.5 text-[18px] sm:text-[19px] font-bold text-white shadow-xl shadow-cyan-500/25 transition-all hover:scale-[1.03] hover:shadow-cyan-500/35 shrink-0 min-h-[62px] sm:min-h-[66px]"
                 >
                   <span>Reservar mi plaza</span>
-                  <ArrowDown className="h-5 w-5" />
+                  <ArrowDown className="h-6 w-6" />
                 </a>
 
                 {/* Institutional Badge: AEERC / Semana Contact Center 2026 */}
-                <div className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-white/95 via-white/90 to-slate-100/90 border border-white/40 px-5 sm:px-6 py-2 shadow-md shadow-cyan-950/20 backdrop-blur-md transition-all hover:scale-[1.01] hover:border-white/60 hover:shadow-lg hover:shadow-cyan-500/10 shrink-0 h-[52px]">
+                <div className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-white/95 via-white/90 to-slate-100/90 border border-white/40 px-6 sm:px-8 py-2.5 shadow-md shadow-cyan-950/20 backdrop-blur-md transition-all hover:scale-[1.01] hover:border-white/60 hover:shadow-lg hover:shadow-cyan-500/10 shrink-0 min-h-[62px] sm:min-h-[66px]">
                   <img
                     src="/doobot/events/aeerc-semana-contact-center-2026.webp"
                     alt="Actividad dentro de: AEERC · Semana Contact Center 2026"
-                    className="h-7 sm:h-7.5 w-auto object-contain"
+                    className="h-9 sm:h-10 w-auto object-contain"
                     width={835}
                     height={140}
                   />
