@@ -78,15 +78,14 @@ export function EventAgenda() {
             return (
               <RevealOnScroll key={item.title} variant="fade-up" duration="medium" delay={idx * 80}>
                 <div className={`h-full rounded-2xl sm:rounded-3xl border ${item.border} bg-gradient-to-br ${item.accent} bg-slate-900/60 p-5 sm:p-6 lg:p-7 backdrop-blur-xl shadow-xl flex flex-col justify-start transition-transform hover:scale-[1.01]`}>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-start gap-3">
                     <div className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${item.iconBg}`}>
                       <Icon className="h-5 w-5" />
                     </div>
+                    <h3 className="font-display font-bold text-white text-xl sm:text-[22px] leading-snug">
+                      {item.title}
+                    </h3>
                   </div>
-
-                  <h3 className="mt-4 font-display font-bold text-white text-xl sm:text-[22px] leading-snug">
-                    {item.title}
-                  </h3>
 
                   <ul className="mt-3.5 space-y-2.5">
                     {item.points.map((pt) => (
