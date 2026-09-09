@@ -125,11 +125,11 @@ export function EventHero() {
                 </a>
 
                 {/* Institutional Badge: AEERC / Semana Contact Center 2026 */}
-                <div className="inline-flex items-center justify-center rounded-2xl bg-white/95 border border-white/30 px-3.5 py-2 shadow-md shadow-black/10 backdrop-blur-sm transition-transform hover:scale-[1.01]">
+                <div className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-white/95 via-white/90 to-slate-100/90 border border-white/40 px-5 sm:px-6 py-2 shadow-md shadow-cyan-950/20 backdrop-blur-md transition-all hover:scale-[1.01] hover:border-white/60 hover:shadow-lg hover:shadow-cyan-500/10 shrink-0 h-[52px]">
                   <img
                     src="/doobot/events/aeerc-semana-contact-center-2026.webp"
                     alt="Actividad dentro de: AEERC · Semana Contact Center 2026"
-                    className="h-9 sm:h-10 w-auto object-contain"
+                    className="h-7 sm:h-7.5 w-auto object-contain"
                     width={835}
                     height={140}
                   />
