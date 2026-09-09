@@ -10,6 +10,7 @@ interface CredibilityCard {
   accentGradient: string;
   logo: string;
   logoAlt: string;
+  logoHeightClass: string;
   logoMaxWidthClass: string;
   organization: string;
   title: string;
@@ -31,7 +32,8 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
     accentGradient: "from-amber-500/10 via-transparent to-transparent",
     logo: "/doobot/events/premio-excelencia-sello-2025.webp",
     logoAlt: "Premios Excelencia Relación con Clientes 2025",
-    logoMaxWidthClass: "max-w-[48px] sm:max-w-[56px]",
+    logoHeightClass: "h-12 sm:h-14",
+    logoMaxWidthClass: "max-w-[58px] sm:max-w-[68px]",
     organization: "Premios Excelencia Relación con Clientes 2025",
     title: "Premio Mejor Tecnología 2025",
     description:
@@ -51,7 +53,8 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
     accentGradient: "from-rose-500/10 via-transparent to-transparent",
     logo: "/doobot/events/premio-dec-innovacion.webp",
     logoAlt: "Asociación DEC - Premios al Mejor Proyecto de Innovación en CX",
-    logoMaxWidthClass: "max-w-[130px] sm:max-w-[155px]",
+    logoHeightClass: "h-11 sm:h-13",
+    logoMaxWidthClass: "max-w-[155px] sm:max-w-[185px]",
     organization: "Asociación DEC · Asociación Directivos Experiencia de Cliente",
     title: "Finalista · Mejor Proyecto de Innovación en CX 2026",
     description:
@@ -70,7 +73,8 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
     accentGradient: "from-cyan-500/10 via-transparent to-transparent",
     logo: "/doobot/events/premio-platinum-innovacion.webp",
     logoAlt: "Platinum Customer Experience Awards · Contact Center Hub",
-    logoMaxWidthClass: "max-w-[130px] sm:max-w-[160px]",
+    logoHeightClass: "h-9 sm:h-11",
+    logoMaxWidthClass: "max-w-[170px] sm:max-w-[210px]",
     organization: "Platinum Customer Experience Awards · Contact Center Hub",
     title: "Finalista · Mejor Proyecto Innovación 2026",
     description:
@@ -89,7 +93,8 @@ const CREDIBILITY_CARDS: CredibilityCard[] = [
     accentGradient: "from-emerald-500/10 via-transparent to-transparent",
     logo: "/doobot/events/iso-27001-certificacion.webp",
     logoAlt: "OCA Global ISO/IEC 27001 Seguridad de la Información Acreditada por ENAC",
-    logoMaxWidthClass: "max-w-[85px] sm:max-w-[100px]",
+    logoHeightClass: "h-12 sm:h-14",
+    logoMaxWidthClass: "max-w-[100px] sm:max-w-[120px]",
     organization: "Garantía y Solvencia Corporativa",
     title: "ISO 27001 · Seguridad de la Información",
     description:
@@ -133,11 +138,11 @@ export function EventCredibility() {
                   <div>
                     <div className="flex items-center justify-between gap-3">
                       {/* Logo Container in White Clean Glass Pill */}
-                      <div className="inline-flex items-center justify-center h-13 sm:h-14 px-3.5 sm:px-4 py-2 rounded-xl bg-white/95 border border-white/30 shadow-sm shrink-0">
+                      <div className="inline-flex items-center justify-center min-h-[66px] sm:min-h-[74px] px-5 sm:px-6 py-2.5 rounded-2xl bg-gradient-to-r from-white/95 via-white/90 to-slate-100/90 border border-white/40 shadow-md shadow-black/10 backdrop-blur-md shrink-0 transition-transform hover:scale-[1.02]">
                         <img
                           src={card.logo}
                           alt={card.logoAlt}
-                          className={`h-8 sm:h-9 w-auto ${card.logoMaxWidthClass} object-contain`}
+                          className={`${card.logoHeightClass} w-auto ${card.logoMaxWidthClass} object-contain`}
                           loading="lazy"
                         />
                       </div>
