@@ -38,7 +38,7 @@ export function EventPromoBanner() {
 
               {/* Short Description */}
               <p className="mt-2 text-sm sm:text-base text-slate-200 max-w-2xl leading-relaxed">
-                Bots de voz basados en IA para selección, formación y evaluación.
+                Taller práctico con Bots de Voz basados en IA para selección, entrenamiento y evaluación de agentes, venta y servicio 24x7 o uso de aplicativos por voz.
               </p>
 
               {/* Compact Event Data */}
