@@ -55,44 +55,50 @@ export function EventHero() {
 
             {/* Event Key Highlights Grid */}
             <RevealOnScroll variant="fade-right" duration="medium" delay={250}>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-2xl">
-                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm">
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-3.5 max-w-2xl w-full">
+                {/* 1. Fecha */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300">
                     <Calendar className="h-5 w-5" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Fecha del taller</div>
-                    <div className="text-sm font-bold text-white">24 de septiembre de 2026</div>
+                    <div className="text-sm font-bold text-white break-normal whitespace-normal">24 de septiembre de 2026</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm">
+                {/* 2. Horario */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-purple-500/20 text-purple-300">
                     <Clock className="h-5 w-5" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Horario</div>
-                    <div className="text-sm font-bold text-white">16:00 – 17:30</div>
+                    <div className="text-sm font-bold text-white break-normal whitespace-normal">16:00 – 17:30</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm">
+                {/* 3. Ubicación (Presencial) */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/20 text-blue-300">
                     <MapPin className="h-5 w-5" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Ubicación (Presencial)</div>
-                    <div className="text-sm font-bold text-white truncate">Paseo de la Castellana, 81 · Madrid 28046</div>
+                    <div className="text-sm font-bold text-white break-normal whitespace-normal leading-snug">
+                      Paseo de la Castellana, 81 · Madrid 28046
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm">
+                {/* 4. Aforo */}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-300">
                     <Users className="h-5 w-5" />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Aforo</div>
-                    <div className="text-sm font-bold text-emerald-300">Plazas limitadas</div>
+                    <div className="text-sm font-bold text-emerald-300 break-normal whitespace-normal">Plazas limitadas</div>
                   </div>
                 </div>
               </div>
