@@ -56,8 +56,8 @@ export function EventHero() {
             </RevealOnScroll>
 
             <RevealOnScroll variant="fade-right" duration="medium" delay={200}>
-              <p className="mt-4 font-normal text-slate-200 text-[18px] sm:text-[20px] leading-[1.5] max-w-2xl">
-                Descubre cómo entrenar bots de voz basados en IA para selección, formación y evaluación de agentes y servicios, con ejemplos reales y demostraciones prácticas.
+              <p className="mt-4 font-normal text-slate-200 text-[17px] sm:text-[19px] leading-[1.55] max-w-2xl">
+                Descubre las posibilidades y cómo entrenar Bots de Voz basados en IA para selección, entrenamiento y evaluación de agentes, venta y servicio 24x7 o uso de aplicativos por voz, con ejemplos reales y demostraciones prácticas.
               </p>
             </RevealOnScroll>
 
