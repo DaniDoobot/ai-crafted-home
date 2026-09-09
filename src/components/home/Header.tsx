@@ -65,6 +65,17 @@ export function Header() {
               {item.label}
             </a>
           ))}
+
+          <a
+            href="/evento-bot-de-voz-contact-center-2026/"
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3.5 py-1.5 text-xs font-semibold text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.15)] transition-all hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-cyan-200"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            </span>
+            Taller 24Sept
+          </a>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -120,6 +131,21 @@ export function Header() {
                 {item.label}
               </a>
             ))}
+
+            <a
+              href="/evento-bot-de-voz-contact-center-2026/"
+              onClick={() => setOpen(false)}
+              className="my-1 flex items-center justify-between rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-2.5 text-sm font-semibold text-cyan-300 transition-colors hover:bg-cyan-500/20 hover:text-cyan-200"
+            >
+              <span className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                Taller 24Sept
+              </span>
+              <span className="text-[11px] font-normal uppercase tracking-wider text-cyan-400/80 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">Presencial</span>
+            </a>
 
             <a
               href={WHATSAPP_DEMO_URL}

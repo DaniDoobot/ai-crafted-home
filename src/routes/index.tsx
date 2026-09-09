@@ -13,6 +13,7 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { Clients } from "@/components/home/Clients";
 import { Footer } from "@/components/home/Footer";
 import { WhatsAppFab } from "@/components/home/WhatsAppFab";
+import { EventPromoModal } from "@/components/home/EventPromoModal";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -38,6 +39,7 @@ function HomePage() {
       </main>
       <Footer />
       <WhatsAppFab />
+      <EventPromoModal />
     </div>
   );
 }

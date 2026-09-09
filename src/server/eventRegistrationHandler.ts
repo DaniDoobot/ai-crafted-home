@@ -212,7 +212,7 @@ export async function handleEventRegistrationRequest(
         return new Response(
           JSON.stringify({
             status: "success",
-            message: "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo gestionará tu plaza.",
+            message: "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo comercial te responderá en breve por email y WhatsApp.",
           }),
           {
             status: 200,
