@@ -44,9 +44,16 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+import { handleEventRegistrationRequest } from "./server/eventRegistrationHandler";
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      if (url.pathname === "/api/event-registration") {
+        return await handleEventRegistrationRequest(request, env);
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
       return await normalizeCatastrophicSsrResponse(response);
