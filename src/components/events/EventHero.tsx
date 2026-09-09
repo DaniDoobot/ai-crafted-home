@@ -112,17 +112,28 @@ export function EventHero() {
               </div>
             </RevealOnScroll>
 
-            {/* CTA Button */}
+            {/* CTA Button & Institutional Activity Badge */}
             <RevealOnScroll variant="fade-right" duration="medium" delay={300}>
-              <div className="mt-7 flex flex-wrap items-center gap-4">
+              <div className="mt-7 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
                 <a
                   href="#inscripcion"
                   onClick={scrollToForm}
-                  className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-8 py-3.5 text-[16px] font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.03] hover:shadow-cyan-500/30"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-8 py-3.5 text-[16px] font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.03] hover:shadow-cyan-500/30 shrink-0"
                 >
                   <span>Reservar mi plaza</span>
                   <ArrowDown className="h-5 w-5" />
                 </a>
+
+                {/* Institutional Badge: AEERC / Semana Contact Center 2026 */}
+                <div className="inline-flex items-center justify-center rounded-2xl bg-white/95 border border-white/30 px-3.5 py-2 shadow-md shadow-black/10 backdrop-blur-sm transition-transform hover:scale-[1.01]">
+                  <img
+                    src="/doobot/events/aeerc-semana-contact-center-2026.webp"
+                    alt="Actividad dentro de: AEERC · Semana Contact Center 2026"
+                    className="h-9 sm:h-10 w-auto object-contain"
+                    width={835}
+                    height={140}
+                  />
+                </div>
               </div>
             </RevealOnScroll>
           </div>
