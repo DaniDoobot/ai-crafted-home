@@ -34,7 +34,7 @@ const OTHER_SOLUTIONS = [
 
 export function EventVoiceEcosystem() {
   return (
-    <section className="relative py-20 lg:py-28 bg-[#060B28] text-white overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 bg-[#060B28] text-white overflow-hidden">
       {/* Subtle background glow */}
       <div
         className="pointer-events-none absolute right-1/4 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full opacity-15 blur-[140px]"

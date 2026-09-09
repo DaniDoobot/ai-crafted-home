@@ -71,7 +71,7 @@ export async function submitEventRegistration(
     await new Promise((resolve) => setTimeout(resolve, 600));
     return {
       status: "success",
-      message: "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo gestionará tu plaza.",
+      message: "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo comercial te responderá en breve por email y WhatsApp.",
     };
   }
 
@@ -110,7 +110,7 @@ export async function submitEventRegistration(
 
     return {
       status: "success",
-      message: result?.message || "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo gestionará tu plaza.",
+      message: result?.message || "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo comercial te responderá en breve por email y WhatsApp.",
     };
   } catch {
     return {

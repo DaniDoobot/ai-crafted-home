@@ -34,14 +34,20 @@ export const Route = createFileRoute("/evento-bot-de-voz-contact-center-2026")({
 
 function EventPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950">
+    <div className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950 overflow-x-clip">
       <Header />
       <main id="main-content">
         <EventHero />
         <EventAgenda />
+        <EventRegistrationForm id="inscripcion" />
         <EventVoiceEcosystem />
+        <EventRegistrationForm
+          id="inscripcion-final"
+          badgeText="Últimas plazas"
+          title="Asegura tu plaza en el taller"
+          subtitle="Plazas limitadas por aforo en Torre BBVA. Tramita tu solicitud antes de completar la capacidad de la sala."
+        />
         <EventCredibility />
-        <EventRegistrationForm />
       </main>
       <Footer />
       <WhatsAppFab />

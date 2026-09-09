@@ -3,7 +3,7 @@ import { Award, BarChart3, CheckCircle2, Headphones, Sparkles, UserCheck } from 
 
 const AGENDA_ITEMS = [
   {
-    number: "01",
+    badge: "Selección IA",
     title: "Selección y evaluación",
     description: "Bots de voz para entrevistas, selección y evaluación de candidatos.",
     points: [
@@ -18,7 +18,7 @@ const AGENDA_ITEMS = [
     badgeBg: "bg-cyan-500/20 text-cyan-300",
   },
   {
-    number: "02",
+    badge: "Role plays & Simulación",
     title: "Formación y role plays",
     description: "Entrenamiento de agentes mediante situaciones conversacionales simuladas.",
     points: [
@@ -33,7 +33,7 @@ const AGENDA_ITEMS = [
     badgeBg: "bg-purple-500/20 text-purple-300",
   },
   {
-    number: "03",
+    badge: "Supervisión & Calidad",
     title: "Análisis inteligente",
     description: "Evaluación mediante IA de conversaciones, desempeño y oportunidades de mejora.",
     points: [
@@ -48,9 +48,9 @@ const AGENDA_ITEMS = [
     badgeBg: "bg-blue-500/20 text-blue-300",
   },
   {
-    number: "04",
-    title: "Casos reales",
-    description: "Ejemplos prácticos de soluciones ya aplicadas.",
+    badge: "Casos Reales",
+    title: "Casos reales en producción",
+    description: "Ejemplos prácticos de soluciones ya aplicadas con resultados tangibles.",
     points: [
       "Demostración en vivo de casos desplegados en producción.",
       "Resultados tangibles en optimización de tiempos y curva de aprendizaje.",
@@ -66,7 +66,7 @@ const AGENDA_ITEMS = [
 
 export function EventAgenda() {
   return (
-    <section id="que-veremos" className="relative py-20 lg:py-28 bg-[#03071C] text-white">
+    <section id="que-veremos" className="relative py-12 sm:py-16 lg:py-20 bg-[#03071C] text-white">
       <div className="relative mx-auto max-w-[1380px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -74,29 +74,29 @@ export function EventAgenda() {
             <span className="inline-block rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300">
               Contenido de la sesión
             </span>
-            <h2 className="mt-4 font-display font-bold text-white text-[clamp(28px,3.5vw,48px)] leading-[1.12] tracking-tight">
+            <h2 className="mt-3.5 font-display font-bold text-white text-[clamp(28px,3.5vw,46px)] leading-[1.12] tracking-tight">
               Qué veremos en el taller
             </h2>
-            <p className="mt-4 font-normal text-slate-300 text-[17px] sm:text-[19px] leading-[1.55]">
+            <p className="mt-3.5 font-normal text-slate-300 text-[16px] sm:text-[18px] leading-[1.55]">
               Aprende cómo aplicar bots de voz basados en IA para entrenar, evaluar y poner a prueba a personas y equipos mediante conversaciones y situaciones reales.
             </p>
           </RevealOnScroll>
         </div>
 
         {/* 4 Thematic Cards Grid */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6">
           {AGENDA_ITEMS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <RevealOnScroll key={item.number} variant="fade-up" duration="medium" delay={idx * 100}>
-                <div className={`h-full rounded-3xl border ${item.border} bg-gradient-to-br ${item.accent} bg-slate-900/60 p-7 sm:p-9 backdrop-blur-xl shadow-xl flex flex-col justify-between transition-transform hover:scale-[1.01]`}>
+              <RevealOnScroll key={item.title} variant="fade-up" duration="medium" delay={idx * 100}>
+                <div className={`h-full rounded-3xl border ${item.border} bg-gradient-to-br ${item.accent} bg-slate-900/60 p-6 sm:p-8 backdrop-blur-xl shadow-xl flex flex-col justify-between transition-transform hover:scale-[1.01]`}>
                   <div>
                     <div className="flex items-center justify-between">
-                      <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 ${item.iconColor}`}>
-                        <Icon className="h-6 w-6" />
+                      <div className={`inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 ${item.iconColor}`}>
+                        <Icon className="h-5 w-5" />
                       </div>
-                      <span className={`rounded-full px-3 py-1 text-xs font-bold ${item.badgeBg}`}>
-                        Módulo {item.number}
+                      <span className={`rounded-full px-3 py-1 text-xs font-bold tracking-wide ${item.badgeBg}`}>
+                        {item.badge}
                       </span>
                     </div>
 

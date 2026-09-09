@@ -11,7 +11,7 @@ export function EventHero() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#050B24] pt-32 pb-20 lg:pt-36 lg:pb-28 text-white min-h-[720px] flex items-center">
+    <section className="relative overflow-hidden bg-[#050B24] pt-20 pb-12 sm:pt-24 sm:pb-14 lg:pt-28 lg:pb-16 text-white min-h-[640px] flex items-center">
       {/* Background Subtle Radial Glows */}
       <div
         className="pointer-events-none absolute -left-20 top-1/4 h-[550px] w-[550px] rounded-full opacity-25 blur-[140px]"
@@ -33,29 +33,37 @@ export function EventHero() {
           {/* Left Column: Copy, Metadata & Action */}
           <div className="lg:col-span-7">
             <RevealOnScroll variant="fade-right" duration="fast" delay={0}>
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-1.5 backdrop-blur-md">
-                <Sparkles className="h-4 w-4 text-cyan-300" />
-                <span className="text-xs font-bold uppercase tracking-wider text-cyan-300">
-                  Taller presencial · Semana Contact Center 2026
+              <div className="inline-flex flex-wrap sm:flex-nowrap max-w-full items-center gap-2 sm:gap-2.5 rounded-2xl sm:rounded-full border border-cyan-400/40 bg-gradient-to-r from-cyan-500/15 via-blue-500/15 to-indigo-500/20 px-3.5 py-1.5 sm:px-5 sm:py-2.5 backdrop-blur-md shadow-[0_0_25px_rgba(6,182,212,0.2)] transition-all hover:border-cyan-400/60">
+                <span className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-cyan-400/20 px-2.5 py-0.5 text-xs font-black uppercase tracking-wider text-cyan-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                  Presencial
+                </span>
+                <span className="text-xs sm:text-sm font-semibold tracking-wide text-slate-200">
+                  Taller práctico · Semana Contact Center 2026
                 </span>
               </div>
             </RevealOnScroll>
 
             <RevealOnScroll variant="fade-right" duration="fast" delay={100}>
-              <h1 className="mt-6 font-display font-bold text-white text-[clamp(36px,4.5vw,66px)] leading-[1.08] tracking-tight">
-                Bot de Voz: calienta que sales…!!
+              <h1 className="mt-5 font-display font-bold text-[clamp(38px,5.2vw,70px)] leading-[1.08] tracking-tight">
+                <span className="block text-white">
+                  Bot de voz:
+                </span>
+                <span className="block mt-1 bg-gradient-to-r from-cyan-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(6,182,212,0.25)]">
+                  calienta que sales...!!
+                </span>
               </h1>
             </RevealOnScroll>
 
             <RevealOnScroll variant="fade-right" duration="medium" delay={200}>
-              <p className="mt-6 font-normal text-slate-200 text-[18px] sm:text-[21px] leading-[1.55] max-w-2xl">
+              <p className="mt-4 font-normal text-slate-200 text-[18px] sm:text-[20px] leading-[1.5] max-w-2xl">
                 Descubre cómo entrenar bots de voz basados en IA para selección, formación y evaluación de agentes y servicios, con ejemplos reales y demostraciones prácticas.
               </p>
             </RevealOnScroll>
 
             {/* Event Key Highlights Grid */}
             <RevealOnScroll variant="fade-right" duration="medium" delay={250}>
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-3.5 max-w-2xl w-full">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-3.5 max-w-2xl w-full">
                 {/* 1. Fecha */}
                 <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300">
@@ -63,7 +71,7 @@ export function EventHero() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Fecha del taller</div>
-                    <div className="text-sm font-bold text-white break-normal whitespace-normal">24 de septiembre de 2026</div>
+                    <div className="text-sm font-bold text-white break-words">24 de septiembre de 2026</div>
                   </div>
                 </div>
 
@@ -74,7 +82,7 @@ export function EventHero() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Horario</div>
-                    <div className="text-sm font-bold text-white break-normal whitespace-normal">16:00 – 17:30</div>
+                    <div className="text-sm font-bold text-white break-words">16:00 – 17:30</div>
                   </div>
                 </div>
 
@@ -85,8 +93,8 @@ export function EventHero() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Ubicación (Presencial)</div>
-                    <div className="text-sm font-bold text-white break-normal whitespace-normal leading-snug">
-                      Paseo de la Castellana, 81 · Madrid 28046
+                    <div className="text-sm font-bold text-white break-words leading-snug">
+                      Paseo de la Castellana, 81 · Torre BBVA · Planta 15
                     </div>
                   </div>
                 </div>
@@ -98,7 +106,7 @@ export function EventHero() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="text-xs text-slate-400">Aforo</div>
-                    <div className="text-sm font-bold text-emerald-300 break-normal whitespace-normal">Plazas limitadas</div>
+                    <div className="text-sm font-bold text-emerald-300 break-words">Plazas limitadas</div>
                   </div>
                 </div>
               </div>
@@ -106,11 +114,11 @@ export function EventHero() {
 
             {/* CTA Button */}
             <RevealOnScroll variant="fade-right" duration="medium" delay={300}>
-              <div className="mt-9 flex flex-wrap items-center gap-4">
+              <div className="mt-7 flex flex-wrap items-center gap-4">
                 <a
                   href="#inscripcion"
                   onClick={scrollToForm}
-                  className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-8 py-4 text-[17px] font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.03] hover:shadow-cyan-500/30"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 px-8 py-3.5 text-[16px] font-bold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.03] hover:shadow-cyan-500/30"
                 >
                   <span>Reservar mi plaza</span>
                   <ArrowDown className="h-5 w-5" />
