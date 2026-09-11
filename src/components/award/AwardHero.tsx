@@ -30,24 +30,24 @@ export function AwardHero() {
               <div className="inline-flex items-center gap-2.5 rounded-full border border-amber-400/35 bg-amber-400/10 px-4 py-2 backdrop-blur-md">
                 <Trophy className="h-4 w-4 text-amber-400" />
                 <span className="text-xs font-semibold uppercase tracking-wider text-amber-200 sm:text-sm">
-                  Premios Excelencia Relación con Clientes 2025 · Engagement
+                  Reconocimientos y Actualidad doobot.ai_
                 </span>
               </div>
             </div>
 
             {/* H1 Title */}
-            <h1 className="mt-6 font-display font-bold text-white max-w-[720px] text-[clamp(42px,4.5vw,76px)] leading-[1.05] tracking-tight">
-              Premio Mejor Tecnología 2025
+            <h1 className="mt-6 font-display font-bold text-white max-w-[760px] text-[clamp(40px,4.5vw,72px)] leading-[1.06] tracking-tight">
+              Reconocimientos y Artículos
             </h1>
 
             {/* Main Paragraph */}
-            <p className="mt-6 font-normal text-slate-100 max-w-[720px] text-[clamp(19px,1.4vw,23px)] leading-[1.5]">
-              Doobot.ai y Boston Medical Group, reconocidos por aplicar inteligencia artificial a la mejora de la experiencia y la relación con el cliente.
+            <p className="mt-6 font-normal text-slate-100 max-w-[720px] text-[clamp(18px,1.35vw,22px)] leading-[1.55]">
+              En esta sección reunimos los principales reconocimientos obtenidos por doobot.ai_ y una selección de artículos y noticias que muestran casos reales, innovación aplicada y presencia de la compañía en el sector.
             </p>
 
             {/* Secondary Paragraph */}
-            <p className="mt-4 font-normal text-slate-300 max-w-[720px] text-[17px] sm:text-[18px] leading-[1.6]">
-              Un reconocimiento otorgado en la cita de referencia del sector de atención y experiencia de cliente.
+            <p className="mt-4 font-normal text-slate-300 max-w-[720px] text-[16px] sm:text-[17px] leading-[1.6]">
+              Desde el galardón a Mejor Tecnología hasta las menciones en publicaciones de referencia de la industria de clientes y contact center.
             </p>
 
             {/* External Links Pills */}
