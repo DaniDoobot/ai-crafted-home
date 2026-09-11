@@ -65,7 +65,7 @@ export const mainNavigation = [
     visible: navigationVisibility.examples,
   },
   {
-    label: "Premio Mejor Tecnología",
+    label: "Reconocimientos y Artículos",
     href: "/premio-mejor-tecnologia/",
     visible: true,
   },
