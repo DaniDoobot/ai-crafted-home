@@ -99,6 +99,20 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     ctaText: "Ver noticia",
     tag: "Entrevista Exclusiva",
   },
+  {
+    id: "noticia-6-isanidad-boston-premio",
+    source: "iSanidad · Cobertura en Prensa",
+    title: "Repercusión en prensa del Premio a la Mejor tecnología a doobot.ai_ por su proyecto en Boston Medical",
+    description:
+      "Repercusión en prensa del Premio a la Mejor tecnología a doobot.ai_ por su proyecto en Boston Medical",
+    image: "/doobot/articles/noticia-isanidad-premio-boston.webp",
+    imageAlt: "Cobertura en iSanidad del premio concedido a Boston Medical y doobot.ai",
+    actionType: "link",
+    externalUrl:
+      "https://isanidad.com/350623/boston-medical-galardonada-por-su-innovacion-en-la-relacion-con-el-paciente-con-la-ia-de-doobot-ai/",
+    ctaText: "Leer artículo",
+    tag: "Prensa Especializada",
+  },
 ];
 
 interface ActualidadSectionProps {
@@ -206,13 +220,21 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
                         </span>
                       </div>
 
-                      <h3 className="mt-3.5 font-display font-bold text-[#050547] text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.25] tracking-tight">
-                        {article.title}
-                      </h3>
+                      {article.title === article.description ? (
+                        <p className="mt-3.5 font-display font-bold text-[#050547] text-[20px] sm:text-[24px] lg:text-[26px] leading-[1.3] tracking-tight">
+                          {article.description}
+                        </p>
+                      ) : (
+                        <>
+                          <h3 className="mt-3.5 font-display font-bold text-[#050547] text-[22px] sm:text-[26px] lg:text-[28px] leading-[1.25] tracking-tight">
+                            {article.title}
+                          </h3>
 
-                      <p className="mt-4 text-[16px] sm:text-[17px] text-[#555B66] leading-[1.65]">
-                        {article.description}
-                      </p>
+                          <p className="mt-4 text-[16px] sm:text-[17px] text-[#555B66] leading-[1.65]">
+                            {article.description}
+                          </p>
+                        </>
+                      )}
 
                       <div className="mt-7">
                         {article.actionType === "link" && article.externalUrl ? (
