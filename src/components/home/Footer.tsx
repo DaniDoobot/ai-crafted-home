@@ -67,7 +67,7 @@ export function Footer() {
                 src="/doobot/premio-excelencia-sello-footer.webp"
                 alt="Premios Excelencia Relación con Clientes 2025 - Mejor Producto Tecnológico"
                 loading="lazy"
-                className="h-[102px] w-[102px] sm:h-[122px] sm:w-[122px] object-contain shrink-0 drop-shadow-md transition-transform group-hover:scale-105"
+                className="h-[110px] w-[110px] sm:h-[130px] sm:w-[130px] object-contain shrink-0 drop-shadow-md transition-transform group-hover:scale-105"
               />
               <div className="flex flex-col justify-center text-[#1c2333] text-left">
                 <span className="font-display font-bold text-[17px] sm:text-[19px] text-[#050547] leading-[1.25] tracking-tight group-hover:text-indigo-950 transition-colors">
