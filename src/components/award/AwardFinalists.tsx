@@ -3,7 +3,7 @@ import { Award, Sparkles } from "lucide-react";
 
 export function AwardFinalists() {
   return (
-    <section className="py-14 lg:py-18 bg-[#F5F3FF]/70 border-t border-indigo-100/80">
+    <section className="py-10 sm:py-12 lg:py-14 bg-[#F5F3FF]/70 border-t border-indigo-100/80">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Section Mini-Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -12,16 +12,16 @@ export function AwardFinalists() {
               <span>Distinciones 2026</span>
             </div>
             <h3 className="mt-3.5 font-display font-bold text-[#050547] text-[clamp(26px,2.6vw,38px)] leading-tight tracking-tight">
-              Reconocidos como finalistas en certámenes de innovación
+              Otros reconocimientos a la tecnología doobot.ai
             </h3>
             <p className="mt-3 text-base sm:text-lg text-[#555B66] max-w-2xl mx-auto leading-relaxed">
-              La trayectoria y proyectos de doobot.ai_ continúan siendo reconocidos por los principales comités evaluadores del sector.
+              Distinciones y candidaturas finalistas en certámenes de referencia del sector.
             </p>
           </RevealOnScroll>
         </div>
 
         {/* 2 Finalists Cards Grid */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="mt-8 sm:mt-9 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {/* Card 1: Asociación DEC 2026 */}
           <RevealOnScroll variant="fade-left" duration="slow" delay={100} className="h-full">
             <div className="h-full flex flex-col justify-between rounded-3xl border border-rose-200/80 bg-white p-7 sm:p-8 shadow-md hover:shadow-lg transition-all duration-300">

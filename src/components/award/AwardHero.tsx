@@ -8,7 +8,7 @@ import {
 export function AwardHero() {
   return (
     <section
-      className="relative flex min-h-[720px] flex-col justify-center overflow-hidden py-16 lg:py-24"
+      className="relative flex flex-col justify-center overflow-hidden pt-14 pb-10 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-14"
       style={{
         background: "linear-gradient(135deg, #02021A 0%, #050547 55%, #0B0B5C 100%)",
       }}
