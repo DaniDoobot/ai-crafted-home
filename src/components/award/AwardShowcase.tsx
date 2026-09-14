@@ -4,7 +4,7 @@ import { Calendar, MapPin, Building2, Users, ShieldCheck } from "lucide-react";
 export function AwardShowcase() {
   return (
     <section
-      className="py-[110px] lg:py-[130px]"
+      className="pt-8 pb-12 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16"
       style={{
         background: "linear-gradient(180deg, #FFFFFF 0%, #F5F3FF 100%)",
       }}
@@ -13,19 +13,14 @@ export function AwardShowcase() {
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
           <RevealOnScroll variant="fade-left" duration="fast" delay={0}>
-            <h2 className="font-display font-semibold text-[#050547] text-[clamp(32px,3.2vw,48px)] leading-[1.15] tracking-tight">
-              El Momento del Reconocimiento
+            <h2 className="font-display font-bold text-[#050547] text-[clamp(28px,2.6vw,40px)] leading-[1.2] tracking-tight">
+              Gala de entrega premio mejor tecnología
             </h2>
-          </RevealOnScroll>
-          <RevealOnScroll variant="fade-left" duration="fast" delay={150}>
-            <p className="mt-4 font-normal text-[#555B66] max-w-[760px] mx-auto text-[18px] sm:text-[19px] leading-[1.6]">
-              La Gala de Entrega de los Premios Excelencia Relación con Clientes 2025 celebró las mejores prácticas del sector.
-            </p>
           </RevealOnScroll>
         </div>
 
         {/* Composition Grid (Main Photo 780px + Right Column 440px) */}
-        <div className="mt-14 flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-10">
+        <div className="mt-8 sm:mt-10 flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-10">
           {/* Main Photo: Gala Delivery in Kinépolis (Width ~780px) */}
           <div className="w-full lg:w-[60%] xl:w-[780px]">
             <RevealOnScroll variant="fade-left" duration="slow" delay={100} className="h-full">

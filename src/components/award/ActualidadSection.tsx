@@ -14,6 +14,10 @@ export interface EditorialArticle {
   modalContent?: ModalContent;
   ctaText: string;
   tag?: string;
+  visualBg: string;
+  containerBorder: string;
+  innerFrameClass?: string;
+  paddingClass?: string;
 }
 
 const EDITORIAL_ARTICLES: EditorialArticle[] = [
@@ -30,6 +34,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
       "https://aeerc.com/doobot-ai-y-boston-medical-premio-tecnologico-en-reconocimiento-a-un-partnership-exitoso/",
     ctaText: "Leer artículo",
     tag: "Entrevista y Caso de Éxito",
+    visualBg: "bg-slate-50",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
+    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-2-cuidacasa-whatsapp",
@@ -37,8 +45,8 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     title: "Cuidacasa: Automatización por IA para evaluar reparaciones con tecnología doobot.ai_",
     description:
       "doobot.ai_ desarrolla para Cuidacasa una solución basada en IA para a partir de vídeos enviados por WhatsApp automatizar el proceso de valoración de daños, costes de reparación y aprobación de presupuestos en base a baremos.",
-    image: "/doobot/articles/noticia-cuidacasa-whatsapp.png",
-    imageAlt: "Chatbot de WhatsApp con IA para la validación de reparaciones en Cuidacasa",
+    image: "/doobot/articles/noticia-cuidacasa-ia.webp",
+    imageAlt: "Cuidacasa: Automatización por IA para evaluar reparaciones con tecnología doobot.ai",
     actionType: "modal",
     modalContent: {
       type: "pdf",
@@ -48,6 +56,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     },
     ctaText: "Ver noticia",
     tag: "IA Visión y WhatsApp",
+    visualBg: "bg-[#F5CA56]",
+    containerBorder: "border-[#E2B336]/90",
+    innerFrameClass: "w-full h-full flex items-center justify-center rounded-xl overflow-hidden",
+    paddingClass: "p-1.5 sm:p-2",
   },
   {
     id: "noticia-3-aeerc-fortius",
@@ -62,6 +74,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
       "https://aeerc.com/ia-en-los-premios-fortius/?utm_campaign=newsletter-aeerc-marzo-2026&utm_medium=email&utm_source=acumbamail",
     ctaText: "Leer artículo",
     tag: "Premios Fortius",
+    visualBg: "bg-slate-50",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-1.5 sm:p-2.5",
+    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-4-observatorio-contact-center",
@@ -80,6 +96,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     },
     ctaText: "Ver noticia",
     tag: "Observatorio Contact Center",
+    visualBg: "bg-slate-50",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
+    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-5-boston-medical-revista",
@@ -98,6 +118,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     },
     ctaText: "Ver noticia",
     tag: "Entrevista Exclusiva",
+    visualBg: "bg-gradient-to-br from-slate-100 via-slate-100/90 to-slate-200/70",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "w-full h-full flex items-center justify-center filter drop-shadow-sm",
+    paddingClass: "p-2 sm:p-3",
   },
   {
     id: "noticia-6-isanidad-boston-premio",
@@ -112,6 +136,10 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
       "https://isanidad.com/350623/boston-medical-galardonada-por-su-innovacion-en-la-relacion-con-el-paciente-con-la-ia-de-doobot-ai/",
     ctaText: "Leer artículo",
     tag: "Prensa Especializada",
+    visualBg: "bg-slate-50",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
+    paddingClass: "p-3 sm:p-4.5",
   },
 ];
 
@@ -121,7 +149,7 @@ interface ActualidadSectionProps {
 
 export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
   return (
-    <section className="py-20 lg:py-28 bg-white border-t border-slate-200/80">
+    <section className="pt-10 pb-16 sm:pt-12 sm:pb-20 lg:pt-14 lg:pb-24 bg-white border-t border-slate-200/80">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-3xl text-center">
@@ -130,17 +158,17 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
               <Newspaper className="h-3.5 w-3.5 text-[#685EC9]" />
               <span>Actualidad doobot.ai_</span>
             </div>
-            <h2 className="mt-4 font-display font-bold text-[#050547] text-[clamp(32px,3.2vw,48px)] leading-[1.15] tracking-tight">
+            <h2 className="mt-4 font-display font-bold text-[#050547] text-[clamp(30px,3vw,44px)] leading-[1.15] tracking-tight">
               Artículos, noticias y casos de aplicación real
             </h2>
-            <p className="mt-4 font-normal text-[#555B66] text-[18px] sm:text-[19px] leading-[1.6]">
+            <p className="mt-4 font-normal text-[#555B66] text-[17px] sm:text-[18px] leading-[1.6]">
               Una selección de publicaciones, entrevistas y reportajes en medios del sector que muestran la evolución tecnológica y proyectos con nuestros clientes.
             </p>
           </RevealOnScroll>
         </div>
 
         {/* Alternating Articles List ('Hélice' / Zigzag) */}
-        <div className="mt-16 sm:mt-20 flex flex-col gap-16 sm:gap-20 lg:gap-24">
+        <div className="mt-10 sm:mt-12 lg:mt-14 flex flex-col gap-12 sm:gap-14 lg:gap-16">
           {EDITORIAL_ARTICLES.map((article, idx) => {
             const isImageLeft = idx % 2 === 0;
 
@@ -161,7 +189,7 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
                     delay={100}
                   >
                     <div
-                      className="group relative overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200/80 bg-slate-50 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+                      className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border ${article.containerBorder} ${article.visualBg} shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer`}
                       onClick={() => {
                         if (article.actionType === "modal" && article.modalContent) {
                           onOpenModal(article.modalContent);
@@ -170,14 +198,16 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
                         }
                       }}
                     >
-                      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-slate-100 flex items-center justify-center p-2 sm:p-4">
-                        <img
-                          src={article.image}
-                          alt={article.imageAlt}
-                          className="h-full w-full object-contain rounded-xl transition-transform duration-500 group-hover:scale-[1.02]"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-[#050547]/0 group-hover:bg-[#050547]/20 transition-colors flex items-center justify-center">
+                      <div className={`relative aspect-[16/11] sm:aspect-[16/10.5] w-full overflow-hidden flex items-center justify-center ${article.paddingClass || "p-3 sm:p-4.5"}`}>
+                        <div className={`relative w-full h-full flex items-center justify-center ${article.innerFrameClass || ""}`}>
+                          <img
+                            src={article.image}
+                            alt={article.imageAlt}
+                            className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="absolute inset-0 bg-[#050547]/0 group-hover:bg-[#050547]/15 transition-colors flex items-center justify-center pointer-events-none">
                           <span className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs sm:text-sm font-semibold text-[#050547] shadow-lg backdrop-blur-sm">
                             {article.actionType === "modal" ? (
                               <>
