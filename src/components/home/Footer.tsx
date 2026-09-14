@@ -56,14 +56,31 @@ export function Footer() {
             />
           </div>
 
-          {/* Column 2 (Center): Premio Seal Image (~140px down) - NO DUPLICATE TEXT */}
-          <div className="flex flex-col items-center justify-center pt-8 lg:pt-[140px]">
-            <img
-              src="/doobot/Premio-Exc-Rel.png"
-              alt="Premio Excelencia Relación con Clientes 2025 - Mejor Producto Tecnológico"
-              loading="lazy"
-              className="h-auto w-[220px] sm:w-[260px] object-contain shrink-0"
-            />
+          {/* Column 2 (Center): Premio Seal & Typography */}
+          <div className="flex items-center justify-center pt-8 lg:pt-[130px]">
+            <a
+              href="/premio-mejor-tecnologia/"
+              className="group inline-flex items-center gap-3.5 sm:gap-4.5 transition-transform hover:scale-[1.02]"
+              title="Premio Mejor Producto Tecnológico 2025 - Premios Relación Cliente"
+            >
+              <img
+                src="/doobot/premio-excelencia-sello-footer.webp"
+                alt="Premios Excelencia Relación con Clientes 2025 - Mejor Producto Tecnológico"
+                loading="lazy"
+                className="h-[102px] w-[102px] sm:h-[122px] sm:w-[122px] object-contain shrink-0 drop-shadow-md transition-transform group-hover:scale-105"
+              />
+              <div className="flex flex-col justify-center text-[#1c2333] text-left">
+                <span className="font-display font-bold text-[17px] sm:text-[19px] text-[#050547] leading-[1.25] tracking-tight group-hover:text-indigo-950 transition-colors">
+                  Mejor Producto Tecnológico
+                </span>
+                <span className="mt-1 text-[13px] sm:text-[15px] font-medium text-[#1c2333]/90 leading-tight">
+                  Premios Relación Cliente
+                </span>
+                <span className="mt-0.5 text-[14px] sm:text-[16px] font-bold text-[#050547] leading-tight">
+                  2025
+                </span>
+              </div>
+            </a>
           </div>
 
           {/* Column 3 (Right): ISO Certification Seal - Positioned CLEARLY HIGHER UP (~30px from top) */}
