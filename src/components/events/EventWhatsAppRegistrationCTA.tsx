@@ -21,7 +21,7 @@ export function EventWhatsAppRegistrationCTA() {
           </span>
           <p className="text-[15px] sm:text-[17px] text-slate-200 leading-snug">
             O si lo prefieres, puedes inscribirte con nuestro{" "}
-            <strong className="font-bold text-white tracking-tight">Bot de WhatsApp</strong>
+            <strong className="font-bold text-white tracking-tight">Bot WhatsApp</strong>
           </p>
         </div>
 
