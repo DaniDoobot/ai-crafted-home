@@ -2,6 +2,7 @@ import { useState } from "react";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { submitEventRegistration, type EventRegistrationPayload, type EventRegistrationStatus } from "@/services/eventRegistration";
 import { AlertCircle, ArrowRight, CheckCircle2, Info, Loader2, Phone } from "lucide-react";
+import { EventWhatsAppRegistrationCTA } from "./EventWhatsAppRegistrationCTA";
 
 interface FormErrors {
   fullName?: string;
@@ -422,6 +423,9 @@ export function EventRegistrationForm({
                 </div>
               </form>
             </div>
+
+            {/* Secondary Alternative: WhatsApp Bot Registration Callout */}
+            <EventWhatsAppRegistrationCTA />
           </RevealOnScroll>
         </div>
       </div>
