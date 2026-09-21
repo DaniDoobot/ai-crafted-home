@@ -30,6 +30,7 @@ export interface EventRegistrationPayload {
   company: string;
   comments?: string;
   privacyAccepted: boolean;
+  submissionId?: string;
 }
 
 export type EventRegistrationStatus = "registration_disabled" | "success" | "error";
@@ -89,6 +90,7 @@ export async function submitEventRegistration(
         company: data.company.trim(),
         comments: data.comments?.trim() || "",
         privacyAccepted: data.privacyAccepted,
+        submissionId: data.submissionId?.trim() || undefined,
       }),
     });
 

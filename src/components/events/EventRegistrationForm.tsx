@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { submitEventRegistration, type EventRegistrationPayload, type EventRegistrationStatus } from "@/services/eventRegistration";
 import { AlertCircle, ArrowRight, CheckCircle2, Info, Loader2, Phone } from "lucide-react";
@@ -18,6 +18,15 @@ export interface EventRegistrationFormProps {
   badgeText?: string;
   title?: string;
   subtitle?: string;
+  isRegistered?: boolean;
+  onRegistrationSuccess?: () => void;
+}
+
+function generateSubmissionId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return `reg_${crypto.randomUUID()}`;
+  }
+  return `reg_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 }
 
 export function EventRegistrationForm({
@@ -25,6 +34,8 @@ export function EventRegistrationForm({
   badgeText = "Inscripción al taller",
   title = "Reserva tu plaza presencial",
   subtitle = "Plazas limitadas por aforo en sala. Completa tus datos para tramitar tu solicitud de asistencia para el 24 de septiembre en Madrid.",
+  isRegistered = false,
+  onRegistrationSuccess,
 }: EventRegistrationFormProps) {
   const fId = (fieldName: string) => `${id}-${fieldName}`;
   const [formData, setFormData] = useState<EventRegistrationPayload>({
@@ -40,6 +51,13 @@ export function EventRegistrationForm({
   const [loading, setLoading] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<EventRegistrationStatus | "idle">("idle");
   const [statusMessage, setStatusMessage] = useState("");
+
+  const isSuccess = Boolean(isRegistered || submissionStatus === "success");
+
+  // Synchronous submit lock to eliminate rapid double clicks before React re-renders
+  const isSubmittingRef = useRef(false);
+  // Persistent submission ID for idempotency across network retries
+  const submissionIdRef = useRef<string>("");
 
   const validate = (): boolean => {
     const errs: FormErrors = {};
@@ -88,18 +106,44 @@ export function EventRegistrationForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Prevent concurrent submits or submits after success
+    if (isSubmittingRef.current || loading || isSuccess) {
+      return;
+    }
+
     if (!validate()) return;
 
+    // Lock synchronously before any async state updates
+    isSubmittingRef.current = true;
     setLoading(true);
     setSubmissionStatus("idle");
 
+    if (!submissionIdRef.current) {
+      submissionIdRef.current = generateSubmissionId();
+    }
+
     try {
-      const res = await submitEventRegistration(formData);
+      const res = await submitEventRegistration({
+        ...formData,
+        submissionId: submissionIdRef.current,
+      });
+
       setSubmissionStatus(res.status);
       setStatusMessage(res.message);
+
+      if (res.status === "success") {
+        // Keep locked permanently for this form lifecycle and notify parent
+        isSubmittingRef.current = true;
+        onRegistrationSuccess?.();
+      } else {
+        // Allow retry on error or disabled status with the same submissionId
+        isSubmittingRef.current = false;
+      }
     } catch {
       setSubmissionStatus("error");
       setStatusMessage("Se produjo un error al procesar tu solicitud. Por favor, inténtalo de nuevo.");
+      isSubmittingRef.current = false;
     } finally {
       setLoading(false);
     }
@@ -136,60 +180,63 @@ export function EventRegistrationForm({
           <RevealOnScroll variant="fade-up" duration="medium" delay={100}>
             <div className="rounded-3xl border border-white/15 bg-slate-900/85 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
               
-              {/* Fallback Notice: Disabled Mode */}
-              {submissionStatus === "registration_disabled" && (
-                <div className="mb-8 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 sm:p-6 text-slate-200">
-                  <div className="flex items-start gap-3.5">
-                    <Info className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
-                    <div className="space-y-2">
-                      <h4 className="font-bold text-white text-base">
-                        Registro online disponible próximamente
-                      </h4>
-                      <p className="text-sm text-slate-200 leading-relaxed">
-                        El registro online estará disponible próximamente.
-                      </p>
-                      <p className="text-sm text-slate-300 leading-relaxed">
-                        Para cualquier consulta puedes contactar con nuestro asistente telefónico en el{" "}
-                        <a
-                          href="tel:+34911674317"
-                          className="font-bold text-cyan-300 underline underline-offset-2 hover:text-cyan-200 transition-colors inline-flex items-center gap-1"
-                        >
-                          <Phone className="h-3.5 w-3.5 inline text-cyan-400" />
-                          +34 911 67 43 17
-                        </a>
-                        .
-                      </p>
-                      <p className="text-xs text-slate-400 pt-1">
-                        Este teléfono conecta con el asistente telefónico de doobot.ai, que puede recoger tu consulta y gestionar la puesta en contacto con el equipo comercial.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Success Notice */}
-              {submissionStatus === "success" && (
-                <div className="mb-8 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-slate-200 text-center">
-                  <CheckCircle2 className="h-10 w-10 text-emerald-400 mx-auto mb-2" />
-                  <h4 className="font-bold text-white text-lg">
-                    ¡Inscripción recibida!
+              {isSuccess ? (
+                /* Thank You / Confirmation State: Replaces the form completely once registration is completed */
+                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-8 sm:p-10 text-slate-200 text-center space-y-3">
+                  <CheckCircle2 className="h-12 w-12 text-emerald-400 mx-auto mb-2" />
+                  <h4 className="font-bold text-white text-xl sm:text-2xl">
+                    Gracias por inscribirte
                   </h4>
-                  <p className="mt-1 text-sm text-slate-300">
-                    {statusMessage || "Hemos recibido correctamente tu solicitud de inscripción para el taller. Nuestro equipo comercial te responderá en breve por email y WhatsApp."}
+                  <p className="text-base sm:text-lg font-medium text-emerald-300">
+                    Tu solicitud ha sido recibida correctamente.
+                  </p>
+                  <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                    Nuestro equipo comercial te responderá en breve por email y WhatsApp.
                   </p>
                 </div>
-              )}
+              ) : (
+                <>
+                  {/* Fallback Notice: Disabled Mode */}
+                  {submissionStatus === "registration_disabled" && (
+                    <div className="mb-8 rounded-2xl border border-amber-500/30 bg-amber-500/10 p-5 sm:p-6 text-slate-200">
+                      <div className="flex items-start gap-3.5">
+                        <Info className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
+                        <div className="space-y-2">
+                          <h4 className="font-bold text-white text-base">
+                            Registro online disponible próximamente
+                          </h4>
+                          <p className="text-sm text-slate-200 leading-relaxed">
+                            El registro online estará disponible próximamente.
+                          </p>
+                          <p className="text-sm text-slate-300 leading-relaxed">
+                            Para cualquier consulta puedes contactar con nuestro asistente telefónico en el{" "}
+                            <a
+                              href="tel:+34911674317"
+                              className="font-bold text-cyan-300 underline underline-offset-2 hover:text-cyan-200 transition-colors inline-flex items-center gap-1"
+                            >
+                              <Phone className="h-3.5 w-3.5 inline text-cyan-400" />
+                              +34 911 67 43 17
+                            </a>
+                            .
+                          </p>
+                          <p className="text-xs text-slate-400 pt-1">
+                            Este teléfono conecta con el asistente telefónico de doobot.ai, que puede recoger tu consulta y gestionar la puesta en contacto con el equipo comercial.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
 
-              {/* Error Notice */}
-              {submissionStatus === "error" && (
-                <div className="mb-8 rounded-2xl border border-red-500/30 bg-red-500/10 p-5 text-slate-200 flex items-start gap-3">
-                  <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
-                  <p className="text-sm text-red-200">{statusMessage}</p>
-                </div>
-              )}
+                  {/* Error Notice */}
+                  {submissionStatus === "error" && (
+                    <div className="mb-8 rounded-2xl border border-red-500/30 bg-red-500/10 p-5 text-slate-200 flex items-start gap-3">
+                      <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+                      <p className="text-sm text-red-200">{statusMessage}</p>
+                    </div>
+                  )}
 
-              {/* Actual Form */}
-              <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                  {/* Actual Form */}
+                  <form onSubmit={handleSubmit} noValidate className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* 1. Nombre y apellidos */}
                   <div>
@@ -422,10 +469,12 @@ export function EventRegistrationForm({
                   </p>
                 </div>
               </form>
+              </>
+            )}
             </div>
 
-            {/* Secondary Alternative: WhatsApp Bot Registration Callout */}
-            <EventWhatsAppRegistrationCTA />
+            {/* Secondary Alternative: WhatsApp Bot Registration Callout (only shown when not yet registered) */}
+            {!isSuccess && <EventWhatsAppRegistrationCTA />}
           </RevealOnScroll>
         </div>
       </div>

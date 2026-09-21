@@ -9,12 +9,32 @@
  * NO depende de códigos de estado HTTP personalizados (403, 500, etc.) ya que Google
  * Apps Script no garantiza su preservación a través de los proxies y redirecciones de Google.
  * 
+ * Garantía de Idempotencia y Estado de Notificación (Columnas I y J):
+ * 1. LockService: Serializa peticiones concurrentes para evitar condiciones de carrera.
+ * 2. Columna I (Submission ID): Identificador único persistente en toda la columna I
+ *    (buscado mediante TextFinder desde I2 hasta la última fila con datos).
+ * 3. Columna J (Notificación enviada):
+ *    - "Sí": correo confirmado como enviado.
+ *    - "No": MailApp lanzó error y se puede reintentar.
+ *    - "Enviando": estado transitorio / ambiguo. Si la ejecución se interrumpe o falla
+ *      la actualización posterior a "Sí", NO se reenvía automáticamente el email en
+ *      reintentos para prevenir duplicados (requiere revisión manual en caso excepcional).
+ * 4. Gestión de Reintentos (Retry):
+ *    - Si una fila existe y J="Sí": no se añade fila ni se envía correo (idempotente).
+ *    - Si una fila existe y J="No": NO se añade una segunda fila; pasa J a "Enviando" y
+ *      reintenta ÚNICAMENTE el envío del correo pendiente (si éxito -> "Sí", si error -> "No").
+ *    - Si una fila existe y J="Enviando": estado ambiguo de ejecución previa; NO se añade
+ *      fila y NO se reenvía automáticamente el correo por seguridad anti-duplicados.
+ * 5. CacheService: Acelerador temporal L1 (guarda "sent" solo tras confirmación de envío con J="Sí").
+ *
  * Códigos de Aplicación:
- * - registration_saved: Éxito total (hoja guardada y notificación enviada)
+ * - registration_saved: Éxito total (hoja guardada y notificación enviada, o duplicado resuelto)
  * - registration_saved_notification_failed: Hoja guardada con éxito, pero falló el email
+ * - registration_saved_notification_unconfirmed: Hoja guardada, notificación en estado ambiguo ("Enviando")
  * - forbidden: Secreto compartido ausente o no coincidente
  * - invalid_payload: Faltan campos obligatorios o superan límites
  * - sheets_error: Error al acceder o escribir en la hoja de cálculo
+ * - lock_timeout: El servidor está ocupado procesando otra solicitud concurrente
  * - internal_error: Excepción imprevista capturada en tiempo de ejecución
  * 
  * Script Properties requeridas (⚙️ Configuración del proyecto > Propiedades de la secuencia de comandos):
@@ -24,16 +44,14 @@
 
 var DEFAULT_SPREADSHEET_ID = "12pEWyXQUwH1PWKyC_akf7I8Yvxfx4vwzV4vzvwfJR4w";
 var SHEET_NAME = "Inscripciones";
-// Notificaciones internas: enviadas por la cuenta que ejecuta Apps Script (dani@doobot.ai) a los destinatarios comerciales
+// Destinatarios comerciales internos aprobados (intactos)
 var EMAIL_RECIPIENTS = "patricia@doobot.ai,angel@doobot.ai";
 var EMAIL_SUBJECT = "Nueva inscripción · Bot de Voz · Contact Center 2026";
 var CAMPAIGN_NAME = "contact-center-2026";
 
 /**
  * 1. CONFIGURACIÓN DE LA HOJA (setupSheet)
- * Ejecutar manualmente UNA ÚNICA VEZ desde el editor de Apps Script.
- * Crea la pestaña "Inscripciones" si no existe, escribe las 8 cabeceras en negrita,
- * congela la fila 1 y fija formato texto en la columna de teléfono.
+ * Solo para inicializar hojas nuevas. NO modifica hojas que ya contengan datos.
  */
 function setupSheet() {
   var props = PropertiesService.getScriptProperties();
@@ -44,7 +62,6 @@ function setupSheet() {
 
   if (!sheet) {
     var allSheets = ss.getSheets();
-    // Si la primera pestaña está completamente vacía, la renombramos
     if (allSheets.length === 1 && allSheets[0].getLastRow() === 0 && allSheets[0].getLastColumn() === 0) {
       sheet = allSheets[0];
       sheet.setName(SHEET_NAME);
@@ -61,10 +78,11 @@ function setupSheet() {
     "Empresa",
     "Comentarios",
     "Privacidad aceptada",
-    "Campaña"
+    "Campaña",
+    "Submission ID",
+    "Notificación enviada"
   ];
 
-  // Si la fila 1 está vacía, escribir cabeceras
   if (sheet.getLastRow() === 0) {
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
@@ -80,9 +98,7 @@ function setupSheet() {
 }
 
 /**
- * 2. SANITIZACIÓN CONTRA INYECCIÓN DE FÓRMULAS (Formula / CSV Injection)
- * Antepone un apóstrofe si el valor empieza por =, +, -, @, \t o \r.
- * Preserva números de teléfono como +34... como texto literal puro.
+ * 2. SANITIZACIÓN CONTRA INYECCIÓN DE FÓRMULAS
  */
 function sanitizeForSheet(value) {
   if (value === null || value === undefined) {
@@ -101,7 +117,6 @@ function sanitizeForSheet(value) {
 
 /**
  * 3. RESPUESTA JSON ESTÁNDAR
- * Devuelve siempre un objeto ContentService JSON válido.
  */
 function jsonResponse(payload) {
   return ContentService
@@ -111,9 +126,11 @@ function jsonResponse(payload) {
 
 /**
  * 4. CONTROLADOR PRINCIPAL HTTP POST (doPost)
- * Recibe y procesa las inscripciones enviadas desde el servidor de doobot.ai.
  */
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  var hasLock = false;
+
   try {
     if (!e || !e.postData || !e.postData.contents) {
       return jsonResponse({
@@ -142,7 +159,6 @@ function doPost(e) {
 
     if (expectedSecret && expectedSecret.length > 0) {
       if (!data.secret || data.secret !== expectedSecret) {
-        // Secreto inválido: no loguear jamás el secreto recibido ni el esperado
         return jsonResponse({
           ok: false,
           code: "forbidden",
@@ -159,6 +175,7 @@ function doPost(e) {
     var company = typeof data.company === "string" ? data.company.trim() : "";
     var comments = typeof data.comments === "string" ? data.comments.trim() : "";
     var privacyAccepted = data.privacyAccepted === true;
+    var submissionId = typeof data.submissionId === "string" ? data.submissionId.trim() : "";
 
     if (!name || name.length < 3 || name.length > 100) {
       return jsonResponse({ ok: false, code: "invalid_payload", saved: false, error: "Nombre inválido" });
@@ -186,7 +203,40 @@ function doPost(e) {
       return jsonResponse({ ok: false, code: "invalid_payload", saved: false, error: "Privacidad no aceptada" });
     }
 
-    // C. Guardar en Google Sheets (Paso 1: Prioridad absoluta para no perder el dato)
+    // C. Control de Concurrencia (LockService)
+    try {
+      hasLock = lock.tryLock(15000); // Serializar hasta 15 segundos
+    } catch (lockErr) {
+      hasLock = false;
+    }
+
+    if (!hasLock) {
+      return jsonResponse({
+        ok: false,
+        code: "lock_timeout",
+        saved: false,
+        error: "El servicio está procesando otra solicitud. Por favor, reintente en unos instantes."
+      });
+    }
+
+    // D. Control de Idempotencia y Estado de Notificación
+    var cache = CacheService.getScriptCache();
+
+    // D1. Comprobación rápida en caché (solo responde éxito si el email ya se envió)
+    if (submissionId) {
+      var cachedStatus = cache.get("sub_" + submissionId);
+      if (cachedStatus === "sent") {
+        return jsonResponse({
+          ok: true,
+          code: "registration_saved",
+          saved: true,
+          notificationSent: true,
+          idempotent: true
+        });
+      }
+    }
+
+    // E. Acceso a Google Sheets (Persistencia)
     var spreadsheetId = props.getProperty("SPREADSHEET_ID") || DEFAULT_SPREADSHEET_ID;
     var sheet;
     try {
@@ -209,6 +259,99 @@ function doPost(e) {
     var now = new Date();
     var dateFormatted = Utilities.formatDate(now, "Europe/Madrid", "dd/MM/yyyy HH:mm:ss");
 
+    var emailBody = "Nueva inscripción recibida para el taller:\n\n" +
+      "\"Bot de Voz: calienta que sales…!!\"\n\n" +
+      "Nombre y apellidos:\n" + name + "\n\n" +
+      "Teléfono:\n" + phone + "\n\n" +
+      "Email:\n" + email + "\n\n" +
+      "Empresa:\n" + company + "\n\n" +
+      "Comentarios:\n" + (comments.length > 0 ? comments : "Sin comentarios") + "\n\n" +
+      (submissionId ? ("ID de solicitud:\n" + submissionId + "\n\n") : "") +
+      "Fecha de inscripción:\n" + dateFormatted + "\n\n" +
+      "Campaña:\nContact Center 2026\n";
+
+    // D2. Comprobación persistente en Google Sheets (Columna I en toda la columna desde I2)
+    var lastRow = sheet.getLastRow();
+    var maxCols = sheet.getLastColumn();
+
+    if (submissionId && lastRow > 1 && maxCols >= 9) {
+      var searchRange = sheet.getRange(2, 9, lastRow - 1, 1);
+      var match = searchRange.createTextFinder(submissionId).matchEntireCell(true).findNext();
+
+      if (match) {
+        var existingRow = match.getRow();
+        var notificationStatus = maxCols >= 10 ? String(sheet.getRange(existingRow, 10).getValue()).trim() : "";
+
+        // CASO A: Fila existente con email ya enviado previamente (J = "Sí")
+        if (notificationStatus === "Sí") {
+          cache.put("sub_" + submissionId, "sent", 21600);
+          return jsonResponse({
+            ok: true,
+            code: "registration_saved",
+            saved: true,
+            notificationSent: true,
+            idempotent: true
+          });
+        }
+
+        // CASO B: Estado ambiguo ("Enviando")
+        // Significa que la ejecución anterior pudo quedar interrumpida sin poder determinar
+        // con fiabilidad si MailApp completó el envío. Por seguridad estricta contra DUPLICADOS:
+        // - NO volver a enviar automáticamente el email
+        // - NO añadir fila
+        // - Mantener la inscripción existente
+        // - Devolver saved=true, notificationSent=false (estado no confirmado)
+        // (Nota: este estado requeriría revisión manual únicamente en caso excepcional).
+        if (notificationStatus === "Enviando") {
+          return jsonResponse({
+            ok: true,
+            code: "registration_saved_notification_unconfirmed",
+            saved: true,
+            notificationSent: false,
+            idempotent: true
+          });
+        }
+
+        // CASO C: Fila existente pero email falló expresamente (J = "No")
+        // NO añadir fila; cambiar primero J a "Enviando" y ejecutar UNA sola llamada a MailApp
+        sheet.getRange(existingRow, 10).setValue("Enviando");
+
+        var retrySent = false;
+        try {
+          MailApp.sendEmail(EMAIL_RECIPIENTS, EMAIL_SUBJECT, emailBody);
+          retrySent = true;
+        } catch (errRetry) {
+          Logger.log("Aviso: reintento de email falló para submissionId=" + submissionId + ": " + errRetry.toString());
+          retrySent = false;
+        }
+
+        if (retrySent) {
+          sheet.getRange(existingRow, 10).setValue("Sí");
+          cache.put("sub_" + submissionId, "sent", 21600);
+          return jsonResponse({
+            ok: true,
+            code: "registration_saved",
+            saved: true,
+            notificationSent: true,
+            idempotent: true
+          });
+        } else {
+          try {
+            sheet.getRange(existingRow, 10).setValue("No");
+          } catch (eSetNo) {}
+          return jsonResponse({
+            ok: true,
+            code: "registration_saved_notification_failed",
+            saved: true,
+            notificationSent: false,
+            idempotent: true
+          });
+        }
+      }
+    }
+
+    // F. Inserción de Fila en Google Sheets (Inscripción nueva)
+    // Se inserta con J = "Enviando" inicialmente para registrar la intención y evitar duplicados
     var rowData = [
       dateFormatted,
       sanitizeForSheet(name),
@@ -217,7 +360,9 @@ function doPost(e) {
       sanitizeForSheet(company),
       comments.length > 0 ? sanitizeForSheet(comments) : "",
       "Sí",
-      CAMPAIGN_NAME
+      CAMPAIGN_NAME,
+      submissionId, // Columna I: Submission ID
+      "Enviando"    // Columna J: Notificación enviada (inicialmente "Enviando")
     ];
 
     try {
@@ -232,36 +377,24 @@ function doPost(e) {
       });
     }
 
-    // D. Notificación interna por Email (Paso 2: Tolerante a fallos)
-    var notificationSent = false;
-    var emailBody = "Nueva inscripción recibida para el taller:\n\n" +
-      "\"Bot de Voz: calienta que sales…!!\"\n\n" +
-      "Nombre y apellidos:\n" + name + "\n\n" +
-      "Teléfono:\n" + phone + "\n\n" +
-      "Email:\n" + email + "\n\n" +
-      "Empresa:\n" + company + "\n\n" +
-      "Comentarios:\n" + (comments.length > 0 ? comments : "Sin comentarios") + "\n\n" +
-      "Fecha de inscripción:\n" + dateFormatted + "\n\n" +
-      "Campaña:\nContact Center 2026\n";
+    var insertedRow = sheet.getLastRow();
 
-    // Intento 1
+    // G. Notificación interna por Email (UNA sola llamada sin reintentos inmediatos)
+    var notificationSent = false;
     try {
       MailApp.sendEmail(EMAIL_RECIPIENTS, EMAIL_SUBJECT, emailBody);
       notificationSent = true;
-    } catch (err1) {
-      // Reintento controlado tras 1 segundo
-      try {
-        Utilities.sleep(1000);
-        MailApp.sendEmail(EMAIL_RECIPIENTS, EMAIL_SUBJECT, emailBody);
-        notificationSent = true;
-      } catch (err2) {
-        Logger.log("Aviso: falló el envío de la notificación por email tras dos intentos.");
-        notificationSent = false;
-      }
+    } catch (errMail) {
+      Logger.log("Aviso: falló el envío de la notificación por email: " + errMail.toString());
+      notificationSent = false;
     }
 
-    // Respuesta JSON definitiva
     if (notificationSent) {
+      // Actualizar Columna J de la fila recién insertada a "Sí"
+      sheet.getRange(insertedRow, 10).setValue("Sí");
+      if (submissionId) {
+        cache.put("sub_" + submissionId, "sent", 21600);
+      }
       return jsonResponse({
         ok: true,
         code: "registration_saved",
@@ -269,6 +402,10 @@ function doPost(e) {
         notificationSent: true
       });
     } else {
+      // Si MailApp falló expresamente, marcamos J = "No" para permitir reintento futuro
+      try {
+        sheet.getRange(insertedRow, 10).setValue("No");
+      } catch (eSetNo) {}
       return jsonResponse({
         ok: true,
         code: "registration_saved_notification_failed",
@@ -285,5 +422,11 @@ function doPost(e) {
       saved: false,
       error: "Error interno en Google Apps Script"
     });
+  } finally {
+    if (hasLock) {
+      try {
+        lock.releaseLock();
+      } catch (e) {}
+    }
   }
 }
