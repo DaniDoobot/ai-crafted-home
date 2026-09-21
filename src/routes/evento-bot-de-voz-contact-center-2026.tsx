@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
@@ -33,19 +34,27 @@ export const Route = createFileRoute("/evento-bot-de-voz-contact-center-2026")({
 });
 
 function EventPage() {
+  const [isRegistered, setIsRegistered] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950 overflow-x-clip">
       <Header />
       <main id="main-content">
         <EventHero />
         <EventAgenda />
-        <EventRegistrationForm id="inscripcion" />
+        <EventRegistrationForm
+          id="inscripcion"
+          isRegistered={isRegistered}
+          onRegistrationSuccess={() => setIsRegistered(true)}
+        />
         <EventVoiceEcosystem />
         <EventRegistrationForm
           id="inscripcion-final"
           badgeText="Últimas plazas"
           title="Asegura tu plaza en el taller"
           subtitle="Plazas limitadas por aforo en Torre BBVA. Tramita tu solicitud antes de completar la capacidad de la sala."
+          isRegistered={isRegistered}
+          onRegistrationSuccess={() => setIsRegistered(true)}
         />
         <EventCredibility />
       </main>

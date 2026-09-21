@@ -2,12 +2,13 @@
  * Server-side API Handler for Event Registration
  * Endpoint: POST /api/event-registration
  * 
- * Safety, Privacy & Architecture:
+ * Architecture & Responsibilities:
  * - Authoritative server decision for LIVE vs DISABLED persistence via EVENT_REGISTRATION_MODE.
  * - Runtime environment variables read per-request inside function scope (Cloudflare Workers & Node/Bun compatible).
  * - Application-level JSON contract with Google Apps Script (does not rely on custom HTTP status codes).
  * - Server-to-server shared secret authentication with Google Apps Script Web App.
- * - Strict timeout protection (10s) using AbortController.
+ * - Forwards client submissionId to Google Apps Script for persistent idempotency.
+ * - Preventative extended timeout (25s) using AbortController to absorb Google Apps Script cold starts.
  * - ZERO PII logging (never logs name, phone, email, company, comments or secrets).
  * - Never exposes Google Apps Script internal URLs, secrets or stack traces in client responses.
  */
@@ -21,6 +22,7 @@ export interface ValidatedServerRegistrationPayload {
   privacyAccepted: true;
   campaign: "contact-center-2026";
   createdAt: string;
+  submissionId: string;
   secret?: string;
 }
 
@@ -29,6 +31,7 @@ export interface GoogleAppsScriptResponse {
   code?: string;
   saved?: boolean;
   notificationSent?: boolean;
+  idempotent?: boolean;
   error?: string;
 }
 
@@ -60,6 +63,8 @@ export async function handleEventRegistrationRequest(
     const company = typeof body?.company === "string" ? body.company.trim() : "";
     const comments = typeof body?.comments === "string" ? body.comments.trim() : "";
     const privacyAccepted = body?.privacyAccepted === true;
+    const rawSubmissionId = typeof body?.submissionId === "string" ? body.submissionId.trim() : "";
+    const submissionId = rawSubmissionId || `srv_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
 
     // 1. Server-side validation
     if (!name || name.length < 3 || name.length > 100) {
@@ -107,7 +112,6 @@ export async function handleEventRegistrationRequest(
     }
 
     // 2. Server runtime environment variables read per-request inside function scope
-    // Supports Cloudflare Workers bindings (env) and Node/Bun process.env
     const cfEnv = (typeof env === "object" && env !== null ? env : {}) as Record<string, string | undefined>;
     const procEnv = (typeof process !== "undefined" && process.env ? process.env : {}) as Record<string, string | undefined>;
 
@@ -115,19 +119,8 @@ export async function handleEventRegistrationRequest(
     const googleAppsScriptUrl = cfEnv.GOOGLE_APPS_SCRIPT_URL || procEnv.GOOGLE_APPS_SCRIPT_URL;
     const googleAppsScriptSecret = cfEnv.GOOGLE_APPS_SCRIPT_SECRET || procEnv.GOOGLE_APPS_SCRIPT_SECRET;
 
-    // 3. Validation: If LIVE mode is requested but configuration is incomplete, fail safely
-    if (registrationMode === "live") {
-      if (!googleAppsScriptUrl || !googleAppsScriptSecret) {
-        console.error("[EventRegistration] Configuración incompleta en modo live (falta GOOGLE_APPS_SCRIPT_URL o GOOGLE_APPS_SCRIPT_SECRET en variables del servidor).");
-        return new Response(
-          JSON.stringify({
-            status: "error",
-            error: "El servicio de registro no está configurado adecuadamente en el servidor.",
-          }),
-          { status: 500, headers: { "Content-Type": "application/json" } }
-        );
-      }
-    } else {
+    // 3. Mode Validation
+    if (registrationMode !== "live") {
       // DISABLED MODE (Default safe fallback when persistence is not active)
       return new Response(
         JSON.stringify({
@@ -141,7 +134,18 @@ export async function handleEventRegistrationRequest(
       );
     }
 
-    // 4. LIVE Integration with Google Apps Script
+    if (!googleAppsScriptUrl || !googleAppsScriptSecret) {
+      console.error("[EventRegistration] Configuración incompleta en modo live (falta GOOGLE_APPS_SCRIPT_URL o GOOGLE_APPS_SCRIPT_SECRET en variables del servidor).");
+      return new Response(
+        JSON.stringify({
+          status: "error",
+          error: "El servicio de registro no está configurado adecuadamente en el servidor.",
+        }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    // 4. Dispatch single authoritative call to Google Apps Script
     const serverPayload: ValidatedServerRegistrationPayload = {
       name,
       phone,
@@ -151,11 +155,13 @@ export async function handleEventRegistrationRequest(
       privacyAccepted: true,
       campaign: "contact-center-2026",
       createdAt: new Date().toISOString(),
+      submissionId,
       secret: googleAppsScriptSecret,
     };
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+    // 25s timeout as a preventative safeguard against cold start aborts
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
 
     try {
       const gasResponse = await fetch(googleAppsScriptUrl, {
@@ -169,7 +175,6 @@ export async function handleEventRegistrationRequest(
 
       clearTimeout(timeoutId);
 
-      // Unexpected HTTP level failure from Google infrastructure (e.g. 500, 502, 503)
       if (!gasResponse.ok) {
         console.error(`[EventRegistration] Error HTTP inesperado de Google Apps Script: ${gasResponse.status}`);
         return new Response(
@@ -196,17 +201,17 @@ export async function handleEventRegistrationRequest(
       }
 
       // Application-level JSON code interpretation:
-      // Case A: Success (Sheet saved, notification sent or failed gracefully)
+      // Case A: Success (Sheet saved, or idempotent duplicate handled safely)
       if (
         gasResult.code === "registration_saved" ||
         gasResult.code === "registration_saved_notification_failed" ||
-        (gasResult.ok === true && gasResult.saved === true)
+        (gasResult.ok === true && (gasResult.saved === true || gasResult.idempotent === true))
       ) {
         if (
           gasResult.notificationSent === false ||
           gasResult.code === "registration_saved_notification_failed"
         ) {
-          console.warn("[EventRegistration] Inscripción guardada en Sheets con éxito, pero la notificación por email falló.");
+          console.warn("[EventRegistration] Inscripción registrada con éxito en Sheets, pero la notificación por email falló.");
         }
 
         return new Response(
@@ -245,7 +250,18 @@ export async function handleEventRegistrationRequest(
         );
       }
 
-      // Case D: Payload validation failure in Apps Script
+      // Case D: Lock timeout in Apps Script
+      if (gasResult.code === "lock_timeout") {
+        return new Response(
+          JSON.stringify({
+            status: "error",
+            error: "El servicio está procesando otra solicitud en este momento. Por favor, reintenta en unos instantes.",
+          }),
+          { status: 429, headers: { "Content-Type": "application/json" } }
+        );
+      }
+
+      // Case E: Payload validation failure in Apps Script
       if (gasResult.code === "invalid_payload") {
         console.error("[EventRegistration] Google Apps Script rechazó el payload por validación.");
         return new Response(
@@ -257,7 +273,7 @@ export async function handleEventRegistrationRequest(
         );
       }
 
-      // Case E: Any other unhandled application error
+      // Case F: Generic or unhandled application error
       console.error(`[EventRegistration] Apps Script reportó error genérico: ${gasResult.code || "desconocido"}`);
       return new Response(
         JSON.stringify({
@@ -271,7 +287,7 @@ export async function handleEventRegistrationRequest(
       clearTimeout(timeoutId);
       const isAbort = fetchErr instanceof Error && fetchErr.name === "AbortError";
       if (isAbort) {
-        console.error("[EventRegistration] Timeout al conectar con Google Apps Script (>10s).");
+        console.error("[EventRegistration] Timeout preventivo al conectar con Google Apps Script (>25s).");
         return new Response(
           JSON.stringify({
             status: "error",
