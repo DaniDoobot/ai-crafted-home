@@ -13,3 +13,10 @@ export const WHATSAPP_EVENT_MESSAGE =
 export const WHATSAPP_EVENT_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
   WHATSAPP_EVENT_MESSAGE
 )}`;
+
+export const WHATSAPP_CHAT_MESSAGE =
+  "Hola, tengo una consulta sobre doobot.ai";
+
+export const WHATSAPP_CHAT_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_CHAT_MESSAGE
+)}`;
