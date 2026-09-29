@@ -1,4 +1,5 @@
-import { Bot, CheckCheck, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Bot, X } from "lucide-react";
 
 interface WhatsAppPopupCardProps {
   onClose: () => void;
@@ -19,31 +20,95 @@ export function WhatsAppPopupCard({
   description = "Escríbenos para resolver cualquier duda, solicitar información o conocer mejor nuestras soluciones.",
   ctaText = "Hablar por WhatsApp",
 }: WhatsAppPopupCardProps) {
+  const [isTyping, setIsTyping] = useState(true);
+  const [messageTime, setMessageTime] = useState("");
+
+  // Calculate local time on client
+  useEffect(() => {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    setMessageTime(`${hours}:${minutes}`);
+  }, []);
+
+  // Manage typing indicator sequence (approx 900ms) with reduced motion support
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) {
+      setIsTyping(false);
+      return;
+    }
+
+    setIsTyping(true);
+    const timer = setTimeout(() => {
+      setIsTyping(false);
+    }, 900);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <div
       role="dialog"
       aria-modal="false"
       aria-label="Ventana de chat de WhatsApp con doobot.ai"
-      className="mb-3 w-[320px] sm:w-[360px] max-w-[calc(100vw-36px)] overflow-hidden rounded-2xl sm:rounded-3xl border border-border/80 bg-background shadow-2xl shadow-slate-950/25 transition-all duration-200 origin-bottom-right animate-in fade-in zoom-in-95 slide-in-from-bottom-2 select-none"
+      className="mb-3 w-[330px] sm:w-[360px] max-w-[calc(100vw-32px)] overflow-hidden rounded-2xl sm:rounded-3xl border border-black/10 dark:border-white/10 bg-[#EFEAE2] dark:bg-[#0B141A] shadow-2xl shadow-slate-950/25 transition-all duration-200 origin-bottom-right animate-in fade-in zoom-in-95 slide-in-from-bottom-2 select-none"
     >
-      {/* Header with doobot branding */}
-      <div className="flex items-center justify-between gap-3 bg-gradient-to-r from-[#07162C] via-[#0D2240] to-[#07162C] px-4 py-3.5 sm:px-5 sm:py-4 border-b border-white/10">
+      <style>{`
+        @keyframes waTypingDot {
+          0%, 60%, 100% {
+            transform: translateY(0);
+            opacity: 0.35;
+          }
+          30% {
+            transform: translateY(-3.5px);
+            opacity: 1;
+          }
+        }
+        @keyframes waMessageFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(4px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .wa-typing-dot {
+            animation: none !important;
+            opacity: 0.7 !important;
+            transform: none !important;
+          }
+          .wa-message-entrance {
+            animation: none !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
+      {/* Header inspired by WhatsApp conversation top bar */}
+      <div className="flex items-center justify-between gap-3 bg-[#075E54] dark:bg-[#1F2C34] px-4 py-3 sm:px-4.5 sm:py-3.5 text-white shadow-sm">
         <div className="flex items-center gap-3 min-w-0">
-          {/* Avatar with Robot Icon + Indicator */}
-          <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/15 border border-emerald-400/30 text-emerald-400 shadow-inner">
-            <Bot className="h-6 w-6 shrink-0" aria-hidden="true" />
+          {/* Circular avatar with Robot Icon + Indicator */}
+          <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white/15 border border-white/20 text-white shadow-inner">
+            <Bot className="h-5 w-5 sm:h-6 sm:w-6 shrink-0" aria-hidden="true" />
             <span
-              className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-[#07162C]"
+              className="absolute bottom-0 right-0 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#25D366] ring-2 ring-[#075E54] dark:ring-[#1F2C34]"
               aria-hidden="true"
             />
           </div>
 
           {/* Identity & Descriptor */}
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[15px] font-bold text-white tracking-tight leading-tight">
+            <p className="truncate text-[15px] sm:text-[16px] font-bold text-white tracking-tight leading-tight">
               {title}
             </p>
-            <p className="text-[12px] text-emerald-400 font-medium leading-tight mt-0.5">
+            <p className="text-[12px] sm:text-[12.5px] text-emerald-200/90 dark:text-slate-300 font-normal leading-tight mt-0.5">
               {subtitle}
             </p>
           </div>
@@ -54,40 +119,93 @@ export function WhatsAppPopupCard({
           type="button"
           onClick={onClose}
           aria-label="Cerrar ventana de WhatsApp"
-          className="rounded-full p-2 text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 shrink-0"
+          className="rounded-full p-1.5 sm:p-2 text-white/80 hover:text-white hover:bg-white/15 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 shrink-0"
         >
-          <X className="h-4.5 w-4.5" />
+          <X className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
         </button>
       </div>
 
-      {/* Body with Chat Bubble */}
-      <div className="bg-slate-50 dark:bg-slate-900/90 p-4 sm:p-5">
-        <div className="rounded-2xl rounded-tl-sm bg-white dark:bg-slate-800 p-3.5 sm:p-4 shadow-sm border border-slate-200/80 dark:border-slate-700/60">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-1.5">
-            <Bot className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-            <span>doobot.ai</span>
+      {/* Chat Area / Conversation View */}
+      <div className="p-3.5 sm:p-4 min-h-[140px] flex flex-col justify-start">
+        {isTyping ? (
+          /* Typing indicator state (State 1) */
+          <div
+            role="status"
+            aria-label="doobot.ai está escribiendo"
+            className="relative self-start inline-flex items-center gap-1.5 px-4 py-3 rounded-2xl rounded-tl-xs bg-white dark:bg-[#202C33] shadow-[0_1px_1px_rgba(0,0,0,0.08)] border border-black/[0.04] dark:border-white/[0.05]"
+          >
+            {/* Small speech tail / notch */}
+            <svg
+              className="absolute -left-2 top-0 w-2.5 h-3 text-white dark:text-[#202C33] fill-current"
+              viewBox="0 0 8 13"
+              aria-hidden="true"
+            >
+              <path d="M1.533 3.568L8 12.136V0H2.812C1.042 0 .149 2.128 1.533 3.568z" />
+            </svg>
+            <span className="sr-only">Escribiendo...</span>
+            <span
+              className="wa-typing-dot h-2 w-2 rounded-full bg-slate-500 dark:bg-slate-400 inline-block"
+              style={{
+                animation: "waTypingDot 1.2s infinite ease-in-out",
+                animationDelay: "0ms",
+              }}
+              aria-hidden="true"
+            />
+            <span
+              className="wa-typing-dot h-2 w-2 rounded-full bg-slate-500 dark:bg-slate-400 inline-block"
+              style={{
+                animation: "waTypingDot 1.2s infinite ease-in-out",
+                animationDelay: "180ms",
+              }}
+              aria-hidden="true"
+            />
+            <span
+              className="wa-typing-dot h-2 w-2 rounded-full bg-slate-500 dark:bg-slate-400 inline-block"
+              style={{
+                animation: "waTypingDot 1.2s infinite ease-in-out",
+                animationDelay: "360ms",
+              }}
+              aria-hidden="true"
+            />
           </div>
-          <p className="text-[14px] text-slate-800 dark:text-slate-100 font-medium leading-relaxed">
-            {greeting}
-          </p>
-          <p className="text-[13px] text-slate-600 dark:text-slate-300 mt-1.5 leading-normal">
-            {description}
-          </p>
-          <div className="flex items-center justify-end gap-1 mt-2 text-[10px] text-slate-400 dark:text-slate-500 font-medium">
-            <span>doobot.ai</span>
-            <CheckCheck className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
+        ) : (
+          /* Message bubble state (State 2) */
+          <div
+            className="wa-message-entrance relative self-start max-w-[94%] rounded-2xl rounded-tl-xs bg-white dark:bg-[#202C33] p-3 sm:p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.1)] border border-black/[0.04] dark:border-white/[0.05]"
+            style={{
+              animation: "waMessageFadeIn 220ms cubic-bezier(0.16, 1, 0.3, 1) forwards",
+            }}
+          >
+            {/* Small speech tail / notch */}
+            <svg
+              className="absolute -left-2 top-0 w-2.5 h-3 text-white dark:text-[#202C33] fill-current"
+              viewBox="0 0 8 13"
+              aria-hidden="true"
+            >
+              <path d="M1.533 3.568L8 12.136V0H2.812C1.042 0 .149 2.128 1.533 3.568z" />
+            </svg>
+
+            <p className="text-[13.5px] sm:text-[14px] text-slate-800 dark:text-slate-100 font-medium leading-snug">
+              {greeting}
+            </p>
+            <p className="text-[12.5px] sm:text-[13px] text-slate-600 dark:text-slate-300 mt-1.5 leading-normal">
+              {description}
+            </p>
+            <div className="flex items-center justify-end mt-1.5 text-[10.5px] sm:text-[11px] text-slate-400 dark:text-slate-400 font-normal">
+              <span>{messageTime || "10:00"}</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Footer / CTA Button */}
-      <div className="bg-slate-50 dark:bg-slate-900/90 px-4 pb-4 sm:px-5 sm:pb-5">
+      {/* Footer / Full-width WhatsApp CTA Button */}
+      <div className="px-3.5 pb-3.5 sm:px-4 sm:pb-4 pt-1">
         <a
           href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Hablar por WhatsApp con doobot.ai"
-          className="w-full inline-flex items-center justify-center gap-2.5 rounded-xl bg-[#25D366] hover:bg-[#1FAF55] px-4 py-3 sm:py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-md shadow-emerald-600/25 hover:shadow-lg hover:shadow-emerald-600/35 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/50"
+          className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1FAF55] px-4 py-3 sm:py-3.5 text-sm sm:text-[15px] font-bold text-white shadow-md shadow-emerald-700/20 hover:shadow-lg hover:shadow-emerald-700/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/50"
         >
           <svg
             viewBox="0 0 24 24"
