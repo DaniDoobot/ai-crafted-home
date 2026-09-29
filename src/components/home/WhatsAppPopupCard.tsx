@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Bot, X } from "lucide-react";
+import { X } from "lucide-react";
 
 interface WhatsAppPopupCardProps {
   onClose: () => void;
@@ -14,8 +14,7 @@ interface WhatsAppPopupCardProps {
 export function WhatsAppPopupCard({
   onClose,
   whatsappUrl,
-  title = "doobot.ai",
-  subtitle = "Asistente virtual",
+  title = "doobot.ai_",
   greeting = "¡Hola! 👋 ¿En qué podemos ayudarte?",
   description = "Escríbenos para resolver cualquier duda, solicitar información o conocer mejor nuestras soluciones.",
   ctaText = "Hablar por WhatsApp",
@@ -54,8 +53,8 @@ export function WhatsAppPopupCard({
     <div
       role="dialog"
       aria-modal="false"
-      aria-label="Ventana de chat de WhatsApp con doobot.ai"
-      className="mb-3 w-[330px] sm:w-[360px] max-w-[calc(100vw-32px)] overflow-hidden rounded-2xl sm:rounded-3xl border border-black/10 dark:border-white/10 bg-[#EFEAE2] dark:bg-[#0B141A] shadow-2xl shadow-slate-950/25 transition-all duration-200 origin-bottom-right animate-in fade-in zoom-in-95 slide-in-from-bottom-2 select-none"
+      aria-label="Ventana de chat de WhatsApp con doobot.ai_"
+      className="mb-3 w-[330px] sm:w-[360px] max-w-[calc(100vw-32px)] overflow-hidden rounded-2xl sm:rounded-3xl border-0 bg-[#EFEAE2] dark:bg-[#0B141A] shadow-2xl shadow-slate-950/30 transition-all duration-200 origin-bottom-right animate-in fade-in zoom-in-95 slide-in-from-bottom-2 select-none"
     >
       <style>{`
         @keyframes waTypingDot {
@@ -94,22 +93,23 @@ export function WhatsAppPopupCard({
       {/* Header inspired by WhatsApp conversation top bar */}
       <div className="flex items-center justify-between gap-3 bg-[#075E54] dark:bg-[#1F2C34] px-4 py-3 sm:px-4.5 sm:py-3.5 text-white shadow-sm">
         <div className="flex items-center gap-3 min-w-0">
-          {/* Circular avatar with Robot Icon + Indicator */}
-          <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white/15 border border-white/20 text-white shadow-inner">
-            <Bot className="h-5 w-5 sm:h-6 sm:w-6 shrink-0" aria-hidden="true" />
+          {/* Circular avatar with Official Robot Icon + Indicator */}
+          <div className="relative flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-white/15 border border-white/20 p-1 sm:p-1.5">
+            <img
+              src="/doobot/avatar-robot.png"
+              alt="doobot.ai_"
+              className="h-full w-full object-contain"
+            />
             <span
               className="absolute bottom-0 right-0 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-[#25D366] ring-2 ring-[#075E54] dark:ring-[#1F2C34]"
               aria-hidden="true"
             />
           </div>
 
-          {/* Identity & Descriptor */}
+          {/* Identity */}
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[15px] sm:text-[16px] font-bold text-white tracking-tight leading-tight">
+            <p className="truncate text-[17px] sm:text-[18.5px] font-bold text-white tracking-tight leading-none">
               {title}
-            </p>
-            <p className="text-[12px] sm:text-[12.5px] text-emerald-200/90 dark:text-slate-300 font-normal leading-tight mt-0.5">
-              {subtitle}
             </p>
           </div>
         </div>
