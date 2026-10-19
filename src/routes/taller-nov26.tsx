@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/home/Header";
 import { Footer } from "@/components/home/Footer";
@@ -6,8 +7,9 @@ import { WorkshopNov26Hero } from "@/components/events/WorkshopNov26Hero";
 import { WorkshopNov26Intro } from "@/components/events/WorkshopNov26Intro";
 import { WorkshopNov26Cycle } from "@/components/events/WorkshopNov26Cycle";
 import { WorkshopNov26Audience } from "@/components/events/WorkshopNov26Audience";
-import { WorkshopNov26WhatsAppCard } from "@/components/events/WorkshopNov26WhatsAppCard";
+import { EventRegistrationForm } from "@/components/events/EventRegistrationForm";
 import { EventCredibility } from "@/components/events/EventCredibility";
+import { WHATSAPP_WORKSHOP_NOV26_URL } from "@/config/contact";
 
 export const Route = createFileRoute("/taller-nov26")({
   head: () => ({
@@ -39,6 +41,8 @@ export const Route = createFileRoute("/taller-nov26")({
 });
 
 function WorkshopNov26Page() {
+  const [isRegistered, setIsRegistered] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-cyan-500 selection:text-slate-950 overflow-x-clip">
       <Header />
@@ -46,12 +50,18 @@ function WorkshopNov26Page() {
         <WorkshopNov26Hero />
         <WorkshopNov26Intro />
 
-        {/* Zona 1: Inscripción por WhatsApp */}
-        <WorkshopNov26WhatsAppCard
+        {/* Zona 1: Formulario de inscripción */}
+        <EventRegistrationForm
           id="inscripcion"
-          badgeText="Inscripción al taller"
-          title="Reserva tu plaza"
-          subtitle="Las plazas son limitadas. Puedes tramitar tu inscripción directamente a través de nuestro Bot WhatsApp."
+          campaign="taller-nov26"
+          badgeText="Taller presencial · 12 noviembre"
+          title="Inscribirme en el taller"
+          subtitle="Plazas limitadas por aforo en sala. Completa tus datos para tramitar tu solicitud de asistencia para el 12 de noviembre en Madrid."
+          submitButtonText="Inscribirme en el taller"
+          disclaimerText="Plazas limitadas por aforo en sala previa confirmación por el equipo organizador."
+          whatsAppUrl={WHATSAPP_WORKSHOP_NOV26_URL}
+          isRegistered={isRegistered}
+          onRegistrationSuccess={() => setIsRegistered(true)}
         />
 
         {/* Ciclo continuo de mejora (4 bloques) */}
@@ -60,12 +70,18 @@ function WorkshopNov26Page() {
         {/* ¿A quién va dirigido? */}
         <WorkshopNov26Audience />
 
-        {/* Zona 2: Inscripción por WhatsApp */}
-        <WorkshopNov26WhatsAppCard
+        {/* Zona 2: Formulario de inscripción final */}
+        <EventRegistrationForm
           id="inscripcion-final"
+          campaign="taller-nov26"
           badgeText="Últimas plazas"
           title="Asegura tu plaza en el taller"
-          subtitle="Plazas limitadas en Torre BBVA. Puedes tramitar tu inscripción directamente a través de nuestro Bot WhatsApp."
+          subtitle="Plazas limitadas en Torre BBVA. Tramita tu solicitud antes de completar la capacidad de la sala."
+          submitButtonText="Inscribirme en el taller"
+          disclaimerText="Plazas limitadas por aforo en sala previa confirmación por el equipo organizador."
+          whatsAppUrl={WHATSAPP_WORKSHOP_NOV26_URL}
+          isRegistered={isRegistered}
+          onRegistrationSuccess={() => setIsRegistered(true)}
         />
 
         {/* Bloque de credibilidad / reconocimientos */}

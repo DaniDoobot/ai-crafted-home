@@ -1,7 +1,13 @@
 import { WHATSAPP_EVENT_URL } from "@/config/contact";
 import { Bot } from "lucide-react";
 
-export function EventWhatsAppRegistrationCTA() {
+export interface EventWhatsAppRegistrationCTAProps {
+  whatsAppUrl?: string;
+}
+
+export function EventWhatsAppRegistrationCTA({
+  whatsAppUrl = WHATSAPP_EVENT_URL,
+}: EventWhatsAppRegistrationCTAProps = {}) {
   return (
     <div className="mt-5 sm:mt-6 rounded-2xl sm:rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-slate-900/95 via-[#07162C]/90 to-slate-900/95 px-5 py-4 sm:px-8 sm:py-5 shadow-xl shadow-emerald-950/20 backdrop-blur-xl transition-all hover:border-emerald-500/45 hover:shadow-emerald-950/35">
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5 text-center sm:text-left">
@@ -27,7 +33,7 @@ export function EventWhatsAppRegistrationCTA() {
 
         {/* Action: AQUÍ Pill Link with Robot Icon */}
         <a
-          href={WHATSAPP_EVENT_URL}
+          href={whatsAppUrl}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Inscribirse al evento mediante Bot de WhatsApp"

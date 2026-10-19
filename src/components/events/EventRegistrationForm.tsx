@@ -20,6 +20,10 @@ export interface EventRegistrationFormProps {
   subtitle?: string;
   isRegistered?: boolean;
   onRegistrationSuccess?: () => void;
+  campaign?: "contact-center-2026" | "taller-nov26";
+  whatsAppUrl?: string;
+  submitButtonText?: string;
+  disclaimerText?: string;
 }
 
 function generateSubmissionId(): string {
@@ -36,6 +40,10 @@ export function EventRegistrationForm({
   subtitle = "Plazas limitadas por aforo en sala. Completa tus datos para tramitar tu solicitud de asistencia para el 24 de septiembre en Madrid.",
   isRegistered = false,
   onRegistrationSuccess,
+  campaign = "contact-center-2026",
+  whatsAppUrl,
+  submitButtonText = "Reservar mi plaza",
+  disclaimerText = "Asistencia presencial gratuita con aforo limitado previa confirmación por el equipo organizador.",
 }: EventRegistrationFormProps) {
   const fId = (fieldName: string) => `${id}-${fieldName}`;
   const [formData, setFormData] = useState<EventRegistrationPayload>({
@@ -127,6 +135,7 @@ export function EventRegistrationForm({
       const res = await submitEventRegistration({
         ...formData,
         submissionId: submissionIdRef.current,
+        campaign,
       });
 
       setSubmissionStatus(res.status);
@@ -459,13 +468,13 @@ export function EventRegistrationForm({
                       </>
                     ) : (
                       <>
-                        <span>Reservar mi plaza</span>
+                        <span>{submitButtonText}</span>
                         <ArrowRight className="h-5 w-5" />
                       </>
                     )}
                   </button>
                   <p className="mt-3 text-xs text-slate-400">
-                    Asistencia presencial gratuita con aforo limitado previa confirmación por el equipo organizador.
+                    {disclaimerText}
                   </p>
                 </div>
               </form>
@@ -474,7 +483,7 @@ export function EventRegistrationForm({
             </div>
 
             {/* Secondary Alternative: WhatsApp Bot Registration Callout (only shown when not yet registered) */}
-            {!isSuccess && <EventWhatsAppRegistrationCTA />}
+            {!isSuccess && <EventWhatsAppRegistrationCTA whatsAppUrl={whatsAppUrl} />}
           </RevealOnScroll>
         </div>
       </div>

@@ -46,8 +46,19 @@ var DEFAULT_SPREADSHEET_ID = "12pEWyXQUwH1PWKyC_akf7I8Yvxfx4vwzV4vzvwfJR4w";
 var SHEET_NAME = "Inscripciones";
 // Destinatarios comerciales internos aprobados (intactos)
 var EMAIL_RECIPIENTS = "patricia@doobot.ai,angel@doobot.ai";
-var EMAIL_SUBJECT = "Nueva inscripción · Bot de Voz · Contact Center 2026";
-var CAMPAIGN_NAME = "contact-center-2026";
+
+var CAMPAIGNS = {
+  "contact-center-2026": {
+    emailSubject: "Nueva inscripción · Bot de Voz · Contact Center 2026",
+    workshopTitle: "\"Bot de Voz: calienta que sales…!!\"",
+    campaignDisplay: "Contact Center 2026"
+  },
+  "taller-nov26": {
+    emailSubject: "Nueva inscripción · ¿Agentes IA entrenando a mi equipo? · Noviembre 2026",
+    workshopTitle: "\"¿Agentes IA entrenando a mi equipo?\"",
+    campaignDisplay: "Taller noviembre 2026"
+  }
+};
 
 /**
  * 1. CONFIGURACIÓN DE LA HOJA (setupSheet)
@@ -203,6 +214,23 @@ function doPost(e) {
       return jsonResponse({ ok: false, code: "invalid_payload", saved: false, error: "Privacidad no aceptada" });
     }
 
+    var rawCampaign = typeof data.campaign === "string" ? data.campaign.trim() : "";
+    var campaignKey = rawCampaign || "contact-center-2026";
+
+    if (!CAMPAIGNS.hasOwnProperty(campaignKey)) {
+      return jsonResponse({
+        ok: false,
+        code: "invalid_payload",
+        saved: false,
+        error: "Campaña no válida"
+      });
+    }
+
+    var campaignConfig = CAMPAIGNS[campaignKey];
+    var emailSubject = campaignConfig.emailSubject;
+    var workshopTitle = campaignConfig.workshopTitle;
+    var campaignDisplay = campaignConfig.campaignDisplay;
+
     // C. Control de Concurrencia (LockService)
     try {
       hasLock = lock.tryLock(15000); // Serializar hasta 15 segundos
@@ -260,7 +288,7 @@ function doPost(e) {
     var dateFormatted = Utilities.formatDate(now, "Europe/Madrid", "dd/MM/yyyy HH:mm:ss");
 
     var emailBody = "Nueva inscripción recibida para el taller:\n\n" +
-      "\"Bot de Voz: calienta que sales…!!\"\n\n" +
+      workshopTitle + "\n\n" +
       "Nombre y apellidos:\n" + name + "\n\n" +
       "Teléfono:\n" + phone + "\n\n" +
       "Email:\n" + email + "\n\n" +
@@ -268,7 +296,7 @@ function doPost(e) {
       "Comentarios:\n" + (comments.length > 0 ? comments : "Sin comentarios") + "\n\n" +
       (submissionId ? ("ID de solicitud:\n" + submissionId + "\n\n") : "") +
       "Fecha de inscripción:\n" + dateFormatted + "\n\n" +
-      "Campaña:\nContact Center 2026\n";
+      "Campaña:\n" + campaignDisplay + "\n";
 
     // D2. Comprobación persistente en Google Sheets (Columna I en toda la columna desde I2)
     var lastRow = sheet.getLastRow();
@@ -318,7 +346,7 @@ function doPost(e) {
 
         var retrySent = false;
         try {
-          MailApp.sendEmail(EMAIL_RECIPIENTS, EMAIL_SUBJECT, emailBody);
+          MailApp.sendEmail(EMAIL_RECIPIENTS, emailSubject, emailBody);
           retrySent = true;
         } catch (errRetry) {
           Logger.log("Aviso: reintento de email falló para submissionId=" + submissionId + ": " + errRetry.toString());
@@ -360,7 +388,7 @@ function doPost(e) {
       sanitizeForSheet(company),
       comments.length > 0 ? sanitizeForSheet(comments) : "",
       "Sí",
-      CAMPAIGN_NAME,
+      campaignKey,
       submissionId, // Columna I: Submission ID
       "Enviando"    // Columna J: Notificación enviada (inicialmente "Enviando")
     ];
@@ -382,7 +410,7 @@ function doPost(e) {
     // G. Notificación interna por Email (UNA sola llamada sin reintentos inmediatos)
     var notificationSent = false;
     try {
-      MailApp.sendEmail(EMAIL_RECIPIENTS, EMAIL_SUBJECT, emailBody);
+      MailApp.sendEmail(EMAIL_RECIPIENTS, emailSubject, emailBody);
       notificationSent = true;
     } catch (errMail) {
       Logger.log("Aviso: falló el envío de la notificación por email: " + errMail.toString());

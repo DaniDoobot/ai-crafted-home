@@ -62,7 +62,7 @@ Google Apps Script Web App
 | **E** | `Empresa` | Texto sanitizado |
 | **F** | `Comentarios` | Texto sanitizado (o vacío) |
 | **G** | `Privacidad aceptada` | Fijo `"Sí"` |
-| **H** | `Campaña` | Fijo `"contact-center-2026"` |
+| **H** | `Campaña` | Identificador de campaña (`contact-center-2026` o `taller-nov26`) |
 | **I** | `Submission ID` | Identificador único de idempotencia (ej. `reg_...`) |
 | **J** | `Notificación enviada` | Estado del email: `"Sí"`, `"No"` o `"Enviando"` |
 
@@ -70,12 +70,20 @@ Google Apps Script Web App
 
 ---
 
-## 4. Notificaciones por Email
+## 4. Notificaciones por Email y Multi-Campaña
 
 - **Remitente**: Cuenta que ejecuta la Web App de Apps Script (`dani@doobot.ai`).
 - **Destinatarios**: `patricia@doobot.ai,angel@doobot.ai` (sin cambios).
-- **Asunto**: `Nueva inscripción · Bot de Voz · Contact Center 2026` (sin cambios).
 - **Destinatarios externos**: Ninguno (no se envía email al usuario).
+
+### Mapeo de Campañas Soportadas
+
+| Campaña (`campaign`) | Título en Cuerpo del Email | Asunto del Correo Interno | Etiqueta en Cuerpo |
+| :--- | :--- | :--- | :--- |
+| `contact-center-2026` *(default)* | `"Bot de Voz: calienta que sales…!!"` | `Nueva inscripción · Bot de Voz · Contact Center 2026` | `Contact Center 2026` |
+| `taller-nov26` | `"¿Agentes IA entrenando a mi equipo?"` | `Nueva inscripción · ¿Agentes IA entrenando a mi equipo? · Noviembre 2026` | `Taller noviembre 2026` |
+
+Cualquier campaña no reconocida en el backend o en Google Apps Script es rechazada con error de validación sin enviar notificaciones ni alterar datos.
 
 ---
 
