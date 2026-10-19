@@ -13,6 +13,9 @@
  * - Never exposes Google Apps Script internal URLs, secrets or stack traces in client responses.
  */
 
+export const ALLOWED_CAMPAIGNS = ["contact-center-2026", "taller-nov26"] as const;
+export type CampaignType = (typeof ALLOWED_CAMPAIGNS)[number];
+
 export interface ValidatedServerRegistrationPayload {
   name: string;
   phone: string;
@@ -20,7 +23,7 @@ export interface ValidatedServerRegistrationPayload {
   company: string;
   comments: string;
   privacyAccepted: true;
-  campaign: "contact-center-2026";
+  campaign: CampaignType;
   createdAt: string;
   submissionId: string;
   secret?: string;
@@ -111,6 +114,16 @@ export async function handleEventRegistrationRequest(
       );
     }
 
+    const rawCampaign = typeof body?.campaign === "string" ? body.campaign.trim() : "";
+    const campaign = (rawCampaign || "contact-center-2026") as CampaignType;
+
+    if (!ALLOWED_CAMPAIGNS.includes(campaign)) {
+      return new Response(
+        JSON.stringify({ status: "error", error: "Campaña no válida o no soportada." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
     // 2. Server runtime environment variables read per-request inside function scope
     const cfEnv = (typeof env === "object" && env !== null ? env : {}) as Record<string, string | undefined>;
     const procEnv = (typeof process !== "undefined" && process.env ? process.env : {}) as Record<string, string | undefined>;
@@ -153,7 +166,7 @@ export async function handleEventRegistrationRequest(
       company,
       comments: comments || "",
       privacyAccepted: true,
-      campaign: "contact-center-2026",
+      campaign,
       createdAt: new Date().toISOString(),
       submissionId,
       secret: googleAppsScriptSecret,

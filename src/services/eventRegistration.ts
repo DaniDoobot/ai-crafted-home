@@ -31,6 +31,7 @@ export interface EventRegistrationPayload {
   comments?: string;
   privacyAccepted: boolean;
   submissionId?: string;
+  campaign?: "contact-center-2026" | "taller-nov26";
 }
 
 export type EventRegistrationStatus = "registration_disabled" | "success" | "error";
@@ -47,7 +48,7 @@ export const EVENT_REGISTRATION_CONFIG = {
 };
 
 /**
- * Submits the registration for the event "Bot de Voz: calienta que sales...!!"
+ * Submits the registration for an event or workshop
  */
 export async function submitEventRegistration(
   data: EventRegistrationPayload
@@ -91,6 +92,7 @@ export async function submitEventRegistration(
         comments: data.comments?.trim() || "",
         privacyAccepted: data.privacyAccepted,
         submissionId: data.submissionId?.trim() || undefined,
+        campaign: data.campaign || "contact-center-2026",
       }),
     });
 
