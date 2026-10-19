@@ -20,3 +20,10 @@ export const WHATSAPP_CHAT_MESSAGE =
 export const WHATSAPP_CHAT_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
   WHATSAPP_CHAT_MESSAGE
 )}`;
+
+export const WHATSAPP_WORKSHOP_NOV26_MESSAGE =
+  "Hola, quiero inscribirme al taller del 12 de noviembre sobre Agentes IA";
+
+export const WHATSAPP_WORKSHOP_NOV26_URL = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+  WHATSAPP_WORKSHOP_NOV26_MESSAGE
+)}`;

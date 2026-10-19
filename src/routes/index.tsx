@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/home/Header";
 import { Hero } from "@/components/home/Hero";
+import { EventPromoBanner } from "@/components/home/EventPromoBanner";
 import { IntelligenceSection } from "@/components/home/IntelligenceSection";
 import { Integrations } from "@/components/home/Integrations";
 import { TeamSection } from "@/components/home/TeamSection";
@@ -12,6 +13,7 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { Clients } from "@/components/home/Clients";
 import { Footer } from "@/components/home/Footer";
 import { WhatsAppFab } from "@/components/home/WhatsAppFab";
+import { EventPromoModal } from "@/components/home/EventPromoModal";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -19,10 +21,11 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <div className="flex min-h-screen flex-col bg-background overflow-x-clip">
       <Header />
       <main className="flex-1">
         <Hero />
+        <EventPromoBanner />
         <IntelligenceSection />
         <Integrations />
         <TeamSection />
@@ -36,6 +39,7 @@ function HomePage() {
       </main>
       <Footer />
       <WhatsAppFab />
+      <EventPromoModal />
     </div>
   );
 }
