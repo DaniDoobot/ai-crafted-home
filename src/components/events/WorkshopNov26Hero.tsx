@@ -86,14 +86,17 @@ export function WorkshopNov26Hero() {
                   </div>
                 </div>
 
-                {/* 3. Ubicación (Presencial) */}
+                {/* 3. Ubicación */}
                 <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-4 py-3 backdrop-blur-sm min-w-0 w-full h-full">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/20 text-blue-300">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="text-xs text-slate-400">Ubicación (Presencial)</div>
+                    <div className="text-xs text-slate-400">Ubicación</div>
                     <div className="text-sm font-bold text-white break-words leading-snug">
+                      Oficina comercial doobot.ai_
+                    </div>
+                    <div className="text-xs text-slate-300 break-words leading-snug mt-0.5">
                       Paseo de la Castellana, 81 · Torre BBVA · Planta 15
                     </div>
                   </div>
