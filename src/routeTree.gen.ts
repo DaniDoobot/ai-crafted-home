@@ -18,6 +18,7 @@ import { Route as PoliticaDeSeguridadDeLaInformacionRouteImport } from './routes
 import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as IaAnalyticsRouteImport } from './routes/ia-analytics'
+import { Route as FormacionIaRouteImport } from './routes/formacion-ia'
 import { Route as EventoBotDeVozContactCenter2026RouteImport } from './routes/evento-bot-de-voz-contact-center-2026'
 import { Route as EjemplosYDemosRouteImport } from './routes/ejemplos-y-demos'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -72,6 +73,11 @@ const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
 const IaAnalyticsRoute = IaAnalyticsRouteImport.update({
   id: '/ia-analytics',
   path: '/ia-analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormacionIaRoute = FormacionIaRouteImport.update({
+  id: '/formacion-ia',
+  path: '/formacion-ia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EventoBotDeVozContactCenter2026Route =
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
+  '/formacion-ia': typeof FormacionIaRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -151,6 +158,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
+  '/formacion-ia': typeof FormacionIaRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -172,6 +180,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/ejemplos-y-demos': typeof EjemplosYDemosRoute
   '/evento-bot-de-voz-contact-center-2026': typeof EventoBotDeVozContactCenter2026Route
+  '/formacion-ia': typeof FormacionIaRoute
   '/ia-analytics': typeof IaAnalyticsRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
@@ -194,6 +203,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/ejemplos-y-demos'
     | '/evento-bot-de-voz-contact-center-2026'
+    | '/formacion-ia'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/ejemplos-y-demos'
     | '/evento-bot-de-voz-contact-center-2026'
+    | '/formacion-ia'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -234,6 +245,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/ejemplos-y-demos'
     | '/evento-bot-de-voz-contact-center-2026'
+    | '/formacion-ia'
     | '/ia-analytics'
     | '/politica-de-cookies'
     | '/politica-de-privacidad'
@@ -255,6 +267,7 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   EjemplosYDemosRoute: typeof EjemplosYDemosRoute
   EventoBotDeVozContactCenter2026Route: typeof EventoBotDeVozContactCenter2026Route
+  FormacionIaRoute: typeof FormacionIaRoute
   IaAnalyticsRoute: typeof IaAnalyticsRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
@@ -329,6 +342,13 @@ declare module '@tanstack/react-router' {
       path: '/ia-analytics'
       fullPath: '/ia-analytics'
       preLoaderRoute: typeof IaAnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formacion-ia': {
+      id: '/formacion-ia'
+      path: '/formacion-ia'
+      fullPath: '/formacion-ia'
+      preLoaderRoute: typeof FormacionIaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/evento-bot-de-voz-contact-center-2026': {
@@ -407,6 +427,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   EjemplosYDemosRoute: EjemplosYDemosRoute,
   EventoBotDeVozContactCenter2026Route: EventoBotDeVozContactCenter2026Route,
+  FormacionIaRoute: FormacionIaRoute,
   IaAnalyticsRoute: IaAnalyticsRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
