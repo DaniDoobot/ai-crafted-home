@@ -16,8 +16,6 @@ export interface EditorialArticle {
   tag?: string;
   visualBg: string;
   containerBorder: string;
-  innerFrameClass?: string;
-  paddingClass?: string;
 }
 
 const EDITORIAL_ARTICLES: EditorialArticle[] = [
@@ -36,17 +34,15 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Entrevista y Caso de Éxito",
     visualBg: "bg-slate-50",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
-    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-aeerc-taller-bot-voz",
     source: "AEERC",
-    title: 'Taller doobot.ai_: “Bot de Voz: calienta que sales…!!”',
+    title: 'Taller presencial de doobot.ai_ “Bot de Voz: calienta que sales…!!”',
     description:
       "La AEERC recoge el taller práctico de doobot.ai_ celebrado durante la Semana del Contact Center 2026, centrado en las posibilidades de los bots de voz y su aplicación en distintos ámbitos de la relación con el cliente.",
     image: "/doobot/articles/noticia-aeerc-taller-bot-voz.webp",
-    imageAlt: 'Taller doobot.ai_: “Bot de Voz: calienta que sales…!!” en AEERC',
+    imageAlt: 'Taller presencial de doobot.ai_ “Bot de Voz: calienta que sales…!!” en AEERC',
     actionType: "link",
     externalUrl:
       "https://aeerc.com/taller-doobot-ai_-bot-de-voz-calienta-que-sales-2/",
@@ -54,8 +50,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Bot de Voz",
     visualBg: "bg-slate-50",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
-    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-2-cuidacasa-whatsapp",
@@ -76,8 +70,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "IA Visión y WhatsApp",
     visualBg: "bg-[#F5CA56]",
     containerBorder: "border-[#E2B336]/90",
-    innerFrameClass: "w-full h-full flex items-center justify-center rounded-xl overflow-hidden",
-    paddingClass: "p-1.5 sm:p-2",
   },
   {
     id: "noticia-3-aeerc-fortius",
@@ -94,8 +86,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Premios Fortius",
     visualBg: "bg-slate-50",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-1.5 sm:p-2.5",
-    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-4-observatorio-contact-center",
@@ -116,8 +106,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Observatorio Contact Center",
     visualBg: "bg-slate-50",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
-    paddingClass: "p-3 sm:p-4.5",
   },
   {
     id: "noticia-5-boston-medical-revista",
@@ -138,8 +126,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Entrevista Exclusiva",
     visualBg: "bg-gradient-to-br from-slate-100 via-slate-100/90 to-slate-200/70",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "w-full h-full flex items-center justify-center filter drop-shadow-sm",
-    paddingClass: "p-2 sm:p-3",
   },
   {
     id: "noticia-6-isanidad-boston-premio",
@@ -156,8 +142,6 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     tag: "Prensa Especializada",
     visualBg: "bg-slate-50",
     containerBorder: "border-slate-200/90",
-    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
-    paddingClass: "p-3 sm:p-4.5",
   },
 ];
 
@@ -207,7 +191,7 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
                     delay={100}
                   >
                     <div
-                      className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border ${article.containerBorder} ${article.visualBg} shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer`}
+                      className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl border ${article.containerBorder || "border-slate-200/80"} ${article.visualBg || "bg-slate-50"} shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer`}
                       onClick={() => {
                         if (article.actionType === "modal" && article.modalContent) {
                           onOpenModal(article.modalContent);
@@ -216,15 +200,13 @@ export function ActualidadSection({ onOpenModal }: ActualidadSectionProps) {
                         }
                       }}
                     >
-                      <div className={`relative aspect-[16/11] sm:aspect-[16/10.5] w-full overflow-hidden flex items-center justify-center ${article.paddingClass || "p-3 sm:p-4.5"}`}>
-                        <div className={`relative w-full h-full flex items-center justify-center ${article.innerFrameClass || ""}`}>
-                          <img
-                            src={article.image}
-                            alt={article.imageAlt}
-                            className="h-full w-full object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]"
-                            loading="lazy"
-                          />
-                        </div>
+                      <div className="relative aspect-[16/11] sm:aspect-[16/10.5] w-full overflow-hidden flex items-center justify-center p-3 sm:p-4">
+                        <img
+                          src={article.image}
+                          alt={article.imageAlt}
+                          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                          loading="lazy"
+                        />
                         <div className="absolute inset-0 bg-[#050547]/0 group-hover:bg-[#050547]/15 transition-colors flex items-center justify-center pointer-events-none">
                           <span className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 duration-300 inline-flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs sm:text-sm font-semibold text-[#050547] shadow-lg backdrop-blur-sm">
                             {article.actionType === "modal" ? (

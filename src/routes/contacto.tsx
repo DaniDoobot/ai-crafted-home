@@ -86,7 +86,7 @@ function ContactoRoute() {
               <RevealOnScroll variant="fade-right" duration="medium" delay={0} className="h-full">
                 <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-[#030A1D] via-[#0B1536] to-[#050B24] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
                   {/* Background Glow */}
-                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-indigo-500/10 to-transparent" />
+                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-indigo-500/10 via-cyan-500/5 to-transparent" />
 
                   <div className="relative z-10">
                     <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md mb-4">
@@ -102,29 +102,26 @@ function ContactoRoute() {
                       Este número conecta directamente con nuestro asistente telefónico de voz, que puede recoger tu consulta y, si lo necesitas, ponerte en contacto con un comercial del equipo.
                     </p>
 
-                    <div className="mt-6">
+                    <div className="mt-6 flex flex-col items-start gap-2">
                       <a
                         href="tel:+34911674317"
-                        className="inline-flex items-center gap-3 rounded-2xl bg-white px-6 py-3.5 text-xl sm:text-2xl font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02]"
+                        className="inline-flex items-center gap-2.5 sm:gap-3.5 rounded-2xl bg-white px-5 py-3.5 sm:px-6 sm:py-3.5 text-[15px] sm:text-xl font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02] group"
                       >
-                        <Phone className="h-5 w-5 text-indigo-600 shrink-0" />
-                        <span>+34 911 67 43 17</span>
+                        <div className="flex items-center justify-center h-8 w-8 rounded-xl bg-cyan-500 text-white shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                          <Phone className="h-4.5 w-4.5" />
+                        </div>
+                        <span className="whitespace-nowrap">Contactar por teléfono</span>
+                        <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-slate-950 group-hover:translate-x-0.5 transition-all shrink-0" />
                       </a>
+                      <span className="text-xs text-slate-400 font-medium pl-1">
+                        Marcación directa: <a href="tel:+34911674317" className="text-slate-200 hover:text-cyan-300 font-semibold underline decoration-slate-600 underline-offset-2">+34 911 67 43 17</a>
+                      </span>
                     </div>
                   </div>
 
-                  <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <a
-                      href="tel:+34911674317"
-                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.03]"
-                    >
-                      <span>Llamar al Voice Bot</span>
-                      <ArrowRight className="h-4 w-4" />
-                    </a>
-                    <span className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-                      <Sparkles className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
-                      Gestión de mensajes y derivación comercial
-                    </span>
+                  <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-slate-400">
+                    <Sparkles className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                    <span>Gestión de mensajes y derivación comercial</span>
                   </div>
                 </div>
               </RevealOnScroll>
@@ -149,7 +146,7 @@ function ContactoRoute() {
                       Si lo prefieres, también puedes escribirnos por WhatsApp.
                     </p>
 
-                    <div className="mt-6">
+                    <div className="mt-6 flex flex-col items-start gap-2">
                       <a
                         href={WHATSAPP_CHAT_URL}
                         target="_blank"
@@ -162,6 +159,9 @@ function ContactoRoute() {
                         <span className="whitespace-nowrap">Contactar por WhatsApp</span>
                         <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-slate-950 group-hover:translate-x-0.5 transition-all shrink-0" />
                       </a>
+                      <span className="text-xs text-slate-400 font-medium pl-1">
+                        Canal oficial de mensajería directa
+                      </span>
                     </div>
                   </div>
 
