@@ -128,7 +128,7 @@ function ContactoRoute() {
 
               {/* Direct WhatsApp Card */}
               <RevealOnScroll variant="fade-left" duration="medium" delay={100} className="h-full">
-                <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-[#030A1D] via-[#0B1536] to-[#050B24] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
+                <div className="relative overflow-hidden rounded-3xl border border-teal-500/20 bg-gradient-to-r from-[#030A1D] via-[#08202A] to-[#073228] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
                   {/* Background Glow */}
                   <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-emerald-500/10 via-teal-500/5 to-transparent" />
 
@@ -143,7 +143,7 @@ function ContactoRoute() {
                     </h2>
 
                     <p className="mt-3 text-slate-300 text-base leading-relaxed">
-                      Si lo prefieres, también puedes escribirnos por WhatsApp.
+                      Si lo prefieres, también puedes escribirnos por WhatsApp para resolver cualquier duda sobre nuestras soluciones, solicitar más información o hablar con nuestro equipo para valorar una demostración.
                     </p>
 
                     <div className="mt-6 flex flex-col items-start gap-2">
