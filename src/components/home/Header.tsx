@@ -13,7 +13,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[1536px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 xl:px-10">
         <a href="/" className="flex shrink-0 items-center" aria-label="doobot.ai">
           <img
             src="/doobot/logo-negro-300x40-1.png"
@@ -22,7 +22,7 @@ export function Header() {
           />
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navegación principal">
+        <nav className="hidden items-center gap-0.5 xl:gap-1.5 xl:flex" aria-label="Navegación principal">
           {hasPublishedSolutions && (
             <div
               className="relative"
@@ -31,7 +31,7 @@ export function Header() {
             >
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                className="inline-flex items-center gap-1 rounded-md px-2.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground whitespace-nowrap xl:px-3"
                 onClick={() => setSolOpen((v) => !v)}
                 aria-expanded={solOpen}
               >
@@ -46,7 +46,7 @@ export function Header() {
                       href={s.href}
                       target={s.external ? "_blank" : undefined}
                       rel={s.external ? "noopener noreferrer" : undefined}
-                      className="block rounded-md px-3 py-2 text-sm text-foreground/80 hover:bg-muted hover:text-foreground"
+                      className="block rounded-md px-3 py-2 text-sm text-foreground/80 hover:bg-muted hover:text-foreground whitespace-nowrap"
                     >
                       {s.label}
                     </a>
@@ -60,7 +60,7 @@ export function Header() {
             <a
               key={item.label}
               href={item.href}
-              className="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+              className="inline-flex items-center rounded-md px-2.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-foreground whitespace-nowrap xl:px-3"
             >
               {item.label}
             </a>
@@ -68,13 +68,13 @@ export function Header() {
 
           <a
             href="/taller-nov26/"
-            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1.5 text-xs font-semibold text-cyan-900 transition-all hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-950"
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-900 transition-all hover:bg-cyan-500/20 hover:border-cyan-500/50 hover:text-cyan-950 whitespace-nowrap"
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
-            Taller 12 Nov
+            <span>Taller 12 Nov</span>
           </a>
         </nav>
 
@@ -83,13 +83,13 @@ export function Header() {
             href={WHATSAPP_DEMO_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-soft transition-transform hover:scale-[1.02] sm:inline-flex"
+            className="hidden rounded-full bg-gradient-brand px-4 py-2 text-sm font-semibold text-white shadow-soft transition-transform hover:scale-[1.02] whitespace-nowrap sm:inline-flex xl:px-5 xl:py-2.5"
           >
             Agendar una demo
           </a>
           <button
             onClick={() => setOpen(!open)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border xl:hidden"
             aria-label="Abrir menú"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -98,7 +98,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div className="border-t border-border bg-background xl:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
             {hasPublishedSolutions && (
               <>
