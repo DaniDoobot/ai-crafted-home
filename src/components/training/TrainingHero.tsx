@@ -72,22 +72,24 @@ export function TrainingHero() {
                   aria-hidden="true"
                   className="pointer-events-none absolute -inset-3 rounded-3xl bg-gradient-to-tr from-indigo-500/25 via-cyan-500/20 to-purple-500/25 blur-2xl opacity-70 transition duration-500 group-hover:opacity-100"
                 />
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 p-2 backdrop-blur-sm shadow-2xl">
-                  <img
-                    src="/doobot/formacion/formacion-ia-agentes.webp"
-                    alt="Equipo profesional trabajando con herramientas de inteligencia artificial y agentes de IA"
-                    width={1536}
-                    height={1024}
-                    loading="eager"
-                    decoding="async"
-                    className="w-full h-auto rounded-xl object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
-                  />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-lg border border-white/10 bg-[#030A1D]/80 px-3.5 py-2 backdrop-blur-md">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 p-2.5 sm:p-3 backdrop-blur-sm shadow-2xl flex flex-col gap-2.5">
+                  <div className="relative overflow-hidden rounded-xl bg-slate-950/40">
+                    <img
+                      src="/doobot/formacion/formacion-ia-agentes.webp"
+                      alt="Equipo profesional trabajando con herramientas de inteligencia artificial y agentes de IA"
+                      width={1536}
+                      height={1024}
+                      loading="eager"
+                      decoding="async"
+                      className="w-full h-auto rounded-lg object-contain"
+                    />
+                  </div>
+                  <div className="flex items-center justify-between rounded-xl border border-white/10 bg-[#030A1D]/90 px-3.5 py-2.5 backdrop-blur-md">
                     <span className="flex items-center gap-2 text-xs font-semibold text-slate-200">
                       <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
                       ChatGPT · Claude · Copilot · Gemini
                     </span>
-                    <span className="rounded bg-indigo-500/20 px-2 py-0.5 text-[11px] font-semibold text-indigo-300">
+                    <span className="rounded-md bg-indigo-500/20 px-2 py-0.5 text-[11px] font-semibold text-indigo-300">
                       Agentes IA
                     </span>
                   </div>

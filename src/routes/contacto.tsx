@@ -131,13 +131,13 @@ function ContactoRoute() {
 
               {/* Direct WhatsApp Card */}
               <RevealOnScroll variant="fade-left" duration="medium" delay={100} className="h-full">
-                <div className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#030A1D] via-[#051C2C] to-[#03231D] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
+                <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-[#030A1D] via-[#0B1536] to-[#050B24] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
                   {/* Background Glow */}
-                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-emerald-500/10 to-transparent" />
+                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-emerald-500/10 via-teal-500/5 to-transparent" />
 
                   <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 backdrop-blur-md mb-4">
-                      <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
+                    <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3.5 py-1 text-xs font-semibold text-teal-300 backdrop-blur-md mb-4">
+                      <MessageSquare className="h-3.5 w-3.5 text-teal-400" />
                       <span>Mensajería Directa</span>
                     </div>
 
@@ -154,17 +154,19 @@ function ContactoRoute() {
                         href={WHATSAPP_CHAT_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-base font-bold text-white shadow-md transition-all hover:scale-[1.03] hover:shadow-emerald-500/25"
+                        className="inline-flex items-center gap-2.5 sm:gap-3.5 rounded-2xl bg-white px-5 py-3.5 sm:px-6 sm:py-3.5 text-[15px] sm:text-xl font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02] group"
                       >
-                        <MessageSquare className="h-4.5 w-4.5 shrink-0" />
-                        <span>Contactar por WhatsApp</span>
-                        <ArrowRight className="h-4 w-4" />
+                        <div className="flex items-center justify-center h-8 w-8 rounded-xl bg-emerald-500 text-white shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                          <MessageSquare className="h-4.5 w-4.5" />
+                        </div>
+                        <span className="whitespace-nowrap">Contactar por WhatsApp</span>
+                        <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-slate-950 group-hover:translate-x-0.5 transition-all shrink-0" />
                       </a>
                     </div>
                   </div>
 
                   <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-slate-400">
-                    <Sparkles className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <Sparkles className="h-3.5 w-3.5 text-teal-400 shrink-0" />
                     <span>Canal ágil para consultas generales, comerciales y de proyectos</span>
                   </div>
                 </div>
