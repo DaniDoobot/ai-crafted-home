@@ -60,6 +60,11 @@ export const solutionNavigation: SolutionNavItem[] = [
 
 export const mainNavigation = [
   {
+    label: "Formación IA",
+    href: "/formacion-ia/",
+    visible: true,
+  },
+  {
     label: "Ejemplos y demos",
     href: "/ejemplos-y-demos/",
     visible: navigationVisibility.examples,

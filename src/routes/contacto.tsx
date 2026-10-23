@@ -4,7 +4,7 @@ import { Footer } from "@/components/home/Footer";
 import { WhatsAppFab } from "@/components/home/WhatsAppFab";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { Phone, MapPin, Building2, Cpu, ArrowRight, MessageSquare, Bot, Sparkles } from "lucide-react";
-import { WHATSAPP_DEMO_URL } from "@/config/contact";
+import { WHATSAPP_CHAT_URL, WHATSAPP_DEMO_URL } from "@/config/contact";
 
 export const Route = createFileRoute("/contacto")({
   head: () => ({
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/contacto")({
       {
         name: "description",
         content:
-          "Ponte en contacto con doobot.ai. Teléfono de contacto +34 911 67 43 17 con asistente de voz para mensajes y derivación comercial, y sedes en Madrid.",
+          "Ponte en contacto con doobot.ai. Teléfono de contacto +34 911 67 43 17 con asistente de voz para mensajes y derivación comercial, canal de WhatsApp y sedes en Madrid.",
       },
       {
         property: "og:title",
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/contacto")({
       {
         property: "og:description",
         content:
-          "Ponte en contacto con doobot.ai. Teléfono de contacto +34 911 67 43 17, Oficina Comercial y Software Factory en Madrid.",
+          "Ponte en contacto con doobot.ai. Teléfono de contacto +34 911 67 43 17, canal de WhatsApp, Oficina Comercial y Software Factory en Madrid.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -77,17 +77,18 @@ function ContactoRoute() {
           </div>
         </section>
 
-        {/* ── Section 2: Destacado Teléfono con Voice Bot & Ubicaciones ── */}
+        {/* ── Section 2: Canales de contacto directos & Ubicaciones ── */}
         <section className="py-16 sm:py-20 lg:py-24 bg-slate-50/50">
           <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
-            {/* ── Phone Call Highlight Card (Voice Bot Explanation) ── */}
-            <RevealOnScroll variant="fade-up" duration="medium" delay={0}>
-              <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-[#030A1D] via-[#0B1536] to-[#050B24] p-8 sm:p-10 lg:p-12 text-white shadow-elevated">
-                {/* Background Glow */}
-                <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-indigo-500/10 to-transparent" />
+            {/* ── Top Contact Channels (Phone Voice Bot & WhatsApp) ── */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              {/* Phone Call Highlight Card (Voice Bot Explanation) */}
+              <RevealOnScroll variant="fade-right" duration="medium" delay={0} className="h-full">
+                <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-r from-[#030A1D] via-[#0B1536] to-[#050B24] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
+                  {/* Background Glow */}
+                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-indigo-500/10 to-transparent" />
 
-                <div className="relative grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-                  <div className="lg:col-span-8">
+                  <div className="relative z-10">
                     <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-md mb-4">
                       <Bot className="h-3.5 w-3.5 text-cyan-400" />
                       <span>Asistente de Voz Telefónico doobot.ai</span>
@@ -97,37 +98,78 @@ function ContactoRoute() {
                       Teléfono de contacto
                     </h2>
 
-                    <p className="mt-3 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                    <p className="mt-3 text-slate-300 text-base leading-relaxed">
                       Este número conecta directamente con nuestro asistente telefónico de voz, que puede recoger tu consulta y, si lo necesitas, ponerte en contacto con un comercial del equipo.
                     </p>
 
-                    <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <div className="mt-6">
                       <a
                         href="tel:+34911674317"
-                        className="inline-flex items-center gap-3 rounded-2xl bg-white px-7 py-3.5 text-xl sm:text-2xl font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02]"
+                        className="inline-flex items-center gap-3 rounded-2xl bg-white px-6 py-3.5 text-xl sm:text-2xl font-bold text-slate-950 shadow-lg transition-transform hover:scale-[1.02]"
                       >
-                        <Phone className="h-6 w-6 text-indigo-600 shrink-0" />
+                        <Phone className="h-5 w-5 text-indigo-600 shrink-0" />
                         <span>+34 911 67 43 17</span>
                       </a>
                     </div>
                   </div>
 
-                  <div className="lg:col-span-4 flex flex-col justify-center items-start lg:items-end gap-3">
+                  <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <a
                       href="tel:+34911674317"
-                      className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 px-8 py-4 text-base font-bold text-white shadow-md transition-all hover:scale-[1.03] hover:shadow-indigo-500/25"
+                      className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 px-6 py-3 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.03]"
                     >
                       <span>Llamar al Voice Bot</span>
-                      <ArrowRight className="h-5 w-5" />
+                      <ArrowRight className="h-4 w-4" />
                     </a>
                     <span className="text-xs text-slate-400 font-medium flex items-center gap-1.5">
-                      <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                      <Sparkles className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
                       Gestión de mensajes y derivación comercial
                     </span>
                   </div>
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
+
+              {/* Direct WhatsApp Card */}
+              <RevealOnScroll variant="fade-left" duration="medium" delay={100} className="h-full">
+                <div className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-gradient-to-r from-[#030A1D] via-[#051C2C] to-[#03231D] p-8 sm:p-10 text-white shadow-elevated h-full flex flex-col justify-between">
+                  {/* Background Glow */}
+                  <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-emerald-500/10 to-transparent" />
+
+                  <div className="relative z-10">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-300 backdrop-blur-md mb-4">
+                      <MessageSquare className="h-3.5 w-3.5 text-emerald-400" />
+                      <span>Mensajería Directa</span>
+                    </div>
+
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">
+                      WhatsApp
+                    </h2>
+
+                    <p className="mt-3 text-slate-300 text-base leading-relaxed">
+                      Si lo prefieres, también puedes escribirnos por WhatsApp.
+                    </p>
+
+                    <div className="mt-6">
+                      <a
+                        href={WHATSAPP_CHAT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-7 py-3.5 text-base font-bold text-white shadow-md transition-all hover:scale-[1.03] hover:shadow-emerald-500/25"
+                      >
+                        <MessageSquare className="h-4.5 w-4.5 shrink-0" />
+                        <span>Contactar por WhatsApp</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="relative z-10 mt-8 pt-6 border-t border-white/10 flex items-center gap-2 text-xs text-slate-400">
+                    <Sparkles className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                    <span>Canal ágil para consultas generales, comerciales y de proyectos</span>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </div>
 
             {/* ── Locations Section ── */}
             <div className="mt-16 sm:mt-20">
