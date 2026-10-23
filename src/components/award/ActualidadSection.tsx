@@ -40,6 +40,24 @@ const EDITORIAL_ARTICLES: EditorialArticle[] = [
     paddingClass: "p-3 sm:p-4.5",
   },
   {
+    id: "noticia-aeerc-taller-bot-voz",
+    source: "AEERC",
+    title: 'Taller doobot.ai_: “Bot de Voz: calienta que sales…!!”',
+    description:
+      "La AEERC recoge el taller práctico de doobot.ai_ celebrado durante la Semana del Contact Center 2026, centrado en las posibilidades de los bots de voz y su aplicación en distintos ámbitos de la relación con el cliente.",
+    image: "/doobot/articles/noticia-aeerc-taller-bot-voz.webp",
+    imageAlt: 'Taller doobot.ai_: “Bot de Voz: calienta que sales…!!” en AEERC',
+    actionType: "link",
+    externalUrl:
+      "https://aeerc.com/taller-doobot-ai_-bot-de-voz-calienta-que-sales-2/",
+    ctaText: "Leer artículo",
+    tag: "Bot de Voz",
+    visualBg: "bg-slate-50",
+    containerBorder: "border-slate-200/90",
+    innerFrameClass: "bg-white ring-1 ring-slate-900/5 shadow-sm rounded-xl sm:rounded-2xl p-2 sm:p-3",
+    paddingClass: "p-3 sm:p-4.5",
+  },
+  {
     id: "noticia-2-cuidacasa-whatsapp",
     source: "Cuidacasa",
     title: "Cuidacasa: Automatización por IA para evaluar reparaciones con tecnología doobot.ai_",
